@@ -10,7 +10,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Add Postal Dispatch</h3>
+                    <h3>Add Phone Call Log</h3>
                 </div>
 
                 <div class="title_right">
@@ -26,7 +26,8 @@
             </div>
             <div class="clearfix"></div>
             <div class="button-container">
-                <a href="{{ route('postal.dispatch') }}"><button type="button" class="btn btn-primary btn-sm mb-2">Postal Dispatch List</button></a>
+                <a href="{{ route('postal.dispatch') }}"><button type="button" class="btn btn-primary btn-sm mb-2">Phone
+                        Call Log List</button></a>
             </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12">
@@ -49,20 +50,20 @@
                                 action="{{ isset($postal_dispatch) ? '/admin/postal/dispatch/update/' . $postal_dispatch->id : '/admin/postal/dispatch/insert' }}"
                                 enctype="multipart/form-data">
                                 @csrf
-                              
+
                                 <div class="item form-group">
-                                  <label class="col-form-label col-md-3 col-sm-3 label-align">To Title *</label>
-                                  <div class="col-md-6 col-sm-6">
-                                      <input type="text" class="form-control @error('to_title') is-invalid @enderror"
-                                          name="to_title"
-                                          value="{{ old('to_title', isset($postal_dispatch) ? $postal_dispatch->to_title : '') }}">
-                                      @error('to_title')
-                                          <span class="invalid-feedback" style="color: red">
-                                              <strong>{{ $message }}</strong>
-                                          </span>
-                                      @enderror
-                                  </div>
-                              </div>
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align">To Title *</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input type="text" class="form-control @error('to_title') is-invalid @enderror"
+                                            name="to_title"
+                                            value="{{ old('to_title', isset($postal_dispatch) ? $postal_dispatch->to_title : '') }}">
+                                        @error('to_title')
+                                            <span class="invalid-feedback" style="color: red">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
 
                                 <div class="item form-group">
                                     <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Reference
@@ -96,18 +97,18 @@
                                 </div>
 
                                 <div class="item form-group">
-                                  <label class="col-form-label col-md-3 col-sm-3 label-align">From Title *</label>
-                                  <div class="col-md-6 col-sm-6">
-                                      <input type="text" class="form-control @error('from_title') is-invalid @enderror"
-                                          name="from_title"
-                                          value="{{ old('from_title', isset($postal_dispatch) ? $postal_dispatch->from_title : '') }}">
-                                      @error('from_title')
-                                          <span class="invalid-feedback" style="color: red">
-                                              <strong>{{ $message }}</strong>
-                                          </span>
-                                      @enderror
-                                  </div>
-                              </div>
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align">From Title *</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input type="text" class="form-control @error('from_title') is-invalid @enderror"
+                                            name="from_title"
+                                            value="{{ old('from_title', isset($postal_dispatch) ? $postal_dispatch->from_title : '') }}">
+                                        @error('from_title')
+                                            <span class="invalid-feedback" style="color: red">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
 
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Date *</label>
@@ -135,7 +136,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                
+
 
                                 <div class="ln_solid"></div>
                                 <div class="item form-group">
