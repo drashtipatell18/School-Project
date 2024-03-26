@@ -22,6 +22,7 @@ use App\Http\Controllers\Superadmin\Income\IncomeController;
 use App\Http\Controllers\Superadmin\Income\IncomeHeadController;
 use App\Http\Controllers\Superadmin\Payment\OfflinePaymentController;
 use App\Http\Controllers\Superadmin\SectionController;
+use App\Http\Controllers\Superadmin\TeacherController;
 use App\Models\Admin\FrontOffice\SetupFrontOffice;
 use Illuminate\Support\Facades\Route;
 
@@ -71,6 +72,11 @@ Route::post('/admin/class/insert',[ClassController::class,'classInsert'])->name(
 Route::get('/admin/class/edit/{id}', [ClassController::class, 'classEdit'])->name('edit.class');
 Route::post('/admin/class/update/{id}', [ClassController::class, 'classUpdate'])->name('update.class');
 Route::get('/admin/class/destroy/{id}',[ClassController::class,'classDestroy'])->name('destroy');       
+
+// Teacher 
+Route::get('/admin/teacher',[TeacherController::class,'teachers'])->name('assign_class_teacher');
+Route::get('/admin/teacher/create',[TeacherController::class,'teacherCreate'])->name('create.teacher');
+Route::post('/admin/teacher/insert',[TeacherController::class,'teacherInsert'])->name('insert.teacher');
 
 //Student Admission
 Route::get('/admin/student',[StudentAdmissionController::class,'admission'])->name('student.admission');

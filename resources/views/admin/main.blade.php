@@ -72,6 +72,8 @@
                                         </li>
                                         <li><a href="{{ route('class') }}">Class</a>
                                         </li>
+                                        <li><a href="{{ route('create.teacher') }}">Assign Class Teacher</a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="{{ route('homework') }}"><i class="fa fa-flask ftlayer"></i>HomeWork</a>
