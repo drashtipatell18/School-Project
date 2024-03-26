@@ -15,7 +15,6 @@ use App\Http\Controllers\Superadmin\Exam\ScheduleController;
 use App\Http\Controllers\Superadmin\Expenses\ExpensesController;
 use App\Http\Controllers\Superadmin\Expenses\ExpensesHeadController;
 use App\Http\Controllers\Superadmin\FrontOffice\ComplaintController;
-use App\Http\Controllers\Superadmin\FrontOffice\PhoneCallLogController;
 use App\Http\Controllers\Superadmin\FrontOffice\PostalDispatchController;
 use App\Http\Controllers\Superadmin\FrontOffice\PostalReceiveController;
 use App\Http\Controllers\Superadmin\FrontOffice\SetupFrontOfficeController;
@@ -280,13 +279,3 @@ Route::post('/admin/postal/dispatch/insert',[PostalDispatchController::class,'po
 Route::get('/admin/postal/dispatch/edit/{id}', [PostalDispatchController::class, 'postalDispatchEdit'])->name('edit.postal.dispatch');
 Route::post('/admin/postal/dispatch/update/{id}', [PostalDispatchController::class, 'postalDispatchUpdate'])->name('update.postal.dispatch');
 Route::get('/admin/postal/dispatch/destroy/{id}',[PostalDispatchController::class,'postalDispatchDestroy'])->name('destroy.postal.dispatch');
-
-
-
-//Postal Dispatch 
-Route::get('/admin/phone/call/log',[PhoneCallLogController::class,'phoneCallLog'])->name('phone.call.log');
-Route::get('/admin/phone/call/log/create',[PhoneCallLogController::class,'phoneCallLogCreate'])->name('create.phone.call.log');
-Route::post('/admin/phone/call/log/insert',[PhoneCallLogController::class,'phoneCallLogInsert'])->name('insert.phone.call.log');
-Route::get('/admin/phone/call/log/edit/{id}', [PhoneCallLogController::class, 'phoneCallLogEdit'])->name('edit.phone.call.log');
-Route::post('/admin/phone/call/log/update/{id}', [PhoneCallLogController::class, 'phoneCallLogUpdate'])->name('update.phone.call.log');
-Route::get('/admin/phone/call/log/destroy/{id}',[PhoneCallLogController::class,'phoneCallLogDestroy'])->name('destroy.phone.call.log');

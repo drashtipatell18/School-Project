@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! </title>
+    <title>Gentelella Alela! | </title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <!-- Bootstrap -->
@@ -140,9 +140,9 @@
                                             class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         {{-- <li><a href="{{ route('expenses.head') }}">Admission Enquiry</a></li>
-                                        <li><a href="{{ route('expenses') }}">Visitor Book</a></li> --}}
-                                        <li><a href="{{ route('phone.call.log') }}">Phone Call Log</a></li>
-                                        <li><a href="{{ route('postal.dispatch') }}">Postal Dispatch</a></li>
+                                        <li><a href="{{ route('expenses') }}">Visitor Book</a></li>
+                                        <li><a href="{{ route('expenses.head') }}">Phone Call Log</a></li>
+                                        <li><a href="{{ route('expenses') }}">Postal Dispatch</a></li> --}}
                                         <li><a href="{{ route('postal.receive') }}">Postal Receive</a></li>
                                         <li><a href="{{ route('complaint') }}">Complain</a></li>
                                         <li><a href="{{ route('purpose') }}">Setup Front Office</a></li>
