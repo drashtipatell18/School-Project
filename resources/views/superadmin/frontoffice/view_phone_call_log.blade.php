@@ -10,7 +10,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Postal Dispatch List</h3>
+                    <h3>Phone Call Log List</h3>
                 </div>
                 <div class="title_right">
                     <div class="col-md-5 col-sm-5   form-group pull-right top_search">
@@ -37,7 +37,7 @@
                             <div class="table-responsive">
                                 <div class="button-container">
                                     <a href="{{ route('create.postal.dispatch') }}"><button type="button"
-                                            class="btn btn-primary btn-sm mb-2">Add Postal Dispatch</button></a>
+                                            class="btn btn-primary btn-sm mb-2">Add Phone Call Log</button></a>
                                 </div>
                                 <table class="table table-striped jambo_table bulk_action" id="table">
                                     <thead>

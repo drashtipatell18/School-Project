@@ -9,5 +9,5 @@ class PostalDispatch extends Model
 {
     use HasFactory;
     protected $table = 'postal_dispatchs';
-    protected $fillable = ['from_title','reference_no','address','note','to_title','date','attach_document'];
+    protected $fillable = ['to_title','reference_no','address','note','from_title','date','attach_document'];
 }
