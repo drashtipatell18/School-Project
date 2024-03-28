@@ -23,6 +23,7 @@ use App\Http\Controllers\Superadmin\Income\IncomeHeadController;
 use App\Http\Controllers\Superadmin\Payment\OfflinePaymentController;
 use App\Http\Controllers\Superadmin\SectionController;
 use App\Http\Controllers\Superadmin\TeacherController;
+use App\Http\Controllers\Superadmin\SubjectController;
 use App\Models\Admin\FrontOffice\SetupFrontOffice;
 use Illuminate\Support\Facades\Route;
 
@@ -74,9 +75,34 @@ Route::post('/admin/class/update/{id}', [ClassController::class, 'classUpdate'])
 Route::get('/admin/class/destroy/{id}',[ClassController::class,'classDestroy'])->name('destroy');       
 
 // Teacher 
-Route::get('/admin/teacher',[TeacherController::class,'teachers'])->name('assign_class_teacher');
+Route::get('/admin/teacher',[TeacherController::class,'teachers'])->name('teacher');
 Route::get('/admin/teacher/create',[TeacherController::class,'teacherCreate'])->name('create.teacher');
 Route::post('/admin/teacher/insert',[TeacherController::class,'teacherInsert'])->name('insert.teacher');
+Route::get('/admin/teacher/edit/{id}', [TeacherController::class, 'teacherEdit'])->name('edit.teacher');
+Route::post('/admin/teacher/update/{id}', [TeacherController::class, 'teacherUpdate'])->name('update.teacher');
+Route::get('/admin/teacher/destroy/{id}',[TeacherController::class,'teacherDestroy'])->name('destroy.teacher'); 
+Route::get('/admin/teacher/teachersssgin',[TeacherController::class,'teacherAssgin'])->name('teacherassign');
+Route::get('/admin/teacher/teacherassgincreate',[TeacherController::class,'teacherAssginCreate'])->name('create.teacherassign');
+Route::post('/admin/teacher/teachersssgininsert',[TeacherController::class,'teacherAssginInsert'])->name('insert.teacherassign');
+Route::get('/admin/teacher/teacherassginedit/{id}', [TeacherController::class, 'teacherAssginEdit'])->name('edit.teacherassign');
+Route::post('/admin/teacher/teachersssginupdate/{id}',[TeacherController::class,'teacherAssginUpdate'])->name('update.teacherassign');
+Route::get('/admin/teacher/teachersssgindestroy/{id}',[TeacherController::class,'teacherAssgindestroy'])->name('destroy.teacherassign');
+      
+
+// subject 
+Route::get('/admin/subject',[SubjectController::class,'subjects'])->name('subject');
+Route::get('/admin/subject/create',[SubjectController::class,'subjectCreate'])->name('create.subject');
+Route::post('/admin/subject/insert',[SubjectController::class,'subjectInsert'])->name('insert.subject');
+Route::get('/admin/subject/edit/{id}', [SubjectController::class, 'subjectEdit'])->name('edit.subject');
+Route::post('/admin/subject/update/{id}', [SubjectController::class, 'subjectUpdate'])->name('update.subject');
+Route::get('/admin/subject/destroy/{id}',[SubjectController::class,'subjectDestroy'])->name('destroy.subject'); 
+Route::get('/admin/subject/subjectgroup',[SubjectController::class,'subjectGroup'])->name('subjectgroup');
+Route::get('/admin/subject/subjectgroupcreate',[SubjectController::class,'subjecGroupCreate'])->name('create.subjectgroup');
+Route::post('/admin/subject/subjectgroupinsert',[SubjectController::class,'subjecGroupInsert'])->name('insert.subjectgroup');
+Route::get('/admin/subject/subjectgroupedit/{id}', [SubjectController::class, 'subjecGroupEdit'])->name('edit.subjectgroup');
+Route::post('/admin/subject/subjectgroupupdate/{id}',[SubjectController::class,'subjecGroupUpdate'])->name('update.subjectgroup');
+Route::get('/admin/subject/subjectgroupdestroy/{id}',[SubjectController::class,'subjecGroupDestroy'])->name('destroy.subjectgroup');
+ 
 
 //Student Admission
 Route::get('/admin/student',[StudentAdmissionController::class,'admission'])->name('student.admission');

@@ -5,9 +5,9 @@ namespace App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Teacher extends Model
+class SubjectGroup extends Model
 {
     use HasFactory;
-    protected $table = 'teachers';
-    protected $fillable = ['name'];
+    protected $table = 'subjectgroups';
+    protected $fillable = ['name','class','section','subject','description'];
 }

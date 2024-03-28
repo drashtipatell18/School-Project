@@ -72,7 +72,13 @@
                                         </li>
                                         <li><a href="{{ route('class') }}">Class</a>
                                         </li>
-                                        <li><a href="{{ route('create.teacher') }}">Assign Class Teacher</a>
+                                        <li><a href="{{ route('teacher') }}">Teacher</a>
+                                        </li>
+                                        <li><a href="{{ route('teacherassign') }}">Assign Class Teacher</a>
+                                        </li>
+                                        <li><a href="{{ route('subject') }}">Subject</a>
+                                        </li>
+                                        <li><a href="{{ route('subjectgroup') }}">Subject Group</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -174,6 +180,7 @@
 
     <!-- jQuery -->
     <script src="{{ asset('vendors/jquery/dist/jquery.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <!-- Bootstrap -->
     <script src="{{ asset('vendors/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <!-- FastClick -->
