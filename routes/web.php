@@ -19,6 +19,7 @@ use App\Http\Controllers\Superadmin\FrontOffice\PhoneCallLogController;
 use App\Http\Controllers\Superadmin\FrontOffice\PostalDispatchController;
 use App\Http\Controllers\Superadmin\FrontOffice\PostalReceiveController;
 use App\Http\Controllers\Superadmin\FrontOffice\SetupFrontOfficeController;
+use App\Http\Controllers\Superadmin\FrontOffice\VisitorBookController;
 use App\Http\Controllers\Superadmin\Income\IncomeController;
 use App\Http\Controllers\Superadmin\Income\IncomeHeadController;
 use App\Http\Controllers\Superadmin\Payment\OfflinePaymentController;
@@ -284,3 +285,12 @@ Route::post('/admin/phone/call/log/insert',[PhoneCallLogController::class,'phone
 Route::get('/admin/phone/call/log/edit/{id}', [PhoneCallLogController::class, 'phoneCallLogEdit'])->name('edit.phone.call.log');
 Route::post('/admin/phone/call/log/update/{id}', [PhoneCallLogController::class, 'phoneCallLogUpdate'])->name('update.phone.call.log');
 Route::get('/admin/phone/call/log/destroy/{id}',[PhoneCallLogController::class,'phoneCallLogDestroy'])->name('destroy.phone.call.log');
+
+
+//Visitor Book 
+Route::get('/admin/visitor/book',[VisitorBookController::class,'visitorBook'])->name('visitor.book');
+Route::get('/admin/visitor/book/create',[VisitorBookController::class,'visitorBookCreate'])->name('create.visitor.book');
+Route::post('/admin/visitor/book/insert',[VisitorBookController::class,'visitorBookInsert'])->name('insert.visitor.book');
+Route::get('/admin/visitor/book/edit/{id}', [VisitorBookController::class, 'visitorBookEdit'])->name('edit.visitor.book');
+Route::post('/admin/visitor/book/update/{id}', [VisitorBookController::class, 'visitorBookUpdate'])->name('update.visitor.book');
+Route::get('/admin/visitor/book/destroy/{id}',[VisitorBookController::class,'visitorBookDestroy'])->name('destroy.visitor.book');

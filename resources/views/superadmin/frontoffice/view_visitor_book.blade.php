@@ -10,7 +10,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Phone Call Log List</h3>
+                    <h3>Visitor List</h3>
                 </div>
                 <div class="title_right">
                     <div class="col-md-5 col-sm-5   form-group pull-right top_search">
@@ -36,42 +36,40 @@
                         <div class="x_content">
                             <div class="table-responsive">
                                 <div class="button-container">
-                                    <a href="{{ route('create.phone.call.log') }}"><button type="button"
-                                            class="btn btn-primary btn-sm mb-2">Add Phone Call Log</button></a>
+                                    <a href="{{ route('create.visitor.book') }}"><button type="button"
+                                            class="btn btn-primary btn-sm mb-2">Add Visitor</button></a>
                                 </div>
-                                <table class="table table-striped jambo_table bulk_action" id="table">
+                                {{-- <table class="table table-striped jambo_table bulk_action" id="table">
                                     <thead>
                                         <tr class="">
                                             <th>No</th>
-                                            <th>Name</th>
-                                            <th>Phone</th>
+                                            <th>From Title</th>
+                                            <th>Reference No</th>
+                                            <th>To Title</th>
                                             <th>Date</th>
-                                            <th>Next Follow Up Date</th>
-                                            <th>Call Type</th>
                                             <th><span class="nobr">Action</span></th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        @foreach ($phone_call_log as $index => $phone_call)
+                                        @foreach ($postal_receive as $index => $postal_rec)
                                             <tr>
                                                 <td>{{ $index + 1 }}</td>
-                                                <td>{{ $phone_call->name }}</td>
-                                                <td>{{ $phone_call->phone }}</td>
-                                                <td class="">{{ date('d-m-Y', strtotime($phone_call->date)) }}</td>
-                                                <td>{{ $phone_call->next_follow_up_date }}</td>
-                                                <td>{{ $phone_call->call_type }}</td>
+                                                <td>{{ $postal_rec->from_title }}</td>
+                                                <td>{{ $postal_rec->reference_no }}</td>
+                                                <td>{{ $postal_rec->to_title }}</td>
+                                                <td class="">{{ date('d-m-Y', strtotime($postal_rec->date)) }}</td>
                                                 <td>
-                                                    <a href="{{ route('edit.phone.call.log', $phone_call->id) }}"
+                                                    <a href="{{ route('edit.postal.receive', $postal_rec->id) }}"
                                                         class="btn btn-info btn-sm">Edit</a>
 
-                                                    <a href="{{ route('destroy.phone.call.log', $phone_call->id) }}"
+                                                    <a href="{{ route('destroy.postal.receive', $postal_rec->id) }}"
                                                         class="btn btn-danger btn-sm">Delete</a>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
-                                </table>
+                                </table> --}}
                             </div>
                         </div>
                     </div>

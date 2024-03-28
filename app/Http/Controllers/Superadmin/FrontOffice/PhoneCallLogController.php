@@ -20,26 +20,26 @@ class PhoneCallLogController extends Controller
     }
     public function phoneCallLogInsert(Request $request)
     {
-
-        // dd($request->all());
         $request->validate([
-            'from_title' => 'required',
-            'address' => 'required',
-            'to_title' => 'required',
+            'name' => 'required',
+            'phone' => 'required',
             'date' => 'required|date',
+            'call_type' => 'required',
+        ], [
+            'call_type.required' => 'The Call Type field is required.',
         ]);
 
-    
         PhoneCallLog::create([
-            'from_title' => $request->input('from_title'),
-            'reference_no' => $request->input('reference_no'),
-            'address' => $request->input('address'),
-            'note' => $request->input('note'),
-            'to_title' => $request->input('to_title'),
+            'name' => $request->input('name'),
+            'phone' => $request->input('phone'),
             'date' => $request->input('date'),
-            'attach_document' => $request->input('date'),
+            'description' => $request->input('description'),
+            'next_follow_up_date' => $request->input('next_follow_up_date'),
+            'call_duration' => $request->input('call_duration'),
+            'note' => $request->input('note'),
+            'call_type' => $request->input('call_type'),
         ]);
-        return redirect()->route('postal.receive');
+        return redirect()->route('phone.call.log');
     }
     public function phoneCallLogEdit($id)
     {
@@ -48,24 +48,29 @@ class PhoneCallLogController extends Controller
     }
     public function phoneCallLogUpdate(Request $request, $id)
     {
-            $request->validate([
-                'from_title' => 'required',
-                'address' => 'required',
-                'to_title' => 'required',
-                'date' => 'required|date',
-            ]);
-
-            $phone_call_log = PhoneCallLog::find($id);
-       
-            $phone_call_log->update([
-            'from_title' => $request->input('from_title'),
-            'reference_no' => $request->input('reference_no'),
-            'address' => $request->input('address'),
-            'note' => $request->input('note'),
-            'to_title' => $request->input('to_title'),
+        $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+            'date' => 'required|date',
+            'call_type' => 'required',
+        ], [
+            'call_type.required' => 'The Call Type field is required.',
+        ]);
+    
+        $phone_call_log = PhoneCallLog::find($id);
+        
+        $phone_call_log->update([
+            'name' => $request->input('name'),
+            'phone' => $request->input('phone'),
             'date' => $request->input('date'),
-            ]);
-            return redirect()->route('postal.receive');
+            'description' => $request->input('description'),
+            'next_follow_up_date' => $request->input('next_follow_up_date'),
+            'call_duration' => $request->input('call_duration'),
+            'note' => $request->input('note'),
+            'call_type' => $request->input('call_type'), // Use the input directly
+        ]);
+    
+        return redirect()->route('phone.call.log');
     }
     public function phoneCallLogDestroy($id)
     {

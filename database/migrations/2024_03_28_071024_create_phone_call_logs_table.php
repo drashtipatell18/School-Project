@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('next_follow_up_date')->nullable();
             $table->string('call_duration')->nullable();
             $table->text('note')->nullable()->nullable();
-            $table->tinyInteger('call_type')->default(0)->nullable();
+            $table->string('call_type')->nullable();
             $table->timestamps();
         });
     }

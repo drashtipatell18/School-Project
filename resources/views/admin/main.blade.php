@@ -137,8 +137,8 @@
                                 <li><a><i class="fa fa-ioxhost ftlayer"></i>Front Office<span
                                             class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        {{-- <li><a href="{{ route('expenses.head') }}">Admission Enquiry</a></li>
-                                        <li><a href="{{ route('expenses') }}">Visitor Book</a></li> --}}
+                                        {{-- <li><a href="{{ route('expenses.head') }}">Admission Enquiry</a></li> --}}
+                                        <li><a href="{{ route('visitor.book') }}">Visitor Book</a></li>
                                         <li><a href="{{ route('phone.call.log') }}">Phone Call Log</a></li>
                                         <li><a href="{{ route('postal.dispatch') }}">Postal Dispatch</a></li>
                                         <li><a href="{{ route('postal.receive') }}">Postal Receive</a></li>
