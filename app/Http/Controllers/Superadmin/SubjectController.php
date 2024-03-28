@@ -70,8 +70,77 @@ class SubjectController extends Controller
         return view('superadmin.academics.view_subject_group',compact('subjectgroups'));
     }
     public function subjecGroupCreate(){
-        $subject = Subject::all();
+        $subject   = Subject::pluck('name', 'name');
         return view('superadmin.academics.create_subject_group',compact('subject'));
 
     } 
+
+    public function subjecGroupInsert(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'class' => 'required',
+            'section' => 'required', 
+            'subject' => 'required|array', 
+            'description' => 'required', 
+        ]);
+        $name = $request->input('name');
+        $class = $request->input('class');
+        $section = $request->input('section');
+        $subjects = $request->input('subject');
+        $subjectsString = implode(',', $subjects);
+
+        $description = $request->input('description');
+    
+        $subjectgroup = SubjectGroup::create([
+            'name' => $name,
+            'class' => $class,
+            'section' => $section,
+            'subject' => $subjectsString,
+            'description' => $description,
+        ]);
+    
+        return redirect()->route('subjectgroup');
+    }
+    public function subjecGroupEdit($id)
+    {
+        $subject   = Subject::pluck('name', 'name');
+        $subjectgroup = SubjectGroup::find($id);
+        return view('superadmin.academics.create_subject_group', compact('subjectgroup','subject'));
+    }
+    public function subjecGroupUpdate(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'class' => 'required',
+            'section' => 'required',
+            'subject' => 'required|array',
+            'description' => 'required',
+        ]);
+        $subjectgroup = SubjectGroup::find($id);
+        
+        $name = $request->input('name');
+        $class = $request->input('class');
+        $section = $request->input('section');
+        $subjects = $request->input('subject');
+        $subjectsString = implode(',', $subjects);
+        $description = $request->input('description');
+
+        $subjectgroup->update([
+            'name' => $name,
+            'class' => $class,
+            'section' => $section,
+            'subject' => $subjectsString,
+            'description' => $description,
+        ]);
+      
+        return redirect()->route('subjectgroup');
+    }
+
+    public function subjecGroupDestroy($id)
+    {
+        $subjectgroup = SubjectGroup::find($id);
+        $subjectgroup->delete();
+        return redirect()->back();
+    }
 }

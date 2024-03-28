@@ -59,7 +59,7 @@
                                             <th class="">Name</th>
                                             <th class="">Class</th>
                                             <th class="">Section</th>
-                                            <th class="">Subject</th>                                                <th class="">Description</th>
+                                            <th class="">Subject</th>                                              
                                             <th class="">Description</th>
                                             <th class=""><span class="nobr">Action</span></th>
                                         </tr>
@@ -75,9 +75,9 @@
                                             <td class="">{{ $subjectgroup->subject }}</td>     
                                             <td class="">{{ $subjectgroup->description }}</td>                           
                                                 <td> 
-                                                    <a href="{{ route('edit.subjectgroup', $teacher->id) }}" class="btn btn-info btn-sm">Edit</a>
+                                                    <a href="{{ route('edit.subjectgroup', $subjectgroup->id) }}" class="btn btn-info btn-sm">Edit</a>
 
-                                                    <a href="{{ route('destroy.subjectgroup',$teacher->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                                                    <a href="{{ route('destroy.subjectgroup',$subjectgroup->id) }}" class="btn btn-danger btn-sm">Delete</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -176,8 +176,8 @@
                                             <td class="">{{ $subjectgroup->subject }}</td>                
                                             <td class="">{{ $subjectgroup->description }}</td>                
                                                 <td> 
-                                                    <a href="{{ route('edit.subjectgroup', $teacher->id) }}" class="btn btn-info btn-sm">Edit</a>
-                                                    <a href="{{ route('destroy.subjectgroup',$teacher->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                                                    <a href="{{ route('edit.subjectgroup', $subjectgroup->id) }}" class="btn btn-info btn-sm">Edit</a>
+                                                    <a href="{{ route('destroy.subjectgroup',$subjectgroup->id) }}" class="btn btn-danger btn-sm">Delete</a>
                                                 </td>
                                             </tr>
                                         @endforeach
