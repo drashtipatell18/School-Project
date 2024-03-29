@@ -10,7 +10,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Postal Dispatch List</h3>
+                    <h3>Postal Receive List</h3>
                 </div>
                 <div class="title_right">
                     <div class="col-md-5 col-sm-5   form-group pull-right top_search">
@@ -36,8 +36,8 @@
                         <div class="x_content">
                             <div class="table-responsive">
                                 <div class="button-container">
-                                    <a href="{{ route('create.postal.dispatch') }}"><button type="button"
-                                            class="btn btn-primary btn-sm mb-2">Add Postal Dispatch</button></a>
+                                    <a href="{{ route('create.postal.receive') }}"><button type="button"
+                                            class="btn btn-primary btn-sm mb-2">Add Postal Receive</button></a>
                                 </div>
                                 <table class="table table-striped jambo_table bulk_action" id="table">
                                     <thead>
@@ -52,18 +52,18 @@
                                     </thead>
 
                                     <tbody>
-                                        @foreach ($postal_dispatch as $index => $postal_dis)
+                                        @foreach ($postal_receive as $index => $postal_rec)
                                             <tr>
                                                 <td>{{ $index + 1 }}</td>
-                                                <td>{{ $postal_dis->from_title }}</td>
-                                                <td>{{ $postal_dis->reference_no }}</td>
-                                                <td>{{ $postal_dis->to_title }}</td>
-                                                <td class="">{{ date('d-m-Y', strtotime($postal_dis->date)) }}</td>
+                                                <td>{{ $postal_rec->from_title }}</td>
+                                                <td>{{ $postal_rec->reference_no }}</td>
+                                                <td>{{ $postal_rec->to_title }}</td>
+                                                <td class="">{{ date('d-m-Y', strtotime($postal_rec->date)) }}</td>
                                                 <td>
-                                                    <a href="{{ route('edit.postal.dispatch', $postal_dis->id) }}"
+                                                    <a href="{{ route('edit.postal.receive', $postal_rec->id) }}"
                                                         class="btn btn-info btn-sm">Edit</a>
 
-                                                    <a href="{{ route('destroy.postal.dispatch', $postal_dis->id) }}"
+                                                    <a href="{{ route('destroy.postal.receive', $postal_rec->id) }}"
                                                         class="btn btn-danger btn-sm">Delete</a>
                                                 </td>
                                             </tr>

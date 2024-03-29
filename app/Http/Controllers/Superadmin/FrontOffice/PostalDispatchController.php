@@ -24,9 +24,9 @@ class PostalDispatchController extends Controller
 
         // dd($request->all());
         $request->validate([
-            'to_title' => 'required',
-            'address' => 'required',
             'from_title' => 'required',
+            'address' => 'required',
+            'to_title' => 'required',
             'date' => 'required|date',
         ]);
 
@@ -39,11 +39,11 @@ class PostalDispatchController extends Controller
         }
 
         PostalDispatch::create([
-            'to_title' => $request->input('to_title'),
+            'from_title' => $request->input('from_title'),
             'reference_no' => $request->input('reference_no'),
             'address' => $request->input('address'),
             'note' => $request->input('note'),
-            'from_title' => $request->input('from_title'),
+            'to_title' => $request->input('to_title'),
             'date' => $request->input('date'),
             'attach_document' => $filename,
         ]);
@@ -57,9 +57,9 @@ class PostalDispatchController extends Controller
     public function postalDispatchUpdate(Request $request, $id)
     {
             $request->validate([
-                'to_title' => 'required',
-                'address' => 'required',
                 'from_title' => 'required',
+                'address' => 'required',
+                'to_title' => 'required',
                 'date' => 'required|date',
             ]);
 
@@ -80,12 +80,12 @@ class PostalDispatchController extends Controller
         }
 
             $postal_dispatch->update([
-                'to_title' => $request->input('to_title'),
-                'reference_no' => $request->input('reference_no'),
-                'address' => $request->input('address'),
-                'note' => $request->input('note'),
-                'from_title' => $request->input('from_title'),
-                'date' => $request->input('date'),
+            'from_title' => $request->input('from_title'),
+            'reference_no' => $request->input('reference_no'),
+            'address' => $request->input('address'),
+            'note' => $request->input('note'),
+            'to_title' => $request->input('to_title'),
+            'date' => $request->input('date'),
             ]);
             return redirect()->route('postal.dispatch');
     }

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! </title>
+    <title>Gentelella Alela! | </title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <!-- Bootstrap -->
@@ -71,6 +71,14 @@
                                         <li><a href="{{ route('section') }}">Sections</a>
                                         </li>
                                         <li><a href="{{ route('class') }}">Class</a>
+                                        </li>
+                                        <li><a href="{{ route('teacher') }}">Teacher</a>
+                                        </li>
+                                        <li><a href="{{ route('teacherassign') }}">Assign Class Teacher</a>
+                                        </li>
+                                        <li><a href="{{ route('subject') }}">Subject</a>
+                                        </li>
+                                        <li><a href="{{ route('subjectgroup') }}">Subject Group</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -137,10 +145,17 @@
                                 <li><a><i class="fa fa-ioxhost ftlayer"></i>Front Office<span
                                             class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
+<<<<<<< HEAD
                                         {{-- <li><a href="{{ route('expenses.head') }}">Admission Enquiry</a></li> --}}
                                         <li><a href="{{ route('visitor.book') }}">Visitor Book</a></li>
                                         <li><a href="{{ route('phone.call.log') }}">Phone Call Log</a></li>
                                         <li><a href="{{ route('postal.dispatch') }}">Postal Dispatch</a></li>
+=======
+                                        {{-- <li><a href="{{ route('expenses.head') }}">Admission Enquiry</a></li>
+                                        <li><a href="{{ route('expenses') }}">Visitor Book</a></li>
+                                        <li><a href="{{ route('expenses.head') }}">Phone Call Log</a></li>
+                                        <li><a href="{{ route('expenses') }}">Postal Dispatch</a></li> --}}
+>>>>>>> cd30112a8e97f9266b3a9c40676e993e62b78576
                                         <li><a href="{{ route('postal.receive') }}">Postal Receive</a></li>
                                         <li><a href="{{ route('complaint') }}">Complain</a></li>
                                         <li><a href="{{ route('purpose') }}">Setup Front Office</a></li>
@@ -172,6 +187,7 @@
 
     <!-- jQuery -->
     <script src="{{ asset('vendors/jquery/dist/jquery.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <!-- Bootstrap -->
     <script src="{{ asset('vendors/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <!-- FastClick -->
