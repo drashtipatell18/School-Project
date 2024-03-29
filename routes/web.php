@@ -26,6 +26,8 @@ use App\Http\Controllers\Superadmin\TeacherController;
 use App\Http\Controllers\Superadmin\SubjectController;
 use App\Http\Controllers\Superadmin\FrontOffice\VisitorBookController;
 use App\Http\Controllers\Superadmin\FrontOffice\PhoneCallLogController;
+use App\Http\Controllers\Lesson\LessonController;
+use App\Http\Controllers\Lesson\TopicController;
 use App\Models\Admin\FrontOffice\SetupFrontOffice;
 use Illuminate\Support\Facades\Route;
 
@@ -107,6 +109,24 @@ Route::get('/admin/subject/subjectgroupdestroy/{id}',[SubjectController::class,'
 
 Route::get('/get-subjects', [SubjectController::class, 'getSubject']);
 Route::get('/get-subjectgroups', [SubjectController::class, 'getSubjectGroup']); 
+Route::get('/get-lessons', [SubjectController::class, 'getLesson']); 
+
+
+// lesson
+Route::get('/admin/lesson',[LessonController::class,'Lessons'])->name('lessons');
+Route::get('/admin/lesson/create',[LessonController::class,'lessonCreate'])->name('create.lesson');
+Route::post('/admin/lesson/insert',[LessonController::class,'lessonInsert'])->name('insert.lesson');
+Route::get('/admin/lesson/edit/{id}', [LessonController::class, 'lessonEdit'])->name('edit.lesson');
+Route::post('/admin/lesson/update/{id}', [LessonController::class, 'lessonUpdate'])->name('update.lesson');
+Route::get('/admin/lesson/destroy/{id}',[LessonController::class,'lessonDestroy'])->name('destroy.lesson'); 
+
+// topic
+Route::get('/admin/topic',[TopicController::class,'Topics'])->name('topics');
+Route::get('/admin/topic/create',[TopicController::class,'topicCreate'])->name('create.topic');
+Route::post('/admin/topic/insert',[TopicController::class,'topicInsert'])->name('insert.topic');
+Route::get('/admin/topic/edit/{id}', [TopicController::class, 'topicEdit'])->name('edit.topic');
+Route::post('/admin/topic/update/{id}', [TopicController::class, 'topicUpdate'])->name('update.topic');
+Route::get('/admin/topic/destroy/{id}',[TopicController::class,'topicDestroy'])->name('destroy.topic'); 
 
 
 //Student Admission

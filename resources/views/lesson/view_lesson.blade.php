@@ -10,7 +10,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Assign Class Teacher</h3>
+                    <h3>Lesson List</h3>
                 </div>
                 <div class="title_right">
                     <div class="col-md-5 col-sm-5   form-group pull-right top_search">
@@ -50,29 +50,37 @@
                         <div class="x_content">
                             <div class="table-responsive">
                                 <div class="button-container">
-                                    <a href="{{ route('create.') }}"><button type="button" class="btn btn-primary btn-sm mb-2">Add Teacher</button></a>
+                                    <a href="{{ route('create.lesson') }}"><button type="button" class="btn btn-primary btn-sm mb-2">Add Lesson</button></a>
                                 </div>
                                 <table class="table table-striped jambo_table bulk_action" id="table">
                                     <thead>
-                                          <tr class="">
+                                        <tr class="">
                                             <th>No</th>
-                                            <th class="">Assign Class Teacher</th>
+                                            <th>Class</th>
+                                            <th class="">Section</th>
+                                            <th class="">Subject Group</th>
+                                            <th class="">Subject</th>
+                                            <th class="">Lesson</th>
                                             <th class=""><span class="nobr">Action</span></th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        {{-- @foreach ($section as $index => $sec) --}}
-                                        {{-- <tr class="">
+                                        @foreach ($lessons as $index => $lesson)
+                                        <tr class="">
                                           <td>{{ $index + 1 }}</td>
-                                            <td class="">{{ $sec->section }}</td>                
-                                                <td> 
-                                                    <a href="{{ route('edit.section', $sec->id) }}" class="btn btn-info btn-sm">Edit</a>
+                                            <td class="">{{ $lesson->class }}</td>                
+                                            <td class="">{{ $lesson->section }}</td>                
+                                            <td class="">{{ $lesson->subject_group }}</td>                
+                                            <td class="">{{ $lesson->subject }}</td>                
+                                            <td class="">{!! str_replace(',', '<br>', $lesson->name) !!}</td>
+                                            <td> 
+                                                    <a href="{{ route('edit.lesson', $lesson->id) }}" class="btn btn-info btn-sm">Edit</a>
 
-                                                    <a href="{{ route('destroy',$sec->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                                                    <a href="{{ route('destroy.lesson',$lesson->id) }}" class="btn btn-danger btn-sm">Delete</a>
                                                 </td>
-                                            </tr> --}}
-                                        {{-- @endforeach --}}
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -103,7 +111,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Assign Class Teacher</h3>
+                    <h3>Lesson List</h3>
                 </div>
                 <div class="title_right">
                     <div class="col-md-5 col-sm-5   form-group pull-right top_search">
@@ -143,29 +151,38 @@
                         <div class="x_content">
                             <div class="table-responsive">
                                 <div class="button-container">
-                                    <a href="{{ route('create.') }}"><button type="button" class="btn btn-primary btn-sm mb-2">Add Teacher</button></a>
+                                    <a href="{{ route('create.lesson') }}"><button type="button" class="btn btn-primary btn-sm mb-2">Add Lesson</button></a>
                                 </div>
                                 <table class="table table-striped jambo_table bulk_action" id="table">
                                     <thead>
-                                          <tr class="">
+                                        <tr class="">
                                             <th>No</th>
+                                            <th>Class</th>
                                             <th class="">Section</th>
+                                            <th class="">Subject Group</th>
+                                            <th class="">Subject</th>
+                                            <th class="">Lesson</th>
                                             <th class=""><span class="nobr">Action</span></th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        {{-- @foreach ($section as $index => $sec)
+                                        @foreach ($lessons as $index => $lesson)
                                         <tr class="">
                                           <td>{{ $index + 1 }}</td>
-                                            <td class="">{{ $sec->section }}</td>                
+                                            <td class="">{{ $lesson->class }}</td>                
+                                            <td class="">{{ $lesson->section }}</td>                
+                                            <td class="">{{ $lesson->name }}</td>                
+                                            <td class="">{{ $lesson->subject_group }}</td>                
+                                            <td class="">{{ $lesson->subject }}</td>                
+                                            <td class="">{{ $lesson->name }}</td>                
                                                 <td> 
-                                                    <a href="{{ route('edit.section', $sec->id) }}" class="btn btn-info btn-sm">Edit</a>
+                                                    <a href="{{ route('edit.lesson', $lesson->id) }}" class="btn btn-info btn-sm">Edit</a>
 
-                                                    <a href="{{ route('destroy',$sec->id) }}" class="btn btn-danger btn-sm">Delete</a>
+                                                    <a href="{{ route('destroy.lesson',$lesson->id) }}" class="btn btn-danger btn-sm">Delete</a>
                                                 </td>
                                             </tr>
-                                        @endforeach --}}
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

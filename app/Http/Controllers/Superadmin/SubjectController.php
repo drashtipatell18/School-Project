@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Superadmin;
 use App\Http\Controllers\Controller;
 
 use App\Models\Admin\Subject;
+use App\Models\Admin\Section;
+use App\Models\Admin\Clas;
+use App\Models\Admin\Lesson;
 use App\Models\Admin\SubjectGroup;
 use Illuminate\Http\Request;
 
@@ -142,5 +145,91 @@ class SubjectController extends Controller
         $subjectgroup = SubjectGroup::find($id);
         $subjectgroup->delete();
         return redirect()->back();
+    }
+
+    public function getSubjectGroup(Request $request) {
+        $selectedClass = $request->input('class');
+        $selectedSection = $request->input('section');
+
+        // Fetch sections associated with the selected class
+        $sections = Clas::where('class', $selectedClass)->pluck('section')->toArray();
+
+        // Start building the query to retrieve subject groups
+        $subjectsQuery = SubjectGroup::where('class', $selectedClass);
+        if ($selectedSection) {
+            $subjectsQuery->where('section', $selectedSection);
+        }
+
+        $uniqueSections = array_unique($sections);
+        $subjectGroups = $subjectsQuery->pluck('name')->toArray();
+            return response()->json(['sections' => $uniqueSections, 'subjectGroups' => $subjectGroups]);
+    }
+    
+    public function getSubject(Request $request) {
+        $selectedClass = $request->input('class'); 
+        $selectedSubjectGroup = $request->input('subject_group');
+         
+        // Retrieve subjects based on the query
+        $subjects = Subject::pluck('name');
+
+        // If a subject group is selected, add it as a condition to the query
+        if ($selectedSubjectGroup) {
+            $subjects->where('subject_group', $selectedSubjectGroup);
+        }
+    
+        // If a section is selected, add it as a condition to the query
+        if ($selectedClass) {
+            $subjects->where('class', $selectedClass);
+        }
+
+        return response()->json(['subjects' => $subjects]);
+    }
+    
+    public function getLesson(Request $request) {
+        $selectedClass = $request->input('class');
+        $lessonsQuery = Lesson::query();
+        if ($selectedClass) {
+            $lessonsQuery->where('class', $selectedClass); 
+        }    
+        $lessons = $lessonsQuery->pluck('name')->flatMap(function ($name) {
+            return explode(', ', $name);
+        })->toArray();
+        
+        return response()->json(['lessons' => $lessons]);
+    }
+    
+    
+    public function lessonEdit($id){
+        $lesson = Lesson::find($id);
+        return view('lesson.create_lesson', compact('lesson'));
+    }
+    public function lessonUpdate(Request $request, $id){
+        $request->validate([
+            'class' => 'required',
+            'section' => 'required', 
+            'subject' => 'required', 
+            'name' => 'required|array',
+        ]);
+        
+        $class = $request->input('class');
+        $section = $request->input('section');
+        $subject = $request->input('subject');
+        $subjectgroup = $request->input('subjectgroup');
+        $names = $request->input('name'); 
+        $lesson = Lesson::find($id);
+        $lesson->update([
+            'name' => implode(',', $names), 
+            'class' => $class,
+            'section' => $section,
+            'subject' => $subject,
+            'subject_group' => $subjectgroup, 
+        ]);
+        
+        return redirect()->route('lessons');
+    }
+    public function lessonDestroy($id){
+        $lesson = Lesson::find($id);
+        $lesson->delete();
+        return redirect()->back();  
     }
 }

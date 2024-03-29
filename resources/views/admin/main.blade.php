@@ -82,6 +82,15 @@
                                         </li>
                                     </ul>
                                 </li>
+                                <li><a><i class="fa fa-list-alt ftlayer"></i> Lesson Plan
+                                    <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{{ route('lessons') }}">Lesson</a>
+                                    </li>
+                                    <li><a href="{{ route('topics') }}">Topic</a>
+                                    </li>
+                                </ul>
+                            </li>
                                 <li><a href="{{ route('homework') }}"><i class="fa fa-flask ftlayer"></i>HomeWork</a>
 
                                 <li><a><i class="fa fa-user-plus ftlayer"></i>
@@ -145,24 +154,16 @@
                                 <li><a><i class="fa fa-ioxhost ftlayer"></i>Front Office<span
                                             class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-<<<<<<< HEAD
+
                                         {{-- <li><a href="{{ route('expenses.head') }}">Admission Enquiry</a></li> --}}
                                         <li><a href="{{ route('visitor.book') }}">Visitor Book</a></li>
                                         <li><a href="{{ route('phone.call.log') }}">Phone Call Log</a></li>
                                         <li><a href="{{ route('postal.dispatch') }}">Postal Dispatch</a></li>
-=======
-                                        {{-- <li><a href="{{ route('expenses.head') }}">Admission Enquiry</a></li>
-                                        <li><a href="{{ route('expenses') }}">Visitor Book</a></li>
-                                        <li><a href="{{ route('expenses.head') }}">Phone Call Log</a></li>
-                                        <li><a href="{{ route('expenses') }}">Postal Dispatch</a></li> --}}
->>>>>>> cd30112a8e97f9266b3a9c40676e993e62b78576
                                         <li><a href="{{ route('postal.receive') }}">Postal Receive</a></li>
                                         <li><a href="{{ route('complaint') }}">Complain</a></li>
                                         <li><a href="{{ route('purpose') }}">Setup Front Office</a></li>
-
                                     </ul>
                                 </li>
-
                             </ul>
                         </div>
 
