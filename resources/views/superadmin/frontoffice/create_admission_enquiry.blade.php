@@ -10,7 +10,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Add Phone Call Log</h3>
+                    <h3>Admission Enquiry</h3>
                 </div>
 
                 <div class="title_right">
@@ -26,8 +26,7 @@
             </div>
             <div class="clearfix"></div>
             <div class="button-container">
-                <a href="{{ route('admission.enquiry') }}"><button type="button" class="btn btn-primary btn-sm mb-2">Phone
-                        Call Log List</button></a>
+                <a href="{{ route('phone.call.log') }}"><button type="button" class="btn btn-primary btn-sm mb-2">Admission Enquiry List</button></a>
             </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12">
@@ -47,7 +46,7 @@
                             <h2>{{ isset($phone_call_log) ? 'Edit a Record' : 'Create a new Record' }}</h2>
                             <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"
                                 method="POST"
-                                action="{{ isset($phone_call_log) ? '/admin/phone/call/log/update/' . $phone_call_log->id : '/admin/phone/call/log/insert' }}"
+                                action="{{ isset($phone_call_log) ? '/admin/admission/enquiry/update/' . $phone_call_log->id : '/admin/admission/enquiry/insert' }}"
                                 enctype="multipart/form-data">
                                 @csrf
 

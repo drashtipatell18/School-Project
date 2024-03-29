@@ -10,7 +10,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>{{ isset($subjects) ? 'Edit Subject' : 'Add Subject'}}</h3>
+                    <h3>{{ isset($subjects) ? 'Edit Subject' : 'Add Subject' }}</h3>
                 </div>
 
                 <div class="title_right">
@@ -27,7 +27,7 @@
             <div class="clearfix"></div>
             <div class="button-container">
                 <a href="{{ route('subject') }}"><button type="button" class="btn btn-primary btn-sm mb-2">View
-                    Subject </button></a>
+                        Subject </button></a>
             </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12 ">
@@ -59,11 +59,12 @@
                                 method="POST"
                                 action="{{ isset($subject) ? '/admin/subject/update/' . $subject->id : '/admin/subject/insert' }}">
                                 @csrf
-                                
+
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Subject Code *</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input type="text" name="code" value="<?php echo isset($subject->code) ? $subject->code : '' ?>" class="form-control @error('code') is-invalid @enderror">
+                                        <input type="text" name="code" value="<?php echo isset($subject->code) ? $subject->code : ''; ?>"
+                                            class="form-control @error('code') is-invalid @enderror">
                                         @error('code')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -74,7 +75,8 @@
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Subject Name *</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input type="text" name="name" value="<?php echo isset($subject->name) ? $subject->name : '' ?>" class="form-control @error('name') is-invalid @enderror">
+                                        <input type="text" name="name" value="<?php echo isset($subject->name) ? $subject->name : ''; ?>"
+                                            class="form-control @error('name') is-invalid @enderror">
                                         @error('name')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -85,9 +87,13 @@
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Subject Type *</label>
                                     <div class="col-md-6 col-sm-6 mt-2">
-                                        <input type="radio" id="practical" name="subject_type" value="Practical" {{ (isset($subject->subject_type) == 'Practical') ? 'checked' : ''; }} class="@error('subject_type') is-invalid @enderror">
+                                        <input type="radio" id="practical" name="subject_type" value="Practical"
+                                            {{ isset($subject->subject_type) == 'Practical' ? 'checked' : '' }}
+                                            class="@error('subject_type') is-invalid @enderror">
                                         <label for="practical">Practical</label>
-                                        <input type="radio" id="theory" name="subject_type" value="Theory" {{ (isset($subject->subject_type) == 'Theory') ? 'checked' : ''; }} class="@error('subject_type') is-invalid @enderror">
+                                        <input type="radio" id="theory" name="subject_type" value="Theory"
+                                            {{ isset($subject->subject_type) == 'Theory' ? 'checked' : '' }}
+                                            class="@error('subject_type') is-invalid @enderror">
                                         <label for="theory">Theory</label>
                                         @error('subject_type')
                                             <span class="invalid-feedback" style="color: red">
@@ -96,7 +102,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                
+
                                 <div class="ln_solid"></div>
                                 <div class="item form-group">
                                     <div class="col-md-6 col-sm-6 offset-md-3">

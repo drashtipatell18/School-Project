@@ -3,21 +3,23 @@
 namespace App\Http\Controllers\Superadmin\FrontOffice;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin\FrontOffice\PhoneCallLog;
+use App\Models\Admin\FrontOffice\AdmissionEnquiry;
 use Illuminate\Http\Request;
 
-class PhoneCallLogController extends Controller
+class AdmissionEnquiryController extends Controller
 {
-    public function phoneCallLog()
+    public function admissionEnquiry()
     {
-        $phone_call_log = PhoneCallLog::all();
-        return view('superadmin.frontoffice.view_phone_call_log',compact('phone_call_log'));
+        // echo 'sdfdsfs';exit;
+        $admission_enquiry = AdmissionEnquiry::all();
+       
+        return view('superadmin.frontoffice.view_admission_enquiry',compact('admission_enquiry'));
     }
-    public function phoneCallLogCreate()
+    public function admissionEnquiryCreate()
     {
-        return view('superadmin.frontoffice.create_phone_call_log');
+        return view('superadmin.frontoffice.create_admission_enquiry');
     }
-    public function phoneCallLogInsert(Request $request)
+    public function admissionEnquiryInsert(Request $request)
     {
         $request->validate([
             'name' => 'required',
@@ -28,7 +30,7 @@ class PhoneCallLogController extends Controller
             'call_type.required' => 'The Call Type field is required.',
         ]);
 
-        PhoneCallLog::create([
+        AdmissionEnquiry::create([
             'name' => $request->input('name'),
             'phone' => $request->input('phone'),
             'date' => $request->input('date'),
@@ -38,14 +40,14 @@ class PhoneCallLogController extends Controller
             'note' => $request->input('note'),
             'call_type' => $request->input('call_type'),
         ]);
-        return redirect()->route('phone.call.log');
+        return redirect()->route('admission.enquiry');
     }
-    public function phoneCallLogEdit($id)
+    public function admissionEnquiryEdit($id)
     {
-        $phone_call_log = PhoneCallLog::find($id);
-        return view('superadmin.frontoffice.create_phone_call_log', compact('phone_call_log'));
+        $admission_enquiry = AdmissionEnquiry::find($id);
+        return view('superadmin.frontoffice.create_admission_enquiry', compact('admission_enquiry'));
     }
-    public function phoneCallLogUpdate(Request $request, $id)
+    public function admissionEnquiryUpdate(Request $request, $id)
     {
         $request->validate([
             'name' => 'required',
@@ -56,9 +58,9 @@ class PhoneCallLogController extends Controller
             'call_type.required' => 'The Call Type field is required.',
         ]);
     
-        $phone_call_log = PhoneCallLog::find($id);
+        $admission_enquiry = AdmissionEnquiry::find($id);
         
-        $phone_call_log->update([
+        $admission_enquiry->update([
             'name' => $request->input('name'),
             'phone' => $request->input('phone'),
             'date' => $request->input('date'),
@@ -69,12 +71,12 @@ class PhoneCallLogController extends Controller
             'call_type' => $request->input('call_type'), // Use the input directly
         ]);
     
-        return redirect()->route('phone.call.log');
+        return redirect()->route('admission.enquiry');
     }
-    public function phoneCallLogDestroy($id)
+    public function admissionEnquiryDestroy($id)
     {
-        $phone_call_log = PhoneCallLog::find($id);
-        $phone_call_log->delete();
+        $admission_enquiry = AdmissionEnquiry::find($id);
+        $admission_enquiry->delete();
         return redirect()->back();
     }
 }

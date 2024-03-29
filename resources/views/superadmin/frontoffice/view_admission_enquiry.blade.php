@@ -10,7 +10,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Visitor List</h3>
+                    <h3>Admission Enquiry List</h3>
                 </div>
                 <div class="title_right">
                     <div class="col-md-5 col-sm-5   form-group pull-right top_search">
@@ -36,42 +36,36 @@
                         <div class="x_content">
                             <div class="table-responsive">
                                 <div class="button-container">
-                                    <a href="{{ route('create.visitor.book') }}"><button type="button"
-                                            class="btn btn-primary btn-sm mb-2">Add Visitor</button></a>
+                                    <a href="{{ route('create.admission.enquiry') }}"><button type="button"
+                                            class="btn btn-primary btn-sm mb-2">Admission Enquiry</button></a>
                                 </div>
                                 <table class="table table-striped jambo_table bulk_action" id="table">
                                     <thead>
                                         <tr class="">
                                             <th>No</th>
-                                            <th>Purpose</th>
-                                            <th>Meeting With</th>
-                                            <th>Visitor Name</th>
+                                            <th>Name</th>
                                             <th>Phone</th>
-                                            <th>ID Card </th>
-                                            <th>NUmber Of Person</th>
                                             <th>Date</th>
-                                            <th>In Time</th>
-                                            <th>Out Time</th>
+                                            <th>Next Follow Up Date</th>
+                                            <th>Call Type</th>
                                             <th><span class="nobr">Action</span></th>
                                         </tr>
                                     </thead>
-
-                                    {{-- <tbody>
-                                        @foreach ($visitor_book as $index => $visitor_bo)
+                                    {{-- 
+                                    <tbody>
+                                        @foreach ($phone_call_log as $index => $phone_call)
                                             <tr>
                                                 <td>{{ $index + 1 }}</td>
-                                                <td>{{ $visitor_bo->purpose }}</td>
-                                                <td>{{ $visitor_bo->meeting_with }}</td>
-                                                <td>{{ $visitor_bo->visitor_name }}</td>
-                                                <td>{{ $visitor_bo->phone }}</td>
-                                                <td>{{ $visitor_bo->id_card }}</td>
-                                                <td>{{ $visitor_bo->number_of_person }}</td>
-                                                <td class="">{{ date('d-m-Y', strtotime($visitor_bo->date)) }}</td>
-                                                <td class="">{{ date('d-m-Y', strtotime($visitor_bo->in_time)) }}</td>       <td class="">{{ date('d-m-Y', strtotime($visitor_bo->out_time)) }}</td>
+                                                <td>{{ $phone_call->name }}</td>
+                                                <td>{{ $phone_call->phone }}</td>
+                                                <td class="">{{ date('d-m-Y', strtotime($phone_call->date)) }}</td>
+                                                <td>{{ $phone_call->next_follow_up_date }}</td>
+                                                <td>{{ $phone_call->call_type }}</td>
                                                 <td>
-                                                    <a href="{{ route('edit.visitor.book', $visitor_bo->id) }}"
+                                                    <a href="{{ route('edit.phone.call.log', $phone_call->id) }}"
                                                         class="btn btn-info btn-sm">Edit</a>
-                                                    <a href="{{ route('destroy.visitor.book', $visitor_bo->id) }}"
+
+                                                    <a href="{{ route('destroy.phone.call.log', $phone_call->id) }}"
                                                         class="btn btn-danger btn-sm">Delete</a>
                                                 </td>
                                             </tr>

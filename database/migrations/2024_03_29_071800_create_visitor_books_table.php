@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('purpose')->nullable();
             $table->string('meeting_with')->nullable();
+            $table->string('class')->nullable();
+            $table->string('section')->nullable();
+            $table->string('student')->nullable();
+            $table->string('staff')->nullable();
             $table->string('visitor_name')->nullable();
             $table->string('phone')->nullable();
             $table->string('id_card')->nullable();
@@ -23,7 +27,7 @@ return new class extends Migration
             $table->date('in_time')->nullable();
             $table->date('out_time')->nullable();
             $table->string('attach_document')->nullable();
-            $table->text('note')->nullable()->nullable();
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }

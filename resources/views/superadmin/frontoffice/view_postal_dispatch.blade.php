@@ -52,18 +52,18 @@
                                     </thead>
 
                                     <tbody>
-                                        @foreach ($postal_receive as $index => $postal_rec)
+                                        @foreach ($postal_dispatch as $index => $postal_dis)
                                             <tr>
                                                 <td>{{ $index + 1 }}</td>
-                                                <td>{{ $postal_rec->from_title }}</td>
-                                                <td>{{ $postal_rec->reference_no }}</td>
-                                                <td>{{ $postal_rec->to_title }}</td>
-                                                <td class="">{{ date('d-m-Y', strtotime($postal_rec->date)) }}</td>
+                                                <td>{{ $postal_dis->from_title }}</td>
+                                                <td>{{ $postal_dis->reference_no }}</td>
+                                                <td>{{ $postal_dis->to_title }}</td>
+                                                <td class="">{{ date('d-m-Y', strtotime($postal_dis->date)) }}</td>
                                                 <td>
-                                                    <a href="{{ route('edit.postal.receive', $postal_rec->id) }}"
+                                                    <a href="{{ route('edit.postal.dispatch', $postal_dis->id) }}"
                                                         class="btn btn-info btn-sm">Edit</a>
 
-                                                    <a href="{{ route('destroy.postal.receive', $postal_rec->id) }}"
+                                                    <a href="{{ route('destroy.postal.dispatch', $postal_dis->id) }}"
                                                         class="btn btn-danger btn-sm">Delete</a>
                                                 </td>
                                             </tr>

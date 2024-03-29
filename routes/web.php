@@ -26,6 +26,7 @@ use App\Http\Controllers\Superadmin\TeacherController;
 use App\Http\Controllers\Superadmin\SubjectController;
 use App\Http\Controllers\Superadmin\FrontOffice\VisitorBookController;
 use App\Http\Controllers\Superadmin\FrontOffice\PhoneCallLogController;
+use App\Http\Controllers\Superadmin\FrontOffice\AdmissionEnquiryController;
 use App\Models\Admin\FrontOffice\SetupFrontOffice;
 use Illuminate\Support\Facades\Route;
 
@@ -327,3 +328,12 @@ Route::post('/admin/visitor/book/insert',[VisitorBookController::class,'visitorB
 Route::get('/admin/visitor/book/edit/{id}', [VisitorBookController::class, 'visitorBookEdit'])->name('edit.visitor.book');
 Route::post('/admin/visitor/book/update/{id}', [VisitorBookController::class, 'visitorBookUpdate'])->name('update.visitor.book');
 Route::get('/admin/visitor/book/destroy/{id}',[VisitorBookController::class,'visitorBookDestroy'])->name('destroy.visitor.book');
+
+//Admission Enquiry 
+Route::get('/admin/admission/enquiry',[AdmissionEnquiryController::class,'admissionEnquiry'])->name('admission.enquiry');
+Route::get('/admin/admission/enquiry/create',[AdmissionEnquiryController::class,'admissionEnquiryCreate'])->name('create.admission.enquiry');
+Route::post('/admin/admission/enquiry/insert',[AdmissionEnquiryController::class,'admissionEnquiryInsert'])->name('insert.admission.enquiry');
+Route::get('/admin/admission/enquiry/edit/{id}', [AdmissionEnquiryController::class, 'admissionEnquiryEdit'])->name('edit.admission.enquiry');
+Route::post('/admin/admission/enquiry/update/{id}', [AdmissionEnquiryController::class, 'admissionEnquiryUpdate'])->name('update.admission.enquiry');
+Route::get('/admin/admission/enquiry/destroy/{id}',[AdmissionEnquiryController::class,'admissionEnquiryDestroy'])->name('destroy.admission.enquiry');
+
