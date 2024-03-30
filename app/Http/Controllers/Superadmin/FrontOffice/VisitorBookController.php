@@ -102,8 +102,6 @@ class VisitorBookController extends Controller
     {
         $visitor_book = VisitorBook::find($id);
 
-    
-
         if ($request->hasFile('attach_document')) {
             $file = $request->file('attach_document');
             $filename = time() . '_' . $file->getClientOriginalName();

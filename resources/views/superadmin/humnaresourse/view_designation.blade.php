@@ -10,10 +10,10 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Visitor List</h3>
+                    <h3>Designation Lists</h3>
                 </div>
                 <div class="title_right">
-                    <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+                    <div class="col-md-5 col-sm-5 form-group pull-right top_search">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Search for...">
                             <span class="input-group-btn">
@@ -28,52 +28,41 @@
                 <div class="clearfix"></div>
                 <div class="col-md-12 col-sm-12">
                     <div class="x_panel">
-                        <div class="x_title text-center">
+                        <div class="x_title">
                             <h2>Table</h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                                <li class="dropdown">
+
+                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+                            </ul>
                             <div class="clearfix"></div>
                         </div>
 
                         <div class="x_content">
                             <div class="table-responsive">
                                 <div class="button-container">
-                                    <a href="{{ route('create.visitor.book') }}"><button type="button"
-                                            class="btn btn-primary btn-sm mb-2">Add Visitor</button></a>
+                                    <a href="{{ route('create.designation') }}"><button type="button"
+                                            class="btn btn-primary btn-sm mb-2">Add Designation</button></a>
                                 </div>
                                 <table class="table table-striped jambo_table bulk_action" id="table">
                                     <thead>
-                                        <tr class="">
+                                        <tr>
                                             <th>No</th>
-                                            <th>Purpose</th>
-                                            <th>Meeting With</th>
-                                            <th>Visitor Name</th>
-                                            <th>Phone</th>
-                                            <th>ID Card </th>
-                                            <th>NUmber Of Person</th>
-                                            <th>Date</th>
-                                            <th>In Time</th>
-                                            <th>Out Time</th>
-                                            <th><span class="nobr">Action</span></th>
+                                            <th>Designation</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
-
                                     <tbody>
-                                        @foreach ($visitor_book as $index => $visitor_bo)
+                                        @foreach ($designation as $index => $desi)
                                             <tr>
                                                 <td>{{ $index + 1 }}</td>
-                                                <td>{{ $visitor_bo->purpose }}</td>
-                                                <td>{{ $visitor_bo->meeting_with }}</td>
-                                                <td>{{ $visitor_bo->visitor_name }}</td>
-                                                <td>{{ $visitor_bo->phone }}</td>
-                                                <td>{{ $visitor_bo->id_card }}</td>
-                                                <td>{{ $visitor_bo->number_of_person }}</td>
-                                                <td class="">{{ date('d-m-Y', strtotime($visitor_bo->date)) }}</td>
-                                                <td class="">{{ date('d-m-Y', strtotime($visitor_bo->in_time)) }}</td>
-                                                <td class="">{{ date('d-m-Y', strtotime($visitor_bo->out_time)) }}
-                                                </td>
+                                                <td>{{ $desi->name }}</td>
                                                 <td>
-                                                    <a href="{{ route('edit.visitor.book', $visitor_bo->id) }}"
+                                                    <a href="{{ route('edit.designation', $desi->id) }}"
                                                         class="btn btn-info btn-sm">Edit</a>
-                                                    <a href="{{ route('destroy.visitor.book', $visitor_bo->id) }}"
+                                                    <a href="{{ route('destroy.designation', $desi->id) }}"
                                                         class="btn btn-danger btn-sm">Delete</a>
                                                 </td>
                                             </tr>
@@ -88,6 +77,7 @@
         </div>
     </div>
 @endsection
+
 @push('scripts')
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
     <script>

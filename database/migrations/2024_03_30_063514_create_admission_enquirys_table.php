@@ -23,7 +23,7 @@ return new class extends Migration
             $table->date('next_follow_up_date')->nullable();
             $table->string('assigned')->nullable();
             $table->string('reference')->nullable();
-            $table->string('sourse')->nullable();
+            $table->string('source')->nullable();
             $table->string('class')->nullable();
             $table->string('number_of_child')->nullable(); 
             $table->timestamps();

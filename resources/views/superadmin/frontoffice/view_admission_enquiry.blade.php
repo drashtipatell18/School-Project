@@ -45,32 +45,36 @@
                                             <th>No</th>
                                             <th>Name</th>
                                             <th>Phone</th>
-                                            <th>Date</th>
+                                            <th>Source</th>
+                                            <th>Enquiry Date</th>
                                             <th>Next Follow Up Date</th>
-                                            <th>Call Type</th>
+
                                             <th><span class="nobr">Action</span></th>
                                         </tr>
                                     </thead>
-                                    {{-- 
+
                                     <tbody>
-                                        @foreach ($phone_call_log as $index => $phone_call)
+                                        @foreach ($admission_enquiry as $index => $phone_call)
                                             <tr>
                                                 <td>{{ $index + 1 }}</td>
                                                 <td>{{ $phone_call->name }}</td>
                                                 <td>{{ $phone_call->phone }}</td>
+                                                <td>{{ $phone_call->source }}</td>
+
                                                 <td class="">{{ date('d-m-Y', strtotime($phone_call->date)) }}</td>
-                                                <td>{{ $phone_call->next_follow_up_date }}</td>
-                                                <td>{{ $phone_call->call_type }}</td>
+                                                <td class="">
+                                                    {{ date('d-m-Y', strtotime($phone_call->next_follow_up_date)) }}</td>
                                                 <td>
-                                                    <a href="{{ route('edit.phone.call.log', $phone_call->id) }}"
+                                                    <a href="{{ route('edit.admission.enquiry', $phone_call->id) }}"
                                                         class="btn btn-info btn-sm">Edit</a>
 
-                                                    <a href="{{ route('destroy.phone.call.log', $phone_call->id) }}"
+                                                    <a href="{{ route('destroy.admission.enquiry', $phone_call->id) }}"
                                                         class="btn btn-danger btn-sm">Delete</a>
                                                 </td>
                                             </tr>
                                         @endforeach
-                                    </tbody> --}}
+                                    </tbody>
+
                                 </table>
                             </div>
                         </div>

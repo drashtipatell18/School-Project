@@ -30,6 +30,8 @@ use App\Http\Controllers\Superadmin\FrontOffice\AdmissionEnquiryController;
 
 use App\Http\Controllers\Lesson\LessonController;
 use App\Http\Controllers\Lesson\TopicController;
+use App\Http\Controllers\Superadmin\HumanResourse\DepartmentController;
+use App\Http\Controllers\Superadmin\HumanResourse\DesignationController;
 use App\Models\Admin\FrontOffice\SetupFrontOffice;
 use Illuminate\Support\Facades\Route;
 
@@ -358,3 +360,19 @@ Route::get('/admin/admission/enquiry/edit/{id}', [AdmissionEnquiryController::cl
 Route::post('/admin/admission/enquiry/update/{id}', [AdmissionEnquiryController::class, 'admissionEnquiryUpdate'])->name('update.admission.enquiry');
 Route::get('/admin/admission/enquiry/destroy/{id}',[AdmissionEnquiryController::class,'admissionEnquiryDestroy'])->name('destroy.admission.enquiry');
 
+//Designation
+Route::get('/admin/designation',[DesignationController::class,'designation'])->name('designation');
+Route::get('/admin/designation/create',[DesignationController::class,'designationCreate'])->name('create.designation');
+Route::post('/admin/designation/insert',[DesignationController::class,'designationInsert'])->name('insert.designation');
+Route::get('/admin/designation/edit/{id}', [DesignationController::class, 'designationEdit'])->name('edit.designation');
+Route::post('/admin/designation/update/{id}', [DesignationController::class, 'designationUpdate'])->name('update.designation');
+Route::get('/admin/designation/destroy/{id}',[DesignationController::class,'designationDestroy'])->name('destroy.designation'); 
+
+
+//Designation
+Route::get('/admin/department',[DepartmentController::class,'department'])->name('department');
+Route::get('/admin/department/create',[DepartmentController::class,'departmentCreate'])->name('create.department');
+Route::post('/admin/department/insert',[DepartmentController::class,'departmentInsert'])->name('insert.department');
+Route::get('/admin/department/edit/{id}', [DepartmentController::class, 'departmentEdit'])->name('edit.department');
+Route::post('/admin/department/update/{id}', [DepartmentController::class, 'departmentUpdate'])->name('update.department');
+Route::get('/admin/department/destroy/{id}',[DepartmentController::class,'departmentDestroy'])->name('destroy.department'); 

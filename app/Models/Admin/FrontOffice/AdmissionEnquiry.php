@@ -9,5 +9,5 @@ class AdmissionEnquiry extends Model
 {
     use HasFactory;
     protected $table = 'admission_enquirys';
-    protected $fillable = ['name','phone','email','address','description','note','date','next_follow_up_date','assigned','reference','sourse','class','number_of_child'];
+    protected $fillable = ['name','phone','email','address','description','note','date','next_follow_up_date','assigned','reference','source','class','number_of_child'];
 }

@@ -3,72 +3,87 @@
 namespace App\Http\Controllers\Superadmin\FrontOffice;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Clas;
 use App\Models\Admin\FrontOffice\AdmissionEnquiry;
+use App\Models\Admin\FrontOffice\Source;
+use App\Models\Admin\Teacher;
 use Illuminate\Http\Request;
 
 class AdmissionEnquiryController extends Controller
 {
     public function admissionEnquiry()
     {
-        // echo 'sdfdsfs';exit;
         $admission_enquiry = AdmissionEnquiry::all();
-       
-        return view('superadmin.frontoffice.view_admission_enquiry',compact('admission_enquiry'));
+        $teachers = Teacher::pluck('name', 'name');
+        $class = Clas::pluck('class', 'class');
+        $sources = Source::pluck('source', 'source');
+        return view('superadmin.frontoffice.view_admission_enquiry',compact('admission_enquiry','teachers','class','sources'));
     }
     public function admissionEnquiryCreate()
     {
-        return view('superadmin.frontoffice.create_admission_enquiry');
+        $teachers = Teacher::pluck('name', 'name');
+        $class = Clas::pluck('class', 'class');
+        $sources = Source::pluck('source', 'source');
+        // dd($source);
+        return view('superadmin.frontoffice.create_admission_enquiry',compact('teachers','class','sources'));
     }
     public function admissionEnquiryInsert(Request $request)
     {
         $request->validate([
             'name' => 'required',
             'phone' => 'required',
-            'date' => 'required|date',
-            'call_type' => 'required',
-        ], [
-            'call_type.required' => 'The Call Type field is required.',
+            'source' => 'required',
         ]);
-
         AdmissionEnquiry::create([
             'name' => $request->input('name'),
             'phone' => $request->input('phone'),
-            'date' => $request->input('date'),
+            'email' => $request->input('email'),
+            'address' => $request->input('address'),
             'description' => $request->input('description'),
-            'next_follow_up_date' => $request->input('next_follow_up_date'),
-            'call_duration' => $request->input('call_duration'),
             'note' => $request->input('note'),
-            'call_type' => $request->input('call_type'),
+            'date' => $request->input('date'),
+            'next_follow_up_date' => $request->input('next_follow_up_date'),
+            'assigned' => $request->input('staff'), // Change to 'staff' instead of 'assigned' if that's the correct field name
+            'reference' => $request->input('reference'),
+            'source' => $request->input('source'), // Corrected field name to 'source'
+            'class' => $request->input('class'),
+            'number_of_child' => $request->input('number_of_child'),
         ]);
+    
         return redirect()->route('admission.enquiry');
     }
+    
     public function admissionEnquiryEdit($id)
     {
         $admission_enquiry = AdmissionEnquiry::find($id);
-        return view('superadmin.frontoffice.create_admission_enquiry', compact('admission_enquiry'));
+        $teachers = Teacher::pluck('name', 'name');
+        $class = Clas::pluck('class', 'class');
+        $sources = Source::pluck('source', 'source');
+        return view('superadmin.frontoffice.create_admission_enquiry', compact('admission_enquiry','teachers','class','sources'));
     }
     public function admissionEnquiryUpdate(Request $request, $id)
     {
         $request->validate([
             'name' => 'required',
             'phone' => 'required',
-            'date' => 'required|date',
-            'call_type' => 'required',
-        ], [
-            'call_type.required' => 'The Call Type field is required.',
+            'source' => 'required',
         ]);
-    
         $admission_enquiry = AdmissionEnquiry::find($id);
         
         $admission_enquiry->update([
             'name' => $request->input('name'),
             'phone' => $request->input('phone'),
-            'date' => $request->input('date'),
+            'email' => $request->input('email'),
+            'address' => $request->input('address'),
             'description' => $request->input('description'),
-            'next_follow_up_date' => $request->input('next_follow_up_date'),
-            'call_duration' => $request->input('call_duration'),
             'note' => $request->input('note'),
-            'call_type' => $request->input('call_type'), // Use the input directly
+            'date' => $request->input('date'),
+            'next_follow_up_date' => $request->input('next_follow_up_date'),
+            'assigned' => $request->input('staff'), // Change to 'staff' instead of 'assigned' if that's the correct field name
+            'reference' => $request->input('reference'),
+            'source' => $request->input('source'), // Corrected field name to 'source'
+            'class' => $request->input('class'),
+            'number_of_child' => $request->input('number_of_child'),
         ]);
     
         return redirect()->route('admission.enquiry');
