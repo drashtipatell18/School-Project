@@ -27,7 +27,12 @@ use App\Http\Controllers\Superadmin\SubjectController;
 use App\Http\Controllers\Superadmin\FrontOffice\VisitorBookController;
 use App\Http\Controllers\Superadmin\FrontOffice\PhoneCallLogController;
 use App\Http\Controllers\Superadmin\FrontOffice\AdmissionEnquiryController;
-
+use App\Http\Controllers\Superadmin\HumanResourse\DesignationController;
+use App\Http\Controllers\Inventory\SupplierController;
+use App\Http\Controllers\Inventory\CategoryController;
+use App\Http\Controllers\Inventory\ItemController;
+use App\Http\Controllers\Inventory\ItemStockController;
+use App\Http\Controllers\Inventory\StoreController;
 use App\Http\Controllers\Lesson\LessonController;
 use App\Http\Controllers\Lesson\TopicController;
 use App\Models\Admin\FrontOffice\SetupFrontOffice;
@@ -130,6 +135,48 @@ Route::get('/admin/topic/edit/{id}', [TopicController::class, 'topicEdit'])->nam
 Route::post('/admin/topic/update/{id}', [TopicController::class, 'topicUpdate'])->name('update.topic');
 Route::get('/admin/topic/destroy/{id}',[TopicController::class,'topicDestroy'])->name('destroy.topic'); 
 
+// Item Supplier
+Route::get('/admin/supplier',[SupplierController::class,'suppliers'])->name('suppliers');
+Route::get('/admin/supplier/create',[SupplierController::class,'supplierCreate'])->name('create.supplier');
+Route::post('/admin/supplier/insert',[SupplierController::class,'supplierInsert'])->name('insert.supplier');
+Route::get('/admin/supplier/edit/{id}', [SupplierController::class, 'supplierEdit'])->name('edit.supplier');
+Route::post('/admin/supplier/update/{id}', [SupplierController::class, 'supplierUpdate'])->name('update.supplier');
+Route::get('/admin/supplier/destroy/{id}',[SupplierController::class,'supplierDestroy'])->name('destroy.supplier');
+
+
+// Item Store
+Route::get('/admin/store',[StoreController::class,'stores'])->name('stores');
+Route::get('/admin/store/create',[StoreController::class,'storeCreate'])->name('create.store');
+Route::post('/admin/store/insert',[StoreController::class,'storeInsert'])->name('insert.store');
+Route::get('/admin/store/edit/{id}', [StoreController::class, 'storeEdit'])->name('edit.store');
+Route::post('/admin/store/update/{id}', [StoreController::class, 'storeUpdate'])->name('update.store');
+Route::get('/admin/store/destroy/{id}',[StoreController::class,'storeDestroy'])->name('destroy.store');
+
+// Item Category
+Route::get('/admin/category',[CategoryController::class,'categorys'])->name('categorys');
+Route::get('/admin/category/create',[CategoryController::class,'categoryCreate'])->name('create.category');
+Route::post('/admin/category/insert',[CategoryController::class,'categoryInsert'])->name('insert.category');
+Route::get('/admin/category/edit/{id}', [CategoryController::class, 'categoryEdit'])->name('edit.category');
+Route::post('/admin/category/update/{id}', [CategoryController::class, 'categoryUpdate'])->name('update.category');
+Route::get('/admin/category/destroy/{id}',[CategoryController::class,'categoryDestroy'])->name('destroy.category');
+
+// Item 
+Route::get('/admin/item',[ItemController::class,'items'])->name('items');
+Route::get('/admin/item/create',[ItemController::class,'itemCreate'])->name('create.item');
+Route::post('/admin/item/insert',[ItemController::class,'itemInsert'])->name('insert.item');
+Route::get('/admin/item/edit/{id}', [ItemController::class, 'itemEdit'])->name('edit.item');
+Route::post('/admin/item/update/{id}', [ItemController::class, 'itemUpdate'])->name('update.item');
+Route::get('/admin/item/destroy/{id}',[ItemController::class,'itemDestroy'])->name('destroy.item');
+
+// Item Stock
+Route::get('/admin/itemstock',[ItemStockController::class,'itemstocks'])->name('itemstocks');
+Route::get('/admin/itemstock/create',[ItemStockController::class,'itemstockCreate'])->name('create.itemstock');
+Route::post('/admin/itemstock/insert',[ItemStockController::class,'itemstockInsert'])->name('insert.itemstock');
+Route::get('/admin/itemstock/edit/{id}', [ItemStockController::class, 'itemstockEdit'])->name('edit.itemstock');
+Route::post('/admin/itemstock/update/{id}', [ItemStockController::class, 'itemstockUpdate'])->name('update.itemstock');
+Route::get('/admin/itemstock/destroy/{id}',[ItemStockController::class,'itemstockDestroy'])->name('destroy.itemstock');
+Route::get('/get-category',[ItemStockController::class,'getCategory'])->name('get-category');
+Route::get('/get-item',[ItemStockController::class,'getItem'])->name('get-item');
 
 //Student Admission
 Route::get('/admin/student',[StudentAdmissionController::class,'admission'])->name('student.admission');
@@ -358,3 +405,11 @@ Route::get('/admin/admission/enquiry/edit/{id}', [AdmissionEnquiryController::cl
 Route::post('/admin/admission/enquiry/update/{id}', [AdmissionEnquiryController::class, 'admissionEnquiryUpdate'])->name('update.admission.enquiry');
 Route::get('/admin/admission/enquiry/destroy/{id}',[AdmissionEnquiryController::class,'admissionEnquiryDestroy'])->name('destroy.admission.enquiry');
 
+//Designation
+
+Route::get('/admin/designation',[DesignationController::class,'designation'])->name('designation');
+Route::get('/admin/designation/create',[DesignationController::class,'designationCreate'])->name('create.designation');
+Route::post('/admin/designation/insert',[DesignationController::class,'designationInsert'])->name('insert.designation');
+Route::get('/admin/designation/edit/{id}', [DesignationController::class, 'designationEdit'])->name('edit.designation');
+Route::post('/admin/designation/update/{id}', [DesignationController::class, 'designationUpdate'])->name('update.designation');
+Route::get('/admin/designation/destroy/{id}',[DesignationController::class,'designationDestroy'])->name('destroy.designation'); 

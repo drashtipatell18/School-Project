@@ -91,7 +91,23 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a href="{{ route('homework') }}"><i class="fa fa-flask ftlayer"></i>HomeWork</a>
+                                <li><a href="{{ route('homework') }}"><i class="fa fa-flask ftlayer"></i>HomeWork</a></li>
+
+                                <li><a><i class="fa fa-object-group ftlayerr"></i>Inventory 
+                                    <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{{ route('suppliers') }}">Item Supplier</a>
+                                        </li>
+                                        <li><a href="{{ route('stores') }}"> Item Store</a>
+                                        </li>
+                                        <li><a href="{{ route('categorys') }}"> Item Category</a>
+                                        </li>
+                                        <li><a href="{{ route('items') }}"> Add Items </a>
+                                        </li>
+                                        <li><a href="{{ route('itemstocks') }}"> Add Items Stock </a>
+                                        </li>
+                                    </ul>
+                                </li>
 
                                 <li><a><i class="fa fa-user-plus ftlayer"></i>
                                         Student Information<span class="fa fa-chevron-down"></span></a>
@@ -151,8 +167,8 @@
                                         <li><a href="{{ route('expenses') }}">Add Expenses</a></li>
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-ioxhost ftlayer"></i>Front Office<span
-                                            class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-ioxhost ftlayer"></i>Front Office<span 
+                                    class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="{{ route('admission.enquiry') }}">Admission Enquiry</a></li>
                                         <li><a href="{{ route('visitor.book') }}">Visitor Book</a></li>
@@ -163,13 +179,12 @@
                                         <li><a href="{{ route('purpose') }}">Setup Front Office</a></li>
                                     </ul>
                                 </li>
-                                {{-- <li><a><i class="fa fa-sitemap ftlayer"></i>Human Resource<span
-                                            class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-sitemap ftlayer"></i>Human Resource<span 
+                                    class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="{{ route('designation') }}">Designation</a></li>
-                                        <li><a href="{{ route('expenses') }}">Add Expenses</a></li>
                                     </ul>
-                                </li> --}}
+                                </li>
                             </ul>
                         </div>
 
