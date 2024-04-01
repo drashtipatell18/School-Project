@@ -65,11 +65,25 @@
                                     </ul>
                                 </li>
                                 </li>
+                                <li><a><i class="fa fa-edit"></i> Role
+                                        <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{{ route('roles') }}">Role</a>
+                                        </li>
+                                    </ul>
+                                </li>
                                 <li><a><i class="fa fa-edit"></i> Academics
                                         <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="{{ route('section') }}">Sections</a>
-                                        </li>
+                                        @if (auth()->check())
+                                            @php
+                                                $userRole = strtolower(auth()->user()->role);
+                                            @endphp
+                                            @if ($userRole == 'admin')
+                                                <li><a href="{{ route('section') }}">Sections</a>
+                                                </li>
+                                            @endif
+                                        @endif
                                         <li><a href="{{ route('class') }}">Class</a>
                                         </li>
                                         <li><a href="{{ route('teacher') }}">Teacher</a>
@@ -111,12 +125,12 @@
                                 </li>
 
                                 <li><a><i class="fa fa-object-group ftlayerr"></i>Front CMS
-                                    <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="{{ route('events') }}">Events</a>
-                                    </li>
-                                </ul>
-                            </li>
+                                        <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{{ route('events') }}">Events</a>
+                                        </li>
+                                    </ul>
+                                </li>
 
                                 <li><a><i class="fa fa-user-plus ftlayer"></i>
                                         Student Information<span class="fa fa-chevron-down"></span></a>
