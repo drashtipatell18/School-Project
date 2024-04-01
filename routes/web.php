@@ -38,6 +38,7 @@ use App\Http\Controllers\Superadmin\HumanResourse\DepartmentController;
 use App\Http\Controllers\Superadmin\HumanResourse\DesignationController;
 use App\Http\Controllers\Superadmin\HumanResourse\LeaveTypeController;
 use App\Models\Admin\FrontOffice\SetupFrontOffice;
+use App\Http\Controllers\FrontCMS\EventController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -179,6 +180,16 @@ Route::post('/admin/itemstock/update/{id}', [ItemStockController::class, 'itemst
 Route::get('/admin/itemstock/destroy/{id}',[ItemStockController::class,'itemstockDestroy'])->name('destroy.itemstock');
 Route::get('/get-category',[ItemStockController::class,'getCategory'])->name('get-category');
 Route::get('/get-item',[ItemStockController::class,'getItem'])->name('get-item');
+
+
+// Events
+Route::get('/admin/event',[EventController::class,'events'])->name('events');
+Route::get('/admin/event/create',[EventController::class,'eventCreate'])->name('create.event');
+Route::post('/admin/event/insert',[EventController::class,'eventInsert'])->name('insert.event');
+Route::get('/admin/event/edit/{id}', [EventController::class, 'eventEdit'])->name('edit.event');
+Route::post('/admin/event/update/{id}', [EventController::class, 'eventUpdate'])->name('update.event');
+Route::get('/admin/event/destroy/{id}',[EventController::class,'eventDestroy'])->name('destroy.event');
+
 
 //Student Admission
 Route::get('/admin/student',[StudentAdmissionController::class,'admission'])->name('student.admission');

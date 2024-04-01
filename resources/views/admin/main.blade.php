@@ -110,6 +110,14 @@
                                     </ul>
                                 </li>
 
+                                <li><a><i class="fa fa-object-group ftlayerr"></i>Front CMS
+                                    <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{{ route('events') }}">Events</a>
+                                    </li>
+                                </ul>
+                            </li>
+
                                 <li><a><i class="fa fa-user-plus ftlayer"></i>
                                         Student Information<span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
