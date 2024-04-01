@@ -31,16 +31,6 @@
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                        aria-haspopup="true" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a class="dropdown-item" href="#">Settings 1</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#">Settings 2</a>
-                                        </li>
-                                    </ul>
-                                </li>
                                 <li><a class="close-link"><i class="fa fa-close"></i></a>
                                 </li>
                             </ul>
@@ -82,6 +72,7 @@
 
                                         </select>
                                     </div>
+
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-md-3 col-sm-3 form-group has-feedback">
@@ -129,8 +120,7 @@
                                     </div>
                                     <div class="col-md-2 col-sm-2">
                                         <label>Date of Birth *</label>
-                                        <input
-                                            class="date-picker form-control @error('homework_date') is-invalid @enderror"
+                                        <input class="date-picker form-control @error('homework_date') is-invalid @enderror"
                                             placeholder="dd-mm-yyyy" type="date" name="date_of_birth"
                                             value="{{ old('date_of_birth', isset($student) ? $student->date_of_birth : '') }}">
                                     </div>
@@ -161,13 +151,14 @@
                                     <div class="col-md-3 col-sm-3">
                                         <label for="admissionno">Student Photo *</label>
                                         @if (isset($student) && $student->student_photo)
-                                            <img src="{{ asset('storage/student_photos/' . $student->student_photo) }}" alt="Student Photo" width="100">
+                                            <img src="{{ asset('storage/student_photos/' . $student->student_photo) }}"
+                                                alt="Student Photo" width="100">
                                         @else
                                             No Photo Available
                                         @endif
                                         <input type="file" class="form-control" name="student_photo">
                                     </div>
-                                    
+
 
                                     <div class="col-md-2 col-sm-2">
                                         <label for="rollnumber">Blood Group *</label>
@@ -219,7 +210,7 @@
                                         <input type="text" class="form-control" name="father_phone"
                                             value="{{ old('father_phone', isset($student) ? $student->father_phone : '') }}">
                                     </div>
-                                    
+
                                     <div class="col-md-3 col-sm-3">
                                         <label>Father Occupation *</label>
                                         <input type="text" class="form-control" name="father_occupation"
@@ -228,13 +219,14 @@
                                     <div class="col-md-3 col-sm-3">
                                         <label>Father Photo *</label>
                                         @if (isset($student) && $student->father_photo)
-                                            <img src="{{ asset('storage/father_photos/' . $student->father_photo) }}" alt="Father Photo" width="100">
+                                            <img src="{{ asset('storage/father_photos/' . $student->father_photo) }}"
+                                                alt="Father Photo" width="100">
                                         @else
                                             No Photo Available
                                         @endif
                                         <input type="file" class="form-control" name="father_photo">
                                     </div>
-                                    
+
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-md-3 col-sm-3">
@@ -255,13 +247,14 @@
                                     <div class="col-md-3 col-sm-3">
                                         <label>Mother Photo *</label>
                                         @if (isset($student) && $student->mother_photo)
-                                            <img src="{{ asset('storage/mother_photos/' . $student->mother_photo) }}" alt="Mother Photo" width="100">
+                                            <img src="{{ asset('storage/mother_photos/' . $student->mother_photo) }}"
+                                                alt="Mother Photo" width="100">
                                         @else
                                             No Photo Available
                                         @endif
                                         <input type="file" class="form-control" name="mother_photo">
                                     </div>
-                                    
+
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-md-12 col-sm-12 d-flex justify-content-end">

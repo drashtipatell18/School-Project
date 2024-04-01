@@ -65,7 +65,7 @@
                                                         class="btn btn-info btn-sm">Edit</a>
 
                                                     <a href="{{ route('destroy.complaint', $comp->id) }}"
-                                                        class="btn btn-danger btn-sm">Delete</a>
+                                                        class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>
                                                 </td>
                                             </tr>
                                         @endforeach

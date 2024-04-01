@@ -193,6 +193,6 @@ class StudentAdmissionController extends Controller
         $student->save();
 
         // Redirect back or to a specific route
-        return redirect()->back();
+        return redirect()->route('student.details.view');
     }
 }

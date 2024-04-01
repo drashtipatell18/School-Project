@@ -184,6 +184,7 @@
                                 <li><a><i class="fa fa-sitemap ftlayer"></i>Human Resource<span
                                             class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
+                                        <li><a href="{{ route('leave.type') }}">Leave Type</a></li>
                                         <li><a href="{{ route('designation') }}">Designation</a></li>
                                         <li><a href="{{ route('department') }}">Department</a></li>
 

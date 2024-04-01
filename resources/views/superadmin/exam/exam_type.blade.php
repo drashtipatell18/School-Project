@@ -37,16 +37,6 @@
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                        aria-haspopup="true" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a class="dropdown-item" href="#">Settings 1</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#">Settings 2</a>
-                                        </li>
-                                    </ul>
-                                </li>
                                 <li><a class="close-link"><i class="fa fa-close"></i></a>
                                 </li>
                             </ul>
@@ -60,17 +50,18 @@
                                 action="{{ isset($exam_type) ? route('update.examtype', $exam_type->id) : route('insert.examtype') }}">
                                 @csrf
                                 <div class="item form-group">
-                                  <label class="col-form-label col-md-3 col-sm-3 label-align">Exam Type *</label>
-                                  <div class="col-md-6 col-sm-6">
-                                      <input type="text" class="form-control @error('exam_type') is-invalid @enderror"
-                                          name="exam_type" value="{{ old('exam_type', isset($exam_type) ? $exam_type->exam_type : '') }}">
-                                      @error('exam_type')
-                                          <span class="invalid-feedback" style="color: red">
-                                              <strong>{{ $message }}</strong>
-                                          </span>
-                                      @enderror
-                                  </div>
-                              </div>
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Exam Type *</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input type="text" class="form-control @error('exam_type') is-invalid @enderror"
+                                            name="exam_type"
+                                            value="{{ old('exam_type', isset($exam_type) ? $exam_type->exam_type : '') }}">
+                                        @error('exam_type')
+                                            <span class="invalid-feedback" style="color: red">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
                                 <div class="ln_solid"></div>
                                 <div class="item form-group">
                                     <div class="col-md-6 col-sm-6 offset-md-3">

@@ -36,6 +36,7 @@ use App\Http\Controllers\Lesson\LessonController;
 use App\Http\Controllers\Lesson\TopicController;
 use App\Http\Controllers\Superadmin\HumanResourse\DepartmentController;
 use App\Http\Controllers\Superadmin\HumanResourse\DesignationController;
+use App\Http\Controllers\Superadmin\HumanResourse\LeaveTypeController;
 use App\Models\Admin\FrontOffice\SetupFrontOffice;
 use Illuminate\Support\Facades\Route;
 
@@ -423,3 +424,14 @@ Route::get('/admin/department/edit/{id}', [DepartmentController::class, 'departm
 Route::post('/admin/department/update/{id}', [DepartmentController::class, 'departmentUpdate'])->name('update.department');
 Route::get('/admin/department/destroy/{id}',[DepartmentController::class,'departmentDestroy'])->name('destroy.department'); 
 
+//Leave Types
+Route::get('/admin/leave/type',[LeaveTypeController::class,'leaveType'])->name('leave.type');
+Route::get('/admin/leave/type/create',[LeaveTypeController::class,'leaveTypeCreate'])->name('create.leave.type');
+Route::post('/admin/leave/type/insert',[LeaveTypeController::class,'leaveTypeInsert'])->name('insert.leave.type');
+Route::get('/admin/leave/type/edit/{id}', [LeaveTypeController::class, 'leaveTypeEdit'])->name('edit.leave.type');
+Route::post('/admin/leave/type/update/{id}', [LeaveTypeController::class, 'leaveTypeUpdate'])->name('update.leave.type');
+Route::get('/admin/leave/type/destroy/{id}',[LeaveTypeController::class,'leaveTypeDestroy'])->name('destroy.leave.type'); 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

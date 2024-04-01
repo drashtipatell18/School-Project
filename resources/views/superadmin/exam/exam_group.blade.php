@@ -26,7 +26,8 @@
             </div>
             <div class="clearfix"></div>
             <div class="button-container">
-                <a href="{{ route('examgroup') }}"><button type="button" class="btn btn-primary btn-sm mb-2">View Exam Group</button></a>
+                <a href="{{ route('examgroup') }}"><button type="button" class="btn btn-primary btn-sm mb-2">View Exam
+                        Group</button></a>
             </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12 ">
@@ -35,16 +36,6 @@
                             <h2>Form</h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                        aria-haspopup="true" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a class="dropdown-item" href="#">Settings 1</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="#">Settings 2</a>
-                                        </li>
-                                    </ul>
                                 </li>
                                 <li><a class="close-link"><i class="fa fa-close"></i></a>
                                 </li>
