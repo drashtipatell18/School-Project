@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\User;
+use Auth;
 class HomeController extends Controller
 {
     /**
@@ -11,18 +12,73 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function role()
     {
-        return view('home');
+       echo Auth::user()->name;exit;
+        // $roles = User::all();
+        // return view('roles.view_role',compact('roles'));
     }
+
+    public function roleCreate()
+    {
+        return view('roles.create_role');
+    }
+    public function roleInsert(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+            'role' => 'required',
+           
+        ]);
+    
+        User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+            'role' => $request->input('role'),
+        ]);
+        
+        return redirect()->route('roles')->with('success', 'Roles created successfully.');
+    }
+    public function roleEdit($id)
+    {
+        $roles = User::find($id);
+        return view('roles.create_role', compact('roles'));
+    }
+
+    public function roleUpdate(Request $request, $id)
+    {
+        $roles = User::find($id);
+    
+        // Update user name
+        $roles->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+            'role' => $request->input('role'),
+        ]);
+    
+        return redirect()->route('roles');
+    }
+
+    public function roleDestroy($id)
+    {
+        $category = User::find($id);
+        $category->delete();
+        return redirect()->back();
+    }
+
+
 }

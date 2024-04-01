@@ -38,9 +38,10 @@ use App\Http\Controllers\Superadmin\HumanResourse\DepartmentController;
 use App\Http\Controllers\Superadmin\HumanResourse\DesignationController;
 use App\Http\Controllers\Superadmin\HumanResourse\LeaveTypeController;
 use App\Models\Admin\FrontOffice\SetupFrontOffice;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FrontCMS\EventController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -443,6 +444,16 @@ Route::get('/admin/leave/type/edit/{id}', [LeaveTypeController::class, 'leaveTyp
 Route::post('/admin/leave/type/update/{id}', [LeaveTypeController::class, 'leaveTypeUpdate'])->name('update.leave.type');
 Route::get('/admin/leave/type/destroy/{id}',[LeaveTypeController::class,'leaveTypeDestroy'])->name('destroy.leave.type'); 
 
+
+//Roles 
+
+Route::get('/admin/role',[HomeController::class,'role'])->name('roles');
+Route::get('/admin/role/create',[HomeController::class,'roleCreate'])->name('create.role');
+Route::post('/admin/role/insert',[HomeController::class,'roleInsert'])->name('insert.role');
+Route::get('/admin/role/edit/{id}', [HomeController::class, 'roleEdit'])->name('edit.role');
+Route::post('/admin/role/update/{id}', [HomeController::class, 'roleUpdate'])->name('update.role');
+Route::get('/admin/role/destroy/{id}',[HomeController::class,'roleDestroy'])->name('destroy.role'); 
+
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
