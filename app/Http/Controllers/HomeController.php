@@ -24,9 +24,9 @@ class HomeController extends Controller
      */
     public function role()
     {
-       echo Auth::user()->name;exit;
-        // $roles = User::all();
-        // return view('roles.view_role',compact('roles'));
+    //    echo Auth::user()->name;exit;
+        $roles = User::all();
+        return view('roles.view_role',compact('roles'));
     }
 
     public function roleCreate()

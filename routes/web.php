@@ -31,6 +31,7 @@ use App\Http\Controllers\Inventory\SupplierController;
 use App\Http\Controllers\Inventory\CategoryController;
 use App\Http\Controllers\Inventory\ItemController;
 use App\Http\Controllers\Inventory\ItemStockController;
+use App\Http\Controllers\Inventory\IssueItemController;
 use App\Http\Controllers\Inventory\StoreController;
 use App\Http\Controllers\Lesson\LessonController;
 use App\Http\Controllers\Lesson\TopicController;
@@ -182,6 +183,16 @@ Route::get('/admin/itemstock/destroy/{id}',[ItemStockController::class,'itemstoc
 Route::get('/get-category',[ItemStockController::class,'getCategory'])->name('get-category');
 Route::get('/get-item',[ItemStockController::class,'getItem'])->name('get-item');
 
+
+// Item 
+Route::get('/admin/issueitem',[IssueItemController::class,'issueitems'])->name('issueitems');
+Route::get('/admin/issueitem/create',[IssueItemController::class,'issueitemCreate'])->name('create.issueitem');
+Route::post('/admin/issueitem/insert',[IssueItemController::class,'issueitemInsert'])->name('insert.issueitem');
+Route::get('/admin/issueitem/edit/{id}', [IssueItemController::class, 'issueitemEdit'])->name('edit.issueitem');
+Route::post('/admin/issueitem/update/{id}', [IssueItemController::class, 'issueitemUpdate'])->name('update.issueitem');
+Route::get('/admin/issueitem/destroy/{id}',[IssueItemController::class,'issueitemDestroy'])->name('destroy.issueitem');
+Route::get('/get-usertype',[IssueItemController::class,'getUsertype'])->name('get-usertype');
+Route::get('/get-allname',[IssueItemController::class,'getAllname'])->name('get-allname');
 
 // Events
 Route::get('/admin/event',[EventController::class,'events'])->name('events');

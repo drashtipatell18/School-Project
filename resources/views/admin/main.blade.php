@@ -111,6 +111,8 @@
                                 <li><a><i class="fa fa-object-group ftlayerr"></i>Inventory
                                         <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
+                                        <li><a href="{{ route('issueitems') }}">Issue Item</a>
+                                        </li>
                                         <li><a href="{{ route('suppliers') }}">Item Supplier</a>
                                         </li>
                                         <li><a href="{{ route('stores') }}"> Item Store</a>
@@ -213,6 +215,13 @@
 
                                     </ul>
                                 </li>
+                                <li><a><i class="fa fa-edit"></i> Role
+                                    <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{{ route('roles') }}">Role</a>
+                                    </li>
+                                </ul>
+                            </li>
                             </ul>
                         </div>
 
