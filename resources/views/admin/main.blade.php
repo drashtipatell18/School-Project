@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! | </title>
+    <title>School</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <!-- Bootstrap -->
@@ -23,31 +23,153 @@
 
     <!-- Custom Theme Style -->
     <link href="{{ asset('build/css/custom.min.css') }}" rel="stylesheet">
+    <style>
+        .navbar.light {
+            background-color: #2A3F54;
 
+        }
+
+
+        /* .navbar-brand,
+        .navbar-brand img {
+            margin-left: 15px !important;
+            margin-right: 15px !important;
+
+
+        } */
+
+        .user-name {
+            font-weight: bold;
+            color: #fff;
+            /* Adjust the color to match your design */
+            text-transform: capitalize;
+            /* Capitalize the user's name */
+        }
+
+        .my-dropdown-menu {
+            background-color: #fff;
+            /* Set the background color */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Add a shadow for depth */
+            border: 1px solid #ddd;
+            /* Add a border for separation */
+        }
+
+        .my-dropdown-menu a {
+            color: black;
+            /* Set link color */
+        }
+
+        .my-dropdown-menu a:hover {
+            background-color: #f0f0f0;
+            /* Change background color on hover */
+            color: #555;
+            /* Change text color on hover */
+        }
+
+        .profile_info span {
+            font-size: 13px;
+            line-height: 0px !important;
+            color: #fff !important;
+        }
+
+        .img-circle.profile_img {
+            width: 70%;
+            background: #fff;
+            margin-left: 15%;
+            z-index: 1000;
+            position: inherit;
+            border: 1px solid rgba(52, 73, 94, 0.44);
+            padding: 4px;
+        }
+    </style>
 </head>
+
+
+<!-- navbar menu -->
+<nav class="navbar navbar-expand-lg">
+    <a class="" href="#" style="background-color: white;">
+        <img src="{{ asset('images/logo.png') }}" class="h-[50px]" alt="Logo"
+            style="height: 50px; max-width: 100%;">
+        <div class="navbar nav_title ml-0" style="border: 0;">
+            <a href="{{ route('dashboard') }}" class="site_title">
+                <span>Gentelella !</span></a>
+        </div>
+    </a>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-lg-0">
+
+        </ul>
+        <div class="form-inline my-2 my-lg-0 m-0">
+            <div class="profile_pic ml-8">
+                @if (auth()->check())
+                    @if (auth()->user()->image)
+                        <img src="{{ asset('images/' . auth()->user()->image) }}" alt="User Image" width="100"
+                            height="50px" class="img-circle profile_img">
+                    @else
+                        <!-- Display a blank image -->
+                        <img src="" alt="" width="100" height="50px" class="img-circle profile_img">
+                    @endif
+                @endif
+
+            </div>
+            <div class="nav-item dropdown profile_info">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    @if (auth()->check())
+                        <span class="user-name">{{ auth()->user()->role }}</span>
+                        <br>
+                        <span class="user-name">{{ auth()->user()->name }}</span>
+                    @endif
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right my-dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</nav>
+
+<!--\navbar menu -->
 
 <body class="nav-md">
     <div class="container body">
         <div class="main_container">
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
-                    <div class="navbar nav_title" style="border: 0;">
-                        <a href="{{ route('dashboard') }}" class="site_title"><i class="fa fa-paw"></i>
-                            <span>Gentelella Alela!</span></a>
-                    </div>
+
                     <div class="clearfix"></div>
 
                     <!-- menu profile quick info -->
-                    <div class="profile clearfix">
+                    {{-- <div class="profile clearfix">
                         <div class="profile_pic">
-                            <img src="{{ asset('production/images/img.jpg') }}" alt="..."
-                                class="img-circle profile_img">
+                            @if (auth()->check())
+                                @if (auth()->user()->image)
+                                    <img src="{{ asset('images/' . auth()->user()->image) }}" alt="User Image"
+                                        width="100" height="50px" class="img-circle profile_img">
+                                @else
+                                @endif
+                            @endif
                         </div>
                         <div class="profile_info">
                             <span>Welcome,</span>
-                            <h2>John Doe</h2>images/img.jpg
+                            <h2>
+                                @if (auth()->check())
+                                    <h2>{{ auth()->user()->name }}</h2>
+                                @endif
+                            </h2>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- /menu profile quick info -->
 
                     <br />
@@ -61,7 +183,6 @@
                                     <ul class="nav child_menu">
                                         <li><a href="{{ route('dashboard') }}">Dashboard</a>
                                         </li>
-
                                     </ul>
                                 </li>
                                 </li>
@@ -80,10 +201,10 @@
                                                 $userRole = strtolower(auth()->user()->role);
                                             @endphp
                                             @if ($userRole == 'admin')
-                                                <li><a href="{{ route('section') }}">Sections</a>
-                                                </li>
+                                                <li><a href="{{ route('section') }}">Sections</a></li>
                                             @endif
                                         @endif
+
                                         <li><a href="{{ route('class') }}">Class</a>
                                         </li>
                                         <li><a href="{{ route('teacher') }}">Teacher</a>
@@ -227,7 +348,7 @@
             <!-- footer content -->
             <footer>
                 <div class="pull-right">
-                    Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+                    Created by⭐<a href="https://kalathiyainfotech.com/">Kalathiya Infotech</a>
                 </div>
                 <div class="clearfix"></div>
             </footer>
@@ -281,6 +402,14 @@
     {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 
     <!-- Include DataTables JS -->
+    <script>
+        $(document).ready(function() {
+            $('#userImage').click(function() {
+                $('.dropdown-menu').toggle();
+            });
+        });
+    </script>
+
     @stack('scripts')
 </body>
 

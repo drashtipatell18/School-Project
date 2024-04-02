@@ -49,9 +49,10 @@
                                     <thead>
                                         <tr class="">
                                             <th>No</th>
-                                            <th class="">Name </th>
-                                            <th class="">Role </th>
-                                            <th class="">Email </th>
+                                            <th>Name</th>
+                                            <th>Role</th>
+                                            <th>Email</th>
+                                            <th>Image</th>
                                             <th class=""><span class="nobr">Action</span></th>
                                         </tr>
                                     </thead>
@@ -63,6 +64,15 @@
                                                 <td class="">{{ $role->name }}</td>
                                                 <td class="">{{ $role->role }}</td>
                                                 <td class="">{{ $role->email }}</td>
+                                                <td>
+                                                    @if ($role->image)
+                                                        <img src="{{ asset('images/' . $role->image) }}" alt="User Image"
+                                                            width="100" height="50px">
+                                                    @else
+                                                        No Photo Available
+                                                    @endif
+                                                </td>
+
                                                 <td>
                                                     <a href="{{ route('edit.role', $role->id) }}"
                                                         class="btn btn-info btn-sm">Edit</a>

@@ -47,7 +47,8 @@
                             <h2>{{ isset($roles) ? 'Edit a Record' : 'Create a new Record' }}</h2>
                             <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"
                                 method="POST"
-                                action="{{ isset($roles) ? '/admin/role/update/' . $roles->id : '/admin/role/insert' }}">
+                                action="{{ isset($roles) ? '/admin/role/update/' . $roles->id : '/admin/role/insert' }}"
+                                enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="item form-group">
@@ -64,10 +65,10 @@
                                 </div>
 
                                 <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align"> Role*</label>
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Role *</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input type="text" name="role" value="<?php echo isset($roles->role) ? $roles->role : ''; ?>"
-                                            class="form-control @error('role') is-invalid @enderror">
+                                        <input type="text" class="form-control @error('role') is-invalid @enderror"
+                                            name="role" value="{{ old('role', $user->role ?? '') }}">
                                         @error('role')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -77,10 +78,10 @@
                                 </div>
 
                                 <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align"> Email*</label>
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Email *</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input type="text" name="email" value="<?php echo isset($roles->email) ? $roles->email : ''; ?>"
-                                            class="form-control @error('email') is-invalid @enderror">
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                            name="email" value="{{ old('email', $user->email ?? '') }}">
                                         @error('email')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -90,10 +91,10 @@
                                 </div>
 
                                 <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align"> Password*</label>
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Password *</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input type="text" name="password" value="<?php echo isset($roles->password) ? $roles->password : ''; ?>"
-                                            class="form-control @error('password') is-invalid @enderror">
+                                        <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                            name="password" value="{{ old('password', $user->password ?? '') }}">
                                         @error('password')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -102,6 +103,18 @@
                                     </div>
                                 </div>
 
+                                <div class="item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Image *</label>
+                                    <input type="file" class="form-control col-md-3 col-sm-3 ml-2" name="image">
+                                    @error('image')
+                                        <span class="invalid-feedback" role="alert" style="color: red">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                    @if (isset($user) && $user->image)
+                                        <img src="{{ asset('images/' . $user->image) }}" alt="Image" width="100">
+                                    @endif
+                                </div>
 
                                 <div class="ln_solid"></div>
                                 <div class="item form-group">
