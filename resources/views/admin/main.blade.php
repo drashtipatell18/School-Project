@@ -113,7 +113,6 @@
                         <img src="" alt="" width="100" height="50px" class="img-circle profile_img">
                     @endif
                 @endif
-
             </div>
             <div class="nav-item dropdown profile_info">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -333,8 +332,6 @@
                                         <li><a href="{{ route('leave.type') }}">Leave Type</a></li>
                                         <li><a href="{{ route('designation') }}">Designation</a></li>
                                         <li><a href="{{ route('department') }}">Department</a></li>
-
-
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-bullhorn ftlayer"></i>Communicate<span
