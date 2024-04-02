@@ -10,6 +10,7 @@
     <title>School</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    
     <!-- Bootstrap -->
     <link href="{{ asset('vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Font Awesome -->
@@ -186,7 +187,7 @@
                                     </ul>
                                 </li>
                                 </li>
-                                <li><a><i class="fa fa-edit"></i> Role
+                                <li><a><i class="fa fa-user-plus ftlayer"></i> Role
                                         <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="{{ route('roles') }}">Role</a>
@@ -232,6 +233,8 @@
                                 <li><a><i class="fa fa-object-group ftlayerr"></i>Inventory
                                         <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
+                                        <li><a href="{{ route('issueitems') }}">Issue Item</a>
+                                        </li>
                                         <li><a href="{{ route('suppliers') }}">Item Supplier</a>
                                         </li>
                                         <li><a href="{{ route('stores') }}"> Item Store</a>
@@ -245,7 +248,7 @@
                                     </ul>
                                 </li>
 
-                                <li><a><i class="fa fa-object-group ftlayerr"></i>Front CMS
+                                <li><a><i class="fa fa-empire ftlayer"></i>Front CMS
                                         <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="{{ route('events') }}">Events</a>
@@ -332,6 +335,16 @@
                                         <li><a href="{{ route('department') }}">Department</a></li>
 
 
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-bullhorn ftlayer"></i>Communicate<span
+                                    class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{{ route('noticeborads') }}">Notice Board</a></li>
+                                        <li><a href="{{ route('sendemails') }}">Send Email</a></li>
+                                        <li><a href="{{ route('sendsms') }}">Send SMS</a></li>
+                                        <li><a href="{{ route('emailtemplates') }}">Email Template</a></li>
+                                        <li><a href="{{ route('smstemplates') }}">SMS Template</a></li>
                                     </ul>
                                 </li>
                             </ul>

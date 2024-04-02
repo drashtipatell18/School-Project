@@ -31,12 +31,18 @@ use App\Http\Controllers\Inventory\SupplierController;
 use App\Http\Controllers\Inventory\CategoryController;
 use App\Http\Controllers\Inventory\ItemController;
 use App\Http\Controllers\Inventory\ItemStockController;
+use App\Http\Controllers\Inventory\IssueItemController;
 use App\Http\Controllers\Inventory\StoreController;
 use App\Http\Controllers\Lesson\LessonController;
 use App\Http\Controllers\Lesson\TopicController;
 use App\Http\Controllers\Superadmin\HumanResourse\DepartmentController;
 use App\Http\Controllers\Superadmin\HumanResourse\DesignationController;
 use App\Http\Controllers\Superadmin\HumanResourse\LeaveTypeController;
+use App\Http\Controllers\Communicate\NoticeBoradController;
+use App\Http\Controllers\Communicate\SendEmailController;
+use App\Http\Controllers\Communicate\SendSMSController;
+use App\Http\Controllers\Communicate\EmailTemplateController;
+use App\Http\Controllers\Communicate\SMSTemplateController;
 use App\Models\Admin\FrontOffice\SetupFrontOffice;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FrontCMS\EventController;
@@ -185,6 +191,16 @@ Route::get('/admin/itemstock/destroy/{id}',[ItemStockController::class,'itemstoc
 Route::get('/get-category',[ItemStockController::class,'getCategory'])->name('get-category');
 Route::get('/get-item',[ItemStockController::class,'getItem'])->name('get-item');
 
+
+// Item 
+Route::get('/admin/issueitem',[IssueItemController::class,'issueitems'])->name('issueitems');
+Route::get('/admin/issueitem/create',[IssueItemController::class,'issueitemCreate'])->name('create.issueitem');
+Route::post('/admin/issueitem/insert',[IssueItemController::class,'issueitemInsert'])->name('insert.issueitem');
+Route::get('/admin/issueitem/edit/{id}', [IssueItemController::class, 'issueitemEdit'])->name('edit.issueitem');
+Route::post('/admin/issueitem/update/{id}', [IssueItemController::class, 'issueitemUpdate'])->name('update.issueitem');
+Route::get('/admin/issueitem/destroy/{id}',[IssueItemController::class,'issueitemDestroy'])->name('destroy.issueitem');
+Route::get('/get-usertype',[IssueItemController::class,'getUsertype'])->name('get-usertype');
+Route::get('/get-allname',[IssueItemController::class,'getAllname'])->name('get-allname');
 
 // Events
 Route::get('/admin/event',[EventController::class,'events'])->name('events');
@@ -447,6 +463,53 @@ Route::get('/admin/leave/type/edit/{id}', [LeaveTypeController::class, 'leaveTyp
 Route::post('/admin/leave/type/update/{id}', [LeaveTypeController::class, 'leaveTypeUpdate'])->name('update.leave.type');
 Route::get('/admin/leave/type/destroy/{id}',[LeaveTypeController::class,'leaveTypeDestroy'])->name('destroy.leave.type'); 
 
+// notice borad
+
+Route::get('/admin/noticeborad',[NoticeBoradController::class,'noticeborads'])->name('noticeborads');
+Route::get('/admin/noticeborad/create',[NoticeBoradController::class,'noticeboradCreate'])->name('create.noticeborad');
+Route::post('/admin/noticeborad/insert',[NoticeBoradController::class,'noticeboradInsert'])->name('insert.noticeborad');
+Route::get('/admin/noticeborad/edit/{id}', [NoticeBoradController::class, 'noticeboradEdit'])->name('edit.noticeborad');
+Route::post('/admin/noticeborad/update/{id}', [NoticeBoradController::class, 'noticeboradUpdate'])->name('update.noticeborad');
+Route::get('/admin/noticeborad/destroy/{id}',[NoticeBoradController::class,'noticeboradDestroy'])->name('destroy.noticeborad');
+// Route::get('/get-usertype',[NoticeBoradController::class,'getUsertype'])->name('get-usertype');
+// Route::get('/get-allname',[NoticeBoradController::class,'getAllname'])->name('get-allname');
+
+
+// send email
+
+Route::get('/admin/sendemail',[SendEmailController::class,'sendemails'])->name('sendemails');
+Route::get('/admin/sendemail/create',[SendEmailController::class,'sendemailCreate'])->name('create.sendemail');
+Route::post('/admin/sendemail/insert',[SendEmailController::class,'sendemailInsert'])->name('insert.sendemail');
+Route::get('/admin/sendemail/edit/{id}', [SendEmailController::class, 'sendemailEdit'])->name('edit.sendemail');
+Route::post('/admin/sendemail/update/{id}', [SendEmailController::class, 'sendemailUpdate'])->name('update.sendemail');
+Route::get('/admin/sendemail/destroy/{id}',[SendEmailController::class,'sendemailDestroy'])->name('destroy.sendemail');
+
+// send SMS
+
+Route::get('/admin/sendsms',[SendSMSController::class,'sendsms'])->name('sendsms');
+Route::get('/admin/sendsms/create',[SendSMSController::class,'sendsmsCreate'])->name('create.sendsms');
+Route::post('/admin/sendsms/insert',[SendSMSController::class,'sendsmsInsert'])->name('insert.sendsms');
+Route::get('/admin/sendsms/edit/{id}', [SendSMSController::class, 'sendsmsEdit'])->name('edit.sendsms');
+Route::post('/admin/sendsms/update/{id}', [SendSMSController::class, 'sendsmsUpdate'])->name('update.sendsms');
+Route::get('/admin/sendsms/destroy/{id}',[SendSMSController::class,'sendsmsDestroy'])->name('destroy.sendsms');
+
+// send email template
+
+Route::get('/admin/emailtemplate',[EmailTemplateController::class,'emailtemplates'])->name('emailtemplates');
+Route::get('/admin/emailtemplate/create',[EmailTemplateController::class,'emailtemplateCreate'])->name('create.emailtemplate');
+Route::post('/admin/emailtemplate/insert',[EmailTemplateController::class,'emailtemplateInsert'])->name('insert.emailtemplate');
+Route::get('/admin/emailtemplate/edit/{id}', [EmailTemplateController::class, 'emailtemplateEdit'])->name('edit.emailtemplate');
+Route::post('/admin/emailtemplate/update/{id}', [EmailTemplateController::class, 'emailtemplateUpdate'])->name('update.emailtemplate');
+Route::get('/admin/emailtemplate/destroy/{id}',[EmailTemplateController::class,'emailtemplateDestroy'])->name('destroy.emailtemplate');
+
+// SMS template
+
+Route::get('/admin/smstemplate',[SMSTemplateController::class,'smstemplates'])->name('smstemplates');
+Route::get('/admin/smstemplate/create',[SMSTemplateController::class,'smstemplateCreate'])->name('create.smstemplate');
+Route::post('/admin/smstemplate/insert',[SMSTemplateController::class,'smstemplateInsert'])->name('insert.smstemplate');
+Route::get('/admin/smstemplate/edit/{id}', [SMSTemplateController::class, 'smstemplateEdit'])->name('edit.smstemplate');
+Route::post('/admin/smstemplate/update/{id}', [SMSTemplateController::class, 'smstemplateUpdate'])->name('update.smstemplate');
+Route::get('/admin/smstemplate/destroy/{id}',[SMSTemplateController::class,'smstemplateDestroy'])->name('destroy.smstemplate');
 
 //Roles 
 

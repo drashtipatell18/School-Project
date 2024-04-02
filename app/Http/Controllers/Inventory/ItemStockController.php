@@ -52,9 +52,6 @@ class ItemStockController extends Controller
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('attach_documents', $filename, 'public');
         }
-        $name = $request->input('name');
-        $code = $request->input('code');
-        $description = $request->input('description');
     
         // Create a new ItemStock record
         $itemstocks = ItemStock::create([
