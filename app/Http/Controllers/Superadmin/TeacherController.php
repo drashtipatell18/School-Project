@@ -14,9 +14,6 @@ class TeacherController extends Controller
     public function teachers()
     {
         $teachers = Teacher::all();
-        //  echo '<pre>';
-        // print_r($teachers);
-        // echo '</pre>';exit;
         $section = Section::pluck('section');
         return view('superadmin.academics.view_teacher', compact('teachers','section'));
     }

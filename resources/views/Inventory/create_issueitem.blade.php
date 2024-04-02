@@ -222,7 +222,7 @@
         // Event listener for class selection change
         $('#category').on('change', function() {
             // Fetch and populate items based on the selected class
-            fetchItem($(this).val());A
+            fetchItem($(this).val());
         });
 
     

@@ -119,14 +119,15 @@ class IssueItemController extends Controller
 
     public function getUsertype()
     {
-        $roles = User::pluck('role');
+        $roles = User::pluck('role')->unique();
         return response()->json(['roles' => $roles]);
     }
 
     public function getAllname(Request $request)
     {
         $selectedusertype = $request->input('class');
-        $names = User::where('name', $selectedusertype)->pluck('name');
+        $names = User::where('role', $selectedusertype)->pluck('name')->toArray();
         return response()->json(['names' => $names]);
     }
+
 }
