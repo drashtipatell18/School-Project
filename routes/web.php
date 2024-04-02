@@ -468,8 +468,6 @@ Route::post('/admin/noticeborad/insert',[NoticeBoradController::class,'noticebor
 Route::get('/admin/noticeborad/edit/{id}', [NoticeBoradController::class, 'noticeboradEdit'])->name('edit.noticeborad');
 Route::post('/admin/noticeborad/update/{id}', [NoticeBoradController::class, 'noticeboradUpdate'])->name('update.noticeborad');
 Route::get('/admin/noticeborad/destroy/{id}',[NoticeBoradController::class,'noticeboradDestroy'])->name('destroy.noticeborad');
-// Route::get('/get-usertype',[NoticeBoradController::class,'getUsertype'])->name('get-usertype');
-// Route::get('/get-allname',[NoticeBoradController::class,'getAllname'])->name('get-allname');
 
 
 // send email
