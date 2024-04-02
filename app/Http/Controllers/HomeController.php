@@ -12,10 +12,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     /**
      * Show the application dashboard.
@@ -40,14 +40,22 @@ class HomeController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required',
             'role' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
            
         ]);
-    
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $image->move('images', $filename);
+        }
+        
         User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
             'role' => $request->input('role'),
+            'image' => $filename,
         ]);
         
         return redirect()->route('roles')->with('success', 'Roles created successfully.');
@@ -61,7 +69,16 @@ class HomeController extends Controller
     public function roleUpdate(Request $request, $id)
     {
         $roles = User::find($id);
+        
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $image->move('images', $filename);
     
+            // Update user's image information in the database
+            $roles->image = $filename;
+        }
+
         // Update user name
         $roles->update([
             'name' => $request->input('name'),
