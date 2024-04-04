@@ -130,4 +130,20 @@ class IssueItemController extends Controller
         return response()->json(['names' => $names]);
     }
 
+    public function GetIdByName(Request $request)
+    {
+        $selectedUserType = $request->input('class');
+        $users = User::where('role', $selectedUserType)->select('id', 'name', 'image')->get();
+        return response()->json(['users' => $users]);
+    }
+    public function getImageById(Request $request)
+    {
+        $userId = $request->input('id');
+        $user = User::find($userId);
+        if ($user && $user->image) {
+            return response()->json(['image' => $user->image]);
+        }
+        return response()->json(['image' => null]);
+    }
+
 }

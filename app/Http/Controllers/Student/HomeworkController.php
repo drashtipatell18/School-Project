@@ -31,7 +31,7 @@ class HomeworkController extends Controller
     }
     public function getClasses()
     {
-        $classes = Clas::pluck('class');
+        $classes = Clas::pluck('class')->unique();
         return response()->json(['classes' => $classes]);
     }
     

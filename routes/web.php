@@ -43,6 +43,8 @@ use App\Http\Controllers\Communicate\SendEmailController;
 use App\Http\Controllers\Communicate\SendSMSController;
 use App\Http\Controllers\Communicate\EmailTemplateController;
 use App\Http\Controllers\Communicate\SMSTemplateController;
+use App\Http\Controllers\Library\BookController;
+use App\Http\Controllers\Library\MemberController;
 use App\Models\Admin\FrontOffice\SetupFrontOffice;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FrontCMS\EventController;
@@ -201,6 +203,9 @@ Route::post('/admin/issueitem/update/{id}', [IssueItemController::class, 'issuei
 Route::get('/admin/issueitem/destroy/{id}',[IssueItemController::class,'issueitemDestroy'])->name('destroy.issueitem');
 Route::get('/get-usertype',[IssueItemController::class,'getUsertype'])->name('get-usertype');
 Route::get('/get-allname',[IssueItemController::class,'getAllname'])->name('get-allname');
+Route::get('/get-byname',[IssueItemController::class,'GetIdByName'])->name('get-byname');
+Route::get('/get-imagebyid',[IssueItemController::class,'getImageById'])->name('get-imagebyid');
+
 
 // Events
 Route::get('/admin/event',[EventController::class,'events'])->name('events');
@@ -508,6 +513,30 @@ Route::post('/admin/smstemplate/insert',[SMSTemplateController::class,'smstempla
 Route::get('/admin/smstemplate/edit/{id}', [SMSTemplateController::class, 'smstemplateEdit'])->name('edit.smstemplate');
 Route::post('/admin/smstemplate/update/{id}', [SMSTemplateController::class, 'smstemplateUpdate'])->name('update.smstemplate');
 Route::get('/admin/smstemplate/destroy/{id}',[SMSTemplateController::class,'smstemplateDestroy'])->name('destroy.smstemplate');
+
+
+// Book Library
+
+Route::get('/admin/books',[BookController::class,'books'])->name('books');
+Route::get('/admin/book/create',[BookController::class,'bookCreate'])->name('create.book');
+Route::post('/admin/book/insert',[BookController::class,'bookInsert'])->name('insert.book');
+Route::get('/admin/book/edit/{id}', [BookController::class, 'bookEdit'])->name('edit.book');
+Route::post('/admin/book/update/{id}', [BookController::class, 'bookUpdate'])->name('update.book');
+Route::get('/admin/book/destroy/{id}',[BookController::class,'bookDestroy'])->name('destroy.book');
+Route::get('/get-qty',[BookController::class,'getQty'])->name('get-qty');
+
+
+// Book Member
+
+Route::get('/admin/members',[MemberController::class,'members'])->name('members');
+Route::get('/admin/member/create',[MemberController::class,'memberCreate'])->name('create.member');
+Route::post('/admin/member/insert',[MemberController::class,'memberInsert'])->name('insert.member');
+Route::get('/admin/member/view/{id}', [MemberController::class, 'memberView'])->name('view.member');
+Route::post('/admin/member/update/{id}', [MemberController::class, 'memberUpdate'])->name('update.member');
+Route::get('/admin/member/destroy/{id}',[MemberController::class,'memberDestroy'])->name('destroy.member');
+Route::post('/admin/bookissue/insert',[MemberController::class,'IssueMemberBook'])->name('bookissue.insert');
+Route::post('/save-date',[MemberController::class,'saveDate'])->name('save.date');
+
 
 //Roles 
 

@@ -27,7 +27,7 @@
             <div class="clearfix"></div>
             <div class="button-container">
                 <a href="{{ route('roles') }}"><button type="button" class="btn btn-primary btn-sm mb-2">View
-                        Item </button></a>
+                        Roles </button></a>
             </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12 ">
@@ -68,7 +68,7 @@
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Role *</label>
                                     <div class="col-md-6 col-sm-6">
                                         <input type="text" class="form-control @error('role') is-invalid @enderror"
-                                            name="role" value="{{ old('role', $user->role ?? '') }}">
+                                            name="role" value="<?php echo isset($roles->role) ? $roles->role : ''; ?>">
                                         @error('role')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -81,7 +81,7 @@
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Email *</label>
                                     <div class="col-md-6 col-sm-6">
                                         <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                            name="email" value="{{ old('email', $user->email ?? '') }}">
+                                            name="email" value="<?php echo isset($roles->email) ? $roles->email : ''; ?>">
                                         @error('email')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -90,18 +90,14 @@
                                     </div>
                                 </div>
 
+
+                                @if (isset($roles) && $roles->image)
                                 <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Password *</label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                            name="password" value="{{ old('password', $user->password ?? '') }}">
-                                        @error('password')
-                                            <span class="invalid-feedback" style="color: red">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Old Image *</label>                                   
+                                        <input type="hidden" value="{{ $roles->image}}">
+                                        <img src="{{ asset('images/' . $roles->image) }}" alt="Image" width="100">
                                 </div>
+                                @endif
 
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Image *</label>
@@ -110,10 +106,7 @@
                                         <span class="invalid-feedback" role="alert" style="color: red">
                                             <strong>{{ $message }}</strong>
                                         </span>
-                                    @enderror
-                                    @if (isset($user) && $user->image)
-                                        <img src="{{ asset('images/' . $user->image) }}" alt="Image" width="100">
-                                    @endif
+                                    @enderror  
                                 </div>
 
                                 <div class="ln_solid"></div>

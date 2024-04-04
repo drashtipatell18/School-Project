@@ -23,7 +23,7 @@ class SectionController extends Controller
             'section' => 'required',
         ]);
         Section::create([
-            'section' => $request->input('section'),
+            'section' => strtolower($request->input('section')),
         ]);
         // dd($request->all());
         return redirect()->route('section');
@@ -44,7 +44,7 @@ class SectionController extends Controller
             // dd($request->all());
             $section = Section::find($id);
             $section->update([
-                'section' => $request->input('section'),
+                'section' => strtolower($request->input('section')),
             ]);
             return redirect()->route('section');
         }

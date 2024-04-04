@@ -64,7 +64,7 @@
                                             <tr>
                                                 <td>{{ $index + 1 }}</td>
                                                 <td>{{ $pur->purpose }}</td>
-                                                <td>{{ $pur->description }}</td>
+                                                <td>{{ implode(' ', array_slice(str_word_count($pur->description, 1), 0, 15)) }}</td>
                                                 <td>
                                                     <a href="{{ route('edit.purpose', $pur->id) }}"
                                                         class="btn btn-info btn-sm">Edit</a>

@@ -61,7 +61,7 @@
                                           <td>{{ $index + 1 }}</td>
                                             <td>{{ $exam_gro->name }}</td>                
                                             <td>{{ $exam_gro->exam_type }}</td>            
-                                            <td>{{ $exam_gro->description }}</td>                
+                                            <td>{{ implode(' ', array_slice(str_word_count($exam_gro->description, 1), 0, 15)) }}</td>                
                                                 <td> 
                                                     <a href="{{ route('edit.examgroup', $exam_gro->id) }}" class="btn btn-info btn-sm">Edit</a>
 

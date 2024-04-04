@@ -54,7 +54,7 @@ class HomeController extends Controller
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
-            'role' => $request->input('role'),
+            'role' => strtolower($request->input('role')),
             'image' => $filename,
         ]);
         
@@ -84,7 +84,7 @@ class HomeController extends Controller
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
-            'role' => $request->input('role'),
+            'role' => strtolower($request->input('role')),
         ]);
     
         return redirect()->route('roles');

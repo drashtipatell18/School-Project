@@ -110,7 +110,7 @@ class TeacherController extends Controller
             'name' => 'required',
         ]);
         Teacher::create([
-            'name' => $request->input('name'),
+            'name' => strtolower($request->input('name')),
         ]);
         // dd($request->all());
         return redirect()->route('teacher');
@@ -129,7 +129,7 @@ class TeacherController extends Controller
         ]);
         $teachers = Teacher::find($id);
         $teachers->update([
-            'name' => $request->input('name'),
+            'name' => strtolower($request->input('name')),
         ]);
         return redirect()->route('teacher');
     }

@@ -10,23 +10,13 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Item List</h3>
-                </div>
-                <div class="title_right">
-                    <div class="col-md-5 col-sm-5   form-group pull-right top_search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Go!</button>
-                            </span>
-                        </div>
-                    </div>
+                    <h3>Book List</h3>
                 </div>
             </div>
             <div class="clearfix"></div>
             <div class="row" style="display: block;">
                 <div class="clearfix"></div>
-                <div class="col-md-12 col-sm-12">
+                <div class="col-md-12 col-sm-12  ">
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>Table</h2>
@@ -42,31 +32,32 @@
                         <div class="x_content">
                             <div class="table-responsive">
                                 <div class="button-container">
-                                    <a href="{{ route('create.item') }}"><button type="button" class="btn btn-primary btn-sm mb-2">Add Item</button></a>
+                                    <a href="{{ route('create.member') }}"><button type="button" class="btn btn-primary btn-sm mb-2">Add Member</button></a>
                                 </div>
                                 <table class="table table-striped jambo_table bulk_action" id="table">
                                     <thead>
                                         <tr class="">
-                                            <th>No</th>
-                                            <th class="">Item </th>
-                                            <th class="">Category </th>
-                                            <th class="">Unit </th>
-                                            <th class="">Description</th>
+                                            <th class="">Member ID</th>
+                                            <th class="">Library Card No..</th>
+                                            <th class="">Addmission No</th>
+                                            <th class="">Member Type</th>
+                                            <th class="">Name</th>
+                                            <th class="">Phone</th>
                                             <th class=""><span class="nobr">Action</span></th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        @foreach ($items as $index => $item)
+                                        @foreach ($members as $index => $member)
                                             <tr class="">
+                                                <td class="">{{ $member->userid }}</td>                          
                                                 <td>{{ $index + 1 }}</td>
-                                                <td class="">{{ $item->name }}</td>                          
-                                                <td class="">{{ $item->category }}</td>                          
-                                                <td class="">{{ $item->unit }}</td>                          
-                                                <td class="">{{ implode(' ', array_slice(str_word_count($item->description, 1), 0, 15)) }}</td>                
+                                                <td class="">{{ $member->addmissionno }}</td>                                               
+                                                <td class="">{{ $member->role }}</td>                          
+                                                <td class="">{{ $member->name }}</td>                          
+                                                <td class="">{{ $member->phone }}</td>                                                
                                                 <td> 
-                                                    <a href="{{ route('edit.item', $item->id) }}" class="btn btn-info btn-sm">Edit</a>
-                                                    <a href="{{ route('destroy.item',$item->id) }}" class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>
+                                                    <a href="{{ route('view.member', $member->id) }}" class="btn btn-info btn-sm"><i class="fa fa-sign-out"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach

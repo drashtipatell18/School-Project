@@ -67,7 +67,7 @@
                                                 <td class="">{{ $sms->template }}</td>                          
                                                 <td class="">{{ $sms->title }}</td>                          
                                                 <td class="">{{ $sms->send_through }}</td>                          
-                                                <td class="">{{ $sms->message }}</td>                          
+                                                <td class="">{{ implode(' ', array_slice(str_word_count($sms->message, 1), 0, 15)) }}</td>                     
                                                 <td class="">{{ $sms->group }}</td>                          
                                                 <td class="">{{ $sms->individual }}</td>                          
                                                 <td class="">{{ $sms->class }}</td>                          
