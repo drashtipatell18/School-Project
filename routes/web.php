@@ -84,7 +84,6 @@ Route::get('/admin/homework/destroy/{id}',[HomeworkController::class,'homeworkDe
 Route::get('/get-classes', [HomeworkController::class, 'getClasses']);
 Route::get('/get-sections', [HomeworkController::class, 'getSections']);
 
-
 //Super Admin 
 
 //Sections
