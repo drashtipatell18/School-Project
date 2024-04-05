@@ -546,6 +546,13 @@ Route::post('/admin/role/insert',[HomeController::class,'roleInsert'])->name('in
 Route::get('/admin/role/edit/{id}', [HomeController::class, 'roleEdit'])->name('edit.role');
 Route::post('/admin/role/update/{id}', [HomeController::class, 'roleUpdate'])->name('update.role');
 Route::get('/admin/role/destroy/{id}',[HomeController::class,'roleDestroy'])->name('destroy.role'); 
+Route::get('/admin/cpassword',[HomeController::class,'cPassword'])->name('changepass'); 
+Route::post('/admin/changepassword',[HomeController::class,'changePassword'])->name('changePassword'); 
+Route::get('/forget-password', [HomeController::class, 'showForgetPasswordForm'])->name('forget.password');
+Route::post('/forget-password', [HomeController::class, 'sendResetLinkEmail'])->name('forget.password.email');
+Route::get('/reset/{token}', [HomeController::class, 'reset'])->name('reset');
+Route::post('/reset/{token}', [HomeController::class, 'postReset'])->name('post_reset');
+
 
 Auth::routes();
 

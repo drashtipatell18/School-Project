@@ -73,7 +73,7 @@
 @endsection --}}
 
 {{-- New Login design added --}}
-@extends('layouts.app')
+ @extends('layouts.app')
 
 @section('content')
     <div class="container">
@@ -105,6 +105,9 @@
                         <span class="button__text">Log In Now</span>
                         <i class="button__icon fas fa-chevron-right"></i>
                     </button>
+                    <div class="forgetpassword">
+                        <a href="{{ route('forget.password') }}">Forget Password</a>
+                    </div>                    
                 </form>
                 <div class="social-login">
                     <h3>log in via</h3>

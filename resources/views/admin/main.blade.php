@@ -10,7 +10,7 @@
     <title>School</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
-    
+
     <!-- Bootstrap -->
     <link href="{{ asset('vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Font Awesome -->
@@ -125,11 +125,13 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right my-dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('changepass') }}">
+                        {{ __('Change Password') }}
+                    </a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
                     </a>
-
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
@@ -335,7 +337,7 @@
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-bullhorn ftlayer"></i>Communicate<span
-                                    class="fa fa-chevron-down"></span></a>
+                                            class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="{{ route('noticeborads') }}">Notice Board</a></li>
                                         <li><a href="{{ route('sendemails') }}">Send Email</a></li>
@@ -345,7 +347,7 @@
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-book ftlayer"></i>Library<span
-                                    class="fa fa-chevron-down"></span></a>
+                                            class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="{{ route('books') }}">Book List</a></li>
                                         <li><a href="{{ route('members') }}">Issue - Return</a></li>

@@ -10,7 +10,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>{{ isset($roles) ? 'Edit Items' : 'Add Items' }}</h3>
+                    <h3>{{ isset($roles) ? 'Edit Role' : 'Add Role' }}</h3>
                 </div>
 
                 <div class="title_right">
@@ -89,6 +89,21 @@
                                         @enderror
                                     </div>
                                 </div>
+
+                                {{-- @if(isset($roles)) --}}
+                                <div class="item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align">PassWord *</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                            name="password" value="<?php echo isset($roles->password) ? $roles->password : ''; ?>">
+                                        @error('password')
+                                            <span class="invalid-feedback" style="color: red">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                {{-- @endif --}}
 
 
                                 @if (isset($roles) && $roles->image)
