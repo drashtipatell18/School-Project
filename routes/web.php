@@ -61,12 +61,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-Route::get('/', function () {
-    return view('auth/login');
-});
+
+Route::get('/',[HomeController::class,'Login'])->name('login');
+Route::post('/loginstore',[HomeController::class,'LoginStore'])->name('loginstore');
+Route::get('/logout',[HomeController::class,'Logout'])->name('logout');
 
 //Dashboard
 Route::get('/admin/dashboard',[DashboardController::class,'adminDashboard'])->name('dashboard');
@@ -546,8 +544,8 @@ Route::post('/admin/role/insert',[HomeController::class,'roleInsert'])->name('in
 Route::get('/admin/role/edit/{id}', [HomeController::class, 'roleEdit'])->name('edit.role');
 Route::post('/admin/role/update/{id}', [HomeController::class, 'roleUpdate'])->name('update.role');
 Route::get('/admin/role/destroy/{id}',[HomeController::class,'roleDestroy'])->name('destroy.role'); 
-Route::get('/admin/cpassword',[HomeController::class,'cPassword'])->name('changepass'); 
-Route::post('/admin/changepassword',[HomeController::class,'changePassword'])->name('changePassword'); 
+Route::get('/cpassword',[HomeController::class,'cPassword'])->name('changepass'); 
+Route::post('/changepassword',[HomeController::class,'changePassword'])->name('changePassword'); 
 Route::get('/forget-password', [HomeController::class, 'showForgetPasswordForm'])->name('forget.password');
 Route::post('/forget-password', [HomeController::class, 'sendResetLinkEmail'])->name('forget.password.email');
 Route::get('/reset/{token}', [HomeController::class, 'reset'])->name('reset');

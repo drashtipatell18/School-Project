@@ -1,66 +1,40 @@
 @extends('layouts.app')
-@section('content')
-    <style>
-        .button-container {
-            display: flex;
-            justify-content: flex-end;
-        }
-    </style>
-    <div class="right_col" role="main">
-        <div class="">
-            <div class="page-title">
-                <div class="title_left">
-                    <h3>Forget Password</h3>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-            <div class="row">
-                <div class="col-md-12 col-sm-12 ">
-                    <div class="x_panel">
-                        <div class="x_title">
-                            <h2>Forget Password</h2>
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                                <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                </li>
-                            </ul>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="x_content">
-                            <br />
-                            <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"
-                                method="POST"
-                                action="{{ route('forget.password.email') }}"
-                                >
-                                @csrf
-                                <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Email</label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <input type="email" name="email" value=""
-                                            class="form-control @error('email') is-invalid @enderror">
-                                        @error('email')
-                                            <span class="invalid-feedback" style="color: red">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="ln_solid"></div>
-                                <div class="item form-group">
-                                    <div class="col-md-6 col-sm-6 offset-md-3">
-                                        <button type="submit" class="btn btn-primary">
-                                                Submit
-                                        </button>
-                                        {{-- <button class="btn btn-info" type="reset">Reset</button> --}}
-                                    </div>
-                                </div>
 
+@section('content')
+    <section class="form-02-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="_lk_de">
+                        <div class="form-03-main">
+                            <div class="logo">
+                                <img src="assets/images/user.png">
+                            </div>
+                            <h3 class="text-center">Forget Password</h3>
+
+                            <form method="POST" action="{{ route('forget.password.email') }}" class="login">
+                                @csrf
+                                <div class="form-group">
+                                    <input type="email" name="email"
+                                        class="form-control _ge_de_ol @error('email') is-invalid @enderror" type="text"
+                                        placeholder="Enter Email">
+                                    @error('email')
+                                        <div class="invalid-feedback error-message" style="color: red">
+                                            <strong>{{ $message }}</strong>
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="_btn_04">{{ __('submit') }}</button>
+                                </div>
                             </form>
+
+                            <div class="form-group pt-0">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 @endsection

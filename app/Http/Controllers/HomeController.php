@@ -28,6 +28,32 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+    public function Login(){
+        return view('auth.login');
+    }
+
+     public function loginStore(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+        if (Auth::attempt($credentials)) {
+            return redirect()->route('dashboard'); 
+        } else {
+            return back()->withErrors(['email' => 'Invalid credentials'])->withInput($request->only('email'));
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
+    }
+
     public function role()
     {
     //    echo Auth::user()->name;exit;
@@ -141,7 +167,7 @@ class HomeController extends Controller
 
     public function showForgetPasswordForm()
     {
-        return view('auth.forgetpass');
+        return view('roles.forgetpass');
     }
 
     public function sendResetLinkEmail(Request $request)
