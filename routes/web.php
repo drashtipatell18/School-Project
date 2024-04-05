@@ -46,6 +46,9 @@ use App\Http\Controllers\Communicate\SMSTemplateController;
 use App\Models\Admin\FrontOffice\SetupFrontOffice;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FrontCMS\EventController;
+use App\Http\Controllers\Superadmin\HumanResourse\ApproveLeaveRequestController;
+use App\Http\Controllers\Superadmin\HumanResourse\StaffDirectoryController;
+use App\Models\Admin\HumanResourse\ApproveLeaveRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 /*
@@ -523,3 +526,25 @@ Route::get('/admin/role/destroy/{id}',[HomeController::class,'roleDestroy'])->na
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+//Approve Leave Requests
+Route::get('/admin/approve/leave/request',[ApproveLeaveRequestController::class,'approveLeaveRequest'])->name('approve.leave.request');
+Route::get('/admin/approve/leave/request/create',[ApproveLeaveRequestController::class,'approveLeaveRequestCreate'])->name('create.approve.leave.request');
+Route::post('/admin/approve/leave/request/insert',[ApproveLeaveRequestController::class,'approveLeaveRequestInsert'])->name('insert.approve.leave.request');
+Route::get('/admin/approve/leave/request/edit/{id}', [ApproveLeaveRequestController::class, 'approveLeaveRequestEdit'])->name('edit.approve.leave.request');
+Route::post('/admin/approve/leave/request/update/{id}', [ApproveLeaveRequestController::class, 'approveLeaveRequestUpdate'])->name('update.approve.leave.request');
+Route::get('/admin/approve/leave/request/destroy/{id}',[ApproveLeaveRequestController::class,'approveLeaveRequestDestroy'])->name('destroy.approve.leave.request');
+
+Route::get('/get-usertype',[ApproveLeaveRequestController::class,'getUsertype'])->name('get-usertype');
+Route::get('/get-allname',[ApproveLeaveRequestController::class,'getAllname'])->name('get-allname');
+
+
+
+//Staff Directory
+Route::get('/admin/staff/directory',[StaffDirectoryController::class,'staffDirectory'])->name('staff.directory');
+Route::get('/admin/staff/directory/create',[StaffDirectoryController::class,'staffDirectoryCreate'])->name('create.staff.directory');
+Route::post('/admin/staff/directory/insert',[StaffDirectoryController::class,'staffDirectoryInsert'])->name('insert.staff.directory');
+Route::get('/admin/staff/directory/edit/{id}', [StaffDirectoryController::class, 'staffDirectoryEdit'])->name('edit.staff.directory');
+Route::post('/admin/staff/directory/update/{id}', [StaffDirectoryController::class, 'staffDirectoryUpdate'])->name('update.staff.directory');
+Route::get('/admin/staff/directory/destroy/{id}',[StaffDirectoryController::class,'staffDirectoryDestroy'])->name('destroy.staff.directory'); 

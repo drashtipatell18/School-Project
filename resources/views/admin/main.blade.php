@@ -10,7 +10,7 @@
     <title>School</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
-    
+
     <!-- Bootstrap -->
     <link href="{{ asset('vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Font Awesome -->
@@ -258,7 +258,6 @@
                                 <li><a><i class="fa fa-user-plus ftlayer"></i>
                                         Student Information<span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-
                                         <li><a href="{{ url('/admin/student/admission/create') }}">Student
                                                 Admission</a></li>
 
@@ -329,13 +328,17 @@
                                 <li><a><i class="fa fa-sitemap ftlayer"></i>Human Resource<span
                                             class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
+                                        <li><a href="{{ route('staff.directory') }}">Staff Directory</a>
+                                        </li>
+                                        <li><a href="{{ route('approve.leave.request') }}">Approve Leave Request</a>
+                                        </li>
                                         <li><a href="{{ route('leave.type') }}">Leave Type</a></li>
                                         <li><a href="{{ route('designation') }}">Designation</a></li>
                                         <li><a href="{{ route('department') }}">Department</a></li>
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-bullhorn ftlayer"></i>Communicate<span
-                                    class="fa fa-chevron-down"></span></a>
+                                            class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="{{ route('noticeborads') }}">Notice Board</a></li>
                                         <li><a href="{{ route('sendemails') }}">Send Email</a></li>

@@ -54,7 +54,7 @@
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align"> Name*</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input type="text" name="name" value="<?php echo isset($roles->name) ? $roles->name : ''; ?>"
+                                        <input type="text" name="name" value="<?php echo isset($roles) ? $roles->name : ''; ?>"
                                             class="form-control @error('name') is-invalid @enderror">
                                         @error('name')
                                             <span class="invalid-feedback" style="color: red">
@@ -68,7 +68,7 @@
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Role *</label>
                                     <div class="col-md-6 col-sm-6">
                                         <input type="text" class="form-control @error('role') is-invalid @enderror"
-                                            name="role" value="{{ old('role', $user->role ?? '') }}">
+                                            name="role" value="<?php echo isset($roles) ? $roles->role : ''; ?>">
                                         @error('role')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -81,7 +81,7 @@
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Email *</label>
                                     <div class="col-md-6 col-sm-6">
                                         <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                            name="email" value="{{ old('email', $user->email ?? '') }}">
+                                            name="email" value="<?php echo isset($roles) ? $roles->email : ''; ?>">
                                         @error('email')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -94,7 +94,7 @@
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Password *</label>
                                     <div class="col-md-6 col-sm-6">
                                         <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                            name="password" value="{{ old('password', $user->password ?? '') }}">
+                                            name="password" value="<?php echo isset($roles) ? $roles->password : ''; ?>">
                                         @error('password')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -115,6 +115,7 @@
                                         <img src="{{ asset('images/' . $user->image) }}" alt="Image" width="100">
                                     @endif
                                 </div>
+
 
                                 <div class="ln_solid"></div>
                                 <div class="item form-group">
