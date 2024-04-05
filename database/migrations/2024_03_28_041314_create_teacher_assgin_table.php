@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('section')->nullable();
             $table->string('teacher')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

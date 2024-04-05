@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('rank')->nullable();
             $table->string('result')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

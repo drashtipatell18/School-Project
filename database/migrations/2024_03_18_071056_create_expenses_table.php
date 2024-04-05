@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('attach_document')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

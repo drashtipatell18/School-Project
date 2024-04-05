@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('comment')->nullable();
             $table->string('status')->nullable();
             $table->string('payment_mode')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

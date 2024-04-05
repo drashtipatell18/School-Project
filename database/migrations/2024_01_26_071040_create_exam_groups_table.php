@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('exam_type')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
