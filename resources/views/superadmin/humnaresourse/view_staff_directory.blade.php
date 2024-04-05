@@ -10,10 +10,10 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Expenses Head</h3>
+                    <h3>Staff Directory List</h3>
                 </div>
                 <div class="title_right">
-                    <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+                    <div class="col-md-5 col-sm-5 form-group pull-right top_search">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Search for...">
                             <span class="input-group-btn">
@@ -31,11 +31,10 @@
                         <div class="x_title">
                             <h2>Table</h2>
                             <ul class="nav navbar-right panel_toolbox">
-                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                                <li class="dropdown">
                                 </li>
-
-                                <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a></li>
                             </ul>
                             <div class="clearfix"></div>
                         </div>
@@ -43,43 +42,51 @@
                         <div class="x_content">
                             <div class="table-responsive">
                                 <div class="button-container">
-                                    <a href="{{ route('create.expenses') }}"><button type="button"
-                                            class="btn btn-primary btn-sm mb-2">Add Income Head</button></a>
+                                    <a href="{{ route('create.staff.directory') }}"><button type="button"
+                                            class="btn btn-primary btn-sm mb-2">Add Staff Direcory</button></a>
                                 </div>
                                 <table class="table table-striped jambo_table bulk_action" id="table">
                                     <thead>
-                                        <tr class="">
+                                        <tr>
                                             <th>No</th>
+                                            <th>Staff Id</th>
                                             <th>Name</th>
-                                            <th>Description</th>
-                                            <th>Invoice Number</th>
-                                            <th>Date</th>
-                                            <th>Expenses Head</th>
-                                            <th class="">Amount</th>
-                                            <th class=""><span class="nobr">Action</span></th>
+                                            <th>Role</th>
+                                            <th>Department</th>
+                                            <th>Designation</th>
+                                            <th>Mobile NUmber</th>
+                                            <th>PAN Number</th>
+                                            <th>Photo</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
-
                                     <tbody>
-                                        @foreach ($expenses as $index => $expenses_hea)
-                                            <tr class="">
+                                        @foreach ($staff_directory as $index => $staff_dire)
+                                            <tr>
                                                 <td>{{ $index + 1 }}</td>
-                                                <td class="">{{ $expenses_hea->name }}</td>
-                                                <td class="">
-                                                    {{ implode(' ', array_slice(str_word_count($expenses_hea->description, 1), 0, 15)) }}
+                                                <td>{{ $staff_dire->staff_id }}</td>
+                                                <td>{{ $staff_dire->first_name }}</td>
+                                                <td>{{ $staff_dire->role }}</td>
+                                                <td>{{ $staff_dire->department }}</td>
+                                                <td>{{ $staff_dire->designation }}</td>
+                                                <td>{{ $staff_dire->phone }}</td>
+                                                <td>{{ $staff_dire->pan_number }}</td>
+                                                <td>
+                                                    @if ($staff_dire->photo)
+                                                        <img src="{{ asset('photos/' . $staff_dire->photo) }}"
+                                                            alt="User Image" width="100" height="50px">
+                                                    @else
+                                                        No Photo Available
+                                                    @endif
                                                 </td>
 
-                                                <td class="">{{ $expenses_hea->invoice_number }}</td>
-                                                <td class="">{{ date('d-m-Y', strtotime($expenses_hea->date)) }}</td>
 
-                                                <td class="">{{ $expenses_hea->expenses_head }}</td>
-                                                <td class="">{{ $expenses_hea->amount }}</td>
                                                 <td>
-                                                    <a href="{{ route('edit.expenses', $expenses_hea->id) }}"
+                                                    <a href="{{ route('edit.staff.directory', $staff_dire->id) }}"
                                                         class="btn btn-info btn-sm">Edit</a>
-
-                                                    <a href="{{ route('destroy.expenses', $expenses_hea->id) }}"
-                                                        class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>
+                                                    <a href="{{ route('destroy.staff.directory', $staff_dire->id) }}"
+                                                        class="btn btn-danger btn-sm"
+                                                        onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -93,6 +100,7 @@
         </div>
     </div>
 @endsection
+
 @push('scripts')
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
     <script>

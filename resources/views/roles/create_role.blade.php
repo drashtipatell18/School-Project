@@ -54,7 +54,7 @@
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align"> Name*</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input type="text" name="name" value="<?php echo isset($roles->name) ? $roles->name : ''; ?>"
+                                        <input type="text" name="name" value="<?php echo isset($roles) ? $roles->name : ''; ?>"
                                             class="form-control @error('name') is-invalid @enderror">
                                         @error('name')
                                             <span class="invalid-feedback" style="color: red">
@@ -68,7 +68,7 @@
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Role *</label>
                                     <div class="col-md-6 col-sm-6">
                                         <input type="text" class="form-control @error('role') is-invalid @enderror"
-                                            name="role" value="<?php echo isset($roles->role) ? $roles->role : ''; ?>">
+                                            name="role" value="<?php echo isset($roles) ? $roles->role : ''; ?>">
                                         @error('role')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -95,6 +95,7 @@
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">PassWord *</label>
                                     <div class="col-md-6 col-sm-6">
                                         <input type="password" class="form-control @error('password') is-invalid @enderror"
+
                                             name="password" value="<?php echo isset($roles->password) ? $roles->password : ''; ?>">
                                         @error('password')
                                             <span class="invalid-feedback" style="color: red">
@@ -104,7 +105,6 @@
                                     </div>
                                 </div>
                                 {{-- @endif --}}
-
 
                                 @if (isset($roles) && $roles->image)
                                 <div class="item form-group">

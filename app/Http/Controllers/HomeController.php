@@ -200,7 +200,7 @@ class HomeController extends Controller
         $request->validate([
             'newpassword' => 'required|string|min:8',
             'confirmpassword' => 'required|string|min:8',
-        ]);
+            ]);
         
         if ($request->newpassword !== $request->confirmpassword) {
             return redirect()->back()->with('error', 'The new password confirmation does not match.');
@@ -217,6 +217,4 @@ class HomeController extends Controller
             return redirect('/')->with('success', 'Password successfully reset.');
         }
     }
-    
-    
-}
+ }
