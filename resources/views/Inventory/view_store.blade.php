@@ -61,7 +61,7 @@
                                                 <td>{{ $index + 1 }}</td>
                                                 <td class="">{{ $store->name }}</td>                          
                                                 <td class="">{{ $store->code }}</td>                          
-                                                <td class="">{{ $store->description }}</td>                
+                                                <td class="">{{ implode(' ', array_slice(str_word_count($store->description, 1), 0, 15)) }}</td>                
                                                 <td> 
                                                     <a href="{{ route('edit.store', $store->id) }}" class="btn btn-info btn-sm">Edit</a>
                                                     <a href="{{ route('destroy.store',$store->id) }}" class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>

@@ -29,7 +29,7 @@ class SubjectController extends Controller
         ]);
         Subject::create([
             'code' => $request->input('code'),
-            'name' => $request->input('name'),
+            'name' => strtolower($request->input('name')),
             'subject_type' => $request->input('subject_type'),
         ]);
         return redirect()->route('subject');
@@ -50,7 +50,7 @@ class SubjectController extends Controller
         $subject = Subject::find($id);
         
         $code = $request->input('code');
-        $name = $request->input('name');
+        $name = strtolower($request->input('name'));
         $subject_type = $request->input('subject_type');
     
         $subject->update([

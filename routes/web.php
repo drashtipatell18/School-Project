@@ -43,6 +43,8 @@ use App\Http\Controllers\Communicate\SendEmailController;
 use App\Http\Controllers\Communicate\SendSMSController;
 use App\Http\Controllers\Communicate\EmailTemplateController;
 use App\Http\Controllers\Communicate\SMSTemplateController;
+use App\Http\Controllers\Library\BookController;
+use App\Http\Controllers\Library\MemberController;
 use App\Models\Admin\FrontOffice\SetupFrontOffice;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FrontCMS\EventController;
@@ -204,6 +206,9 @@ Route::post('/admin/issueitem/update/{id}', [IssueItemController::class, 'issuei
 Route::get('/admin/issueitem/destroy/{id}',[IssueItemController::class,'issueitemDestroy'])->name('destroy.issueitem');
 Route::get('/get-usertype',[IssueItemController::class,'getUsertype'])->name('get-usertype');
 Route::get('/get-allname',[IssueItemController::class,'getAllname'])->name('get-allname');
+Route::get('/get-byname',[IssueItemController::class,'GetIdByName'])->name('get-byname');
+Route::get('/get-imagebyid',[IssueItemController::class,'getImageById'])->name('get-imagebyid');
+
 
 // Events
 Route::get('/admin/event',[EventController::class,'events'])->name('events');
@@ -474,8 +479,6 @@ Route::post('/admin/noticeborad/insert',[NoticeBoradController::class,'noticebor
 Route::get('/admin/noticeborad/edit/{id}', [NoticeBoradController::class, 'noticeboradEdit'])->name('edit.noticeborad');
 Route::post('/admin/noticeborad/update/{id}', [NoticeBoradController::class, 'noticeboradUpdate'])->name('update.noticeborad');
 Route::get('/admin/noticeborad/destroy/{id}',[NoticeBoradController::class,'noticeboradDestroy'])->name('destroy.noticeborad');
-// Route::get('/get-usertype',[NoticeBoradController::class,'getUsertype'])->name('get-usertype');
-// Route::get('/get-allname',[NoticeBoradController::class,'getAllname'])->name('get-allname');
 
 
 // send email
@@ -514,6 +517,30 @@ Route::get('/admin/smstemplate/edit/{id}', [SMSTemplateController::class, 'smste
 Route::post('/admin/smstemplate/update/{id}', [SMSTemplateController::class, 'smstemplateUpdate'])->name('update.smstemplate');
 Route::get('/admin/smstemplate/destroy/{id}',[SMSTemplateController::class,'smstemplateDestroy'])->name('destroy.smstemplate');
 
+
+// Book Library
+
+Route::get('/admin/books',[BookController::class,'books'])->name('books');
+Route::get('/admin/book/create',[BookController::class,'bookCreate'])->name('create.book');
+Route::post('/admin/book/insert',[BookController::class,'bookInsert'])->name('insert.book');
+Route::get('/admin/book/edit/{id}', [BookController::class, 'bookEdit'])->name('edit.book');
+Route::post('/admin/book/update/{id}', [BookController::class, 'bookUpdate'])->name('update.book');
+Route::get('/admin/book/destroy/{id}',[BookController::class,'bookDestroy'])->name('destroy.book');
+Route::get('/get-qty',[BookController::class,'getQty'])->name('get-qty');
+
+
+// Book Member
+
+Route::get('/admin/members',[MemberController::class,'members'])->name('members');
+Route::get('/admin/member/create',[MemberController::class,'memberCreate'])->name('create.member');
+Route::post('/admin/member/insert',[MemberController::class,'memberInsert'])->name('insert.member');
+Route::get('/admin/member/view/{id}', [MemberController::class, 'memberView'])->name('view.member');
+Route::post('/admin/member/update/{id}', [MemberController::class, 'memberUpdate'])->name('update.member');
+Route::get('/admin/member/destroy/{id}',[MemberController::class,'memberDestroy'])->name('destroy.member');
+Route::post('/admin/bookissue/insert',[MemberController::class,'IssueMemberBook'])->name('bookissue.insert');
+Route::post('/save-date',[MemberController::class,'saveDate'])->name('save.date');
+
+
 //Roles 
 
 Route::get('/admin/role',[HomeController::class,'role'])->name('roles');
@@ -522,6 +549,13 @@ Route::post('/admin/role/insert',[HomeController::class,'roleInsert'])->name('in
 Route::get('/admin/role/edit/{id}', [HomeController::class, 'roleEdit'])->name('edit.role');
 Route::post('/admin/role/update/{id}', [HomeController::class, 'roleUpdate'])->name('update.role');
 Route::get('/admin/role/destroy/{id}',[HomeController::class,'roleDestroy'])->name('destroy.role'); 
+Route::get('/admin/cpassword',[HomeController::class,'cPassword'])->name('changepass'); 
+Route::post('/admin/changepassword',[HomeController::class,'changePassword'])->name('changePassword'); 
+Route::get('/forget-password', [HomeController::class, 'showForgetPasswordForm'])->name('forget.password');
+Route::post('/forget-password', [HomeController::class, 'sendResetLinkEmail'])->name('forget.password.email');
+Route::get('/reset/{token}', [HomeController::class, 'reset'])->name('reset');
+Route::post('/reset/{token}', [HomeController::class, 'postReset'])->name('post_reset');
+
 
 Auth::routes();
 

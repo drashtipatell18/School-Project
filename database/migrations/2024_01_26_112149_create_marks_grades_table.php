@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('grade_point')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

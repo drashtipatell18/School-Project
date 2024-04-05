@@ -65,7 +65,7 @@
                                             <td class="">{{ $subjectgroup->class }}</td>                
                                             <td class="">{{ $subjectgroup->section }}</td>                
                                             <td class="">{{ $subjectgroup->subject }}</td>     
-                                            <td class="">{{ $subjectgroup->description }}</td>                           
+                                            <td class="">{{ implode(' ', array_slice(str_word_count($subjectgroup->description, 1), 0, 15)) }}</td>                           
                                                 <td> 
                                                     <a href="{{ route('edit.subjectgroup', $subjectgroup->id) }}" class="btn btn-info btn-sm">Edit</a>
 

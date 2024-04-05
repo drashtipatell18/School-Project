@@ -42,6 +42,7 @@ return new class extends Migration
             $table->string('mother_occupation')->nullable();
             $table->string('mother_photo')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

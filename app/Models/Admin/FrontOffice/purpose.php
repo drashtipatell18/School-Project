@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class purpose extends Model
 {
-    use HasFactory;
-    
+    use HasFactory, SoftDeletes;
+    protected $dates = ['deleted_at'];
     protected $table = 'purposes';
     protected $fillable = ['purpose','description'];
 }

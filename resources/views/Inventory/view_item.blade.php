@@ -63,7 +63,7 @@
                                                 <td class="">{{ $item->name }}</td>                          
                                                 <td class="">{{ $item->category }}</td>                          
                                                 <td class="">{{ $item->unit }}</td>                          
-                                                <td class="">{{ $item->description }}</td>                
+                                                <td class="">{{ implode(' ', array_slice(str_word_count($item->description, 1), 0, 15)) }}</td>                
                                                 <td> 
                                                     <a href="{{ route('edit.item', $item->id) }}" class="btn btn-info btn-sm">Edit</a>
                                                     <a href="{{ route('destroy.item',$item->id) }}" class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>

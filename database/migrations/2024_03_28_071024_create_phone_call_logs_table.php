@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('note')->nullable()->nullable();
             $table->string('call_type')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

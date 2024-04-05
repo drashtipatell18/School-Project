@@ -35,7 +35,7 @@ class ClassController extends Controller
             'section' => 'required',
         ]);
         Clas::create([
-            'class' => $request->input('class'),
+            'class' => strtolower($request->input('class')),
             'section' => $request->input('section'),
         ]);
         return redirect()->route('class');
@@ -66,7 +66,7 @@ class ClassController extends Controller
             // dd($request->all());
             $classes = Clas::find($id);
             $classes->update([
-                'class' => $request->input('class'),
+                'class' => strtolower($request->input('class')),
                 'section' => $request->input('section'),
             ]);
             return redirect()->route('class');

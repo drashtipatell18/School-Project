@@ -66,7 +66,7 @@
                                                 <td>{{ $marks_gra->grade_name }}</td>
                                                 <td>{{ $marks_gra->percent_upto }} To {{ $marks_gra->percent_from }}</td>
                                                 <td>{{ $marks_gra->grade_point }}</td>
-                                                <td>{{ $marks_gra->description }}</td>
+                                                <td>{{ implode(' ', array_slice(str_word_count($marks_gra->description, 1), 0, 15)) }}</td>
                                                 <td>
                                                     <a href="{{ route('edit.marksgrade', $marks_gra->id) }}"
                                                         class="btn btn-info btn-sm">Edit</a>

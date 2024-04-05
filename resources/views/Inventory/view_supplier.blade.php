@@ -71,7 +71,7 @@
                                                     <i class="fa fa-envelope"></i> {{ $supplier->contact_person_email }}
                                                 </td>  
                                                 <td class=""><i class="fa fa-building"></i> {{ $supplier->address }}</td>                          
-                                                <td class=""><i class="fa fa-building"></i> {{ $supplier->description }}</td>                
+                                                <td class=""><i class="fa fa-building"></i>{{ implode(' ', array_slice(str_word_count($supplier->description, 1), 0, 15)) }}</td>                
                                                 <td> 
                                                     <a href="{{ route('edit.supplier', $supplier->id) }}" class="btn btn-info btn-sm">Edit</a>
                                                     <a href="{{ route('destroy.supplier',$supplier->id) }}" class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>

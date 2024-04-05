@@ -125,11 +125,13 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right my-dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('changepass') }}">
+                        {{ __('Change Password') }}
+                    </a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
                     </a>
-
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
@@ -347,6 +349,13 @@
                                         <li><a href="{{ route('smstemplates') }}">SMS Template</a></li>
                                     </ul>
                                 </li>
+                                <li><a><i class="fa fa-book ftlayer"></i>Library<span
+                                            class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{{ route('books') }}">Book List</a></li>
+                                        <li><a href="{{ route('members') }}">Issue - Return</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
 
@@ -415,13 +424,13 @@
     {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 
     <!-- Include DataTables JS -->
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $('#userImage').click(function() {
                 $('.dropdown-menu').toggle();
             });
         });
-    </script>
+    </script> --}}
 
     @stack('scripts')
 </body>

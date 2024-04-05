@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('attach_document')->nullable();
             $table->text('note')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

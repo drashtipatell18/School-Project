@@ -283,7 +283,9 @@
             color: #e21e1e;
             /* Change the text color to red or any other color you prefer */
         }
-
+        .forgetpassword{
+            margin-top: 16px;
+        }
         /* Responsive Styles */
         @media only screen and (max-width: 768px) {
             .container {

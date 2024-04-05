@@ -59,7 +59,7 @@
                                             <tr class="">
                                                 <td>{{ $index + 1 }}</td>
                                                 <td class="">{{ $template->title }}</td>                          
-                                                <td class="">{{ $template->message }}</td>                          
+                                                <td class="">{{ implode(' ', array_slice(str_word_count($template->message, 1), 0, 15)) }}</td>                     
                                                 <td> 
                                                     <a href="{{ route('edit.emailtemplate', $template->id) }}" class="btn btn-info btn-sm">Edit</a>
                                                     <a href="{{ route('destroy.emailtemplate',$template->id) }}" class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>

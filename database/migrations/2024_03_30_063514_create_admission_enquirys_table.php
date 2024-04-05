@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('class')->nullable();
             $table->string('number_of_child')->nullable(); 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

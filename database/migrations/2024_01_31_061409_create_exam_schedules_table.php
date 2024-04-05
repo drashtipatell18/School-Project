@@ -23,6 +23,7 @@ return new class extends Migration
             $table->decimal('max_marks', 8, 2)->nullable();
             $table->decimal('min_marks', 8, 2)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('complaint_type')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

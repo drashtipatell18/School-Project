@@ -65,7 +65,7 @@
                                                 <td>{{ $index + 1 }}</td>
                                                 <td class="">{{ $email->template }}</td>                          
                                                 <td class="">{{ $email->title }}</td>                          
-                                                <td class="">{{ $email->message }}</td>                          
+                                                <td class="">{{ implode(' ', array_slice(str_word_count($email->message, 1), 0, 15)) }}</td>                     
                                                 <td class="">{{ $email->group }}</td>                          
                                                 <td class="">{{ $email->individual }}</td>                          
                                                 <td class="">{{ $email->class }}</td>                          
