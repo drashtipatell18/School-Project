@@ -203,6 +203,7 @@ class StudentAdmissionController extends Controller
             $student->delete();
             return redirect()->back();
         }
+
     public function profilepic(Request $request,$id)
     {     
         $student = StudentAdmission::find($id);
@@ -216,9 +217,8 @@ class StudentAdmissionController extends Controller
         $student = StudentAdmission::find($id); // Fetch the student with the given ID
         return view('superadmin.StudentInformation.parents', compact('userRole', 'student'));
     }
-    
-    
 
+        
     public function getImageByIdStud(Request $request)
     {
         echo 'hfghfgh';

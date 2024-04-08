@@ -12,10 +12,19 @@
                 <div class="title_left">
                     <h3>Visitor List</h3>
                 </div>
-                <div class="button-container">
-                    <a href="{{ route('create.visitor.book') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Add
-                            Visitor</button></a>
-                </div>
+                @if (auth()->check())
+                    @php
+                        $userRole = strtolower(auth()->user()->role);
+                    @endphp
+                @endif
+                @if ($userRole != 'student' || $userRole != 'parents')
+                    <div class="button-container">
+                        <a href="{{ route('create.visitor.book') }}"><button type="button"
+                                class="btn btn-primary btn-sm mt-1">Add
+                                Visitor</button></a>
+                    </div>
+                @endif
+
             </div>
             <div class="clearfix"></div>
             <div class="row" style="display: block;">
@@ -48,7 +57,9 @@
                                             <th>Date</th>
                                             <th>In Time</th>
                                             <th>Out Time</th>
-                                            <th><span class="nobr">Action</span></th>
+                                            @if ($userRole != 'student' || $userRole != 'parents')
+                                                <th class=" no-link last"><span class="nobr">Action</span></th>
+                                            @endif
                                         </tr>
                                     </thead>
 
@@ -66,12 +77,14 @@
                                                 <td class="">{{ date('d-m-Y', strtotime($visitor_bo->in_time)) }}</td>
                                                 <td class="">{{ date('d-m-Y', strtotime($visitor_bo->out_time)) }}
                                                 </td>
-                                                <td>
-                                                    <a href="{{ route('edit.visitor.book', $visitor_bo->id) }}"
-                                                        class="btn btn-info btn-sm">Edit</a>
-                                                    <a href="{{ route('destroy.visitor.book', $visitor_bo->id) }}"
-                                                        class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>
-                                                </td>
+                                                @if ($userRole != 'student' || $userRole != 'parents')
+                                                    <td>
+                                                        <a href="{{ route('edit.visitor.book', $visitor_bo->id) }}"
+                                                            class="btn btn-info btn-sm">Edit</a>
+                                                        <a href="{{ route('destroy.visitor.book', $visitor_bo->id) }}"
+                                                            class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>
+                                                    </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                     </tbody>

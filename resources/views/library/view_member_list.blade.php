@@ -84,53 +84,59 @@
                     </div>
                 </div>
             </div>
-
+            @if (auth()->check())
+                @php
+                    $userRole = strtolower(auth()->user()->role);
+                @endphp
+            @endif
             <div class="col-md-9">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Issue Book</h3>
-                    </div><!-- /.box-header -->
-                    <!-- form start -->
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST"
-                        action="{{ '/admin/bookissue/insert' }}">
-                        @csrf
-                        <input type="hidden" name="id" value="{{ $members->id }}">
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Books <small class="req"> *</small></label>
-                                <select class="form-control @error('book') is-invalid @enderror" name="book"
-                                    id="book">
-                                    <option value="">Select a book</option>
-                                    @foreach ($books as $book)
-                                        <option value="{{ $book }}">
-                                            {{ $book }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('book')
-                                    <span class="invalid-feedback" style="color: red">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                                <input type="hidden" id="availableQuantity" name="availableQuantity" value="">
-                                <span class="text text-danger qty_error"><b>Available Quantity</b>: <span
-                                        class="ava_quantity">0</span></span>
+                @if ($userRole != 'student' || $userRole != 'parents')
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Issue Book</h3>
+                        </div><!-- /.box-header -->
+                        <!-- form start -->
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST"
+                            action="{{ '/admin/bookissue/insert' }}">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $members->id }}">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Books <small class="req"> *</small></label>
+                                    <select class="form-control @error('book') is-invalid @enderror" name="book"
+                                        id="book">
+                                        <option value="">Select a book</option>
+                                        @foreach ($books as $book)
+                                            <option value="{{ $book }}">
+                                                {{ $book }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('book')
+                                        <span class="invalid-feedback" style="color: red">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                    <input type="hidden" id="availableQuantity" name="availableQuantity" value="">
+                                    <span class="text text-danger qty_error"><b>Available Quantity</b>: <span
+                                            class="ava_quantity">0</span></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Due Return Date <small class="req"> *</small></label>
+                                    <input type="date" class="form-control @error('duereturndate') is-invalid @enderror"
+                                        name="duereturndate" value="">
+                                    @error('duereturndate')
+                                        <span style="color: red"
+                                            class="invalid-feedback"><strong>{{ $message }}</strong></span>
+                                    @enderror <span class="text-danger"></span>
+                                </div>
+                            </div><!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-info pull-right">Save</button>
                             </div>
-                            <div class="form-group">
-                                <label>Due Return Date <small class="req"> *</small></label>
-                                <input type="date" class="form-control @error('duereturndate') is-invalid @enderror"
-                                    name="duereturndate" value="">
-                                @error('duereturndate')
-                                    <span style="color: red"
-                                        class="invalid-feedback"><strong>{{ $message }}</strong></span>
-                                @enderror <span class="text-danger"></span>
-                            </div>
-                        </div><!-- /.box-body -->
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-info pull-right">Save</button>
-                        </div>
-                    </form>
-                </div>
+                        </form>
+                    </div>
+                @endif
 
                 <div class="box box-primary">
                     <div class="box-header ptbnull">
@@ -268,7 +274,7 @@
                     data: {
                         bookissueid: bookissueid,
                         returndate: selectedDate,
-                        memberid: memberid 
+                        memberid: memberid
                     },
                     success: function(response) {
                         console.log('Date saved successfully');

@@ -12,10 +12,18 @@
                 <div class="title_left">
                     <h3>Notice Board List</h3>
                 </div>
-                <div class="button-container">
-                    <a href="{{ route('create.noticeborad') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Post
-                            New Message</button></a>
-                </div>
+                @if (auth()->check())
+                    @php
+                        $userRole = strtolower(auth()->user()->role);
+                    @endphp
+                @endif
+                @if ($userRole != 'student' || $userRole != 'parents')
+                    <div class="button-container">
+                        <a href="{{ route('create.noticeborad') }}"><button type="button"
+                                class="btn btn-primary btn-sm mt-1">Post
+                                New Message</button></a>
+                    </div>
+                @endif
             </div>
             <div class="clearfix"></div>
             <div class="row" style="display: block;">
@@ -41,7 +49,9 @@
                                             <th>No</th>
                                             <th class="">Title </th>
                                             <th class="">Description </th>
-                                            <th class=""><span class="nobr">Action</span></th>
+                                            @if ($userRole != 'student' || $userRole != 'parents')
+                                                <th class=" no-link last"><span class="nobr">Action</span></th>
+                                            @endif
                                         </tr>
                                     </thead>
 
@@ -53,12 +63,14 @@
                                                 <td class="">
                                                     {{ implode(' ', array_slice(str_word_count($notice->message, 1), 0, 15)) }}
                                                 </td>
-                                                <td>
-                                                    <a href="{{ route('edit.noticeborad', $notice->id) }}"
-                                                        class="btn btn-info btn-sm">Edit</a>
-                                                    <a href="{{ route('destroy.noticeborad', $notice->id) }}"
-                                                        class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>
-                                                </td>
+                                                @if ($userRole != 'student' || $userRole != 'parents')
+                                                    <td>
+                                                        <a href="{{ route('edit.noticeborad', $notice->id) }}"
+                                                            class="btn btn-info btn-sm">Edit</a>
+                                                        <a href="{{ route('destroy.noticeborad', $notice->id) }}"
+                                                            class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>
+                                                    </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                     </tbody>
