@@ -199,15 +199,15 @@
                                     </li> --}}
                                 {{-- @endif --}}
 
-                                
-                                    @if ($userRole === 'parents' && isset($student) && $student->id)
-                                        <li>
-                                            <a href="{{ route('parents', ['id' => $student->id]) }}">
-                                                <i class="fa fa-user-plus ftlayer"></i> My Profile
-                                            </a>
-                                        </li>
-                                    @endif
                             
+                                @if ($userRole === 'parents' && isset($student) && $student->id)
+                                    <li>
+                                        <a href="{{ route('parents', ['id' => $student->id]) }}">
+                                            <i class="fa fa-user-plus ftlayer"></i> My Profile
+                                        </a>
+                                    </li>
+                                @endif
+                        
                             
                             
                                 @if ($userRole != 'teacher' && $userRole != 'librarian')
@@ -239,6 +239,7 @@
                                         </ul>
                                     </li>
                                 @endif
+                                
                                 @if ($userRole != 'librarian')
                                     <li><a><i class="fa fa-list-alt ftlayer"></i> Lesson Plan
                                             <span class="fa fa-chevron-down"></span></a>
