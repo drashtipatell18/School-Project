@@ -130,6 +130,15 @@
         color: #fff;
     }
 
+    .rolebtn{
+        display: inline-block;
+        width: 100%;
+        padding: 12px 0px;
+        border-radius: 20px;
+        text-align: center;
+        font-size: 16px;
+        color: #fff;
+    }
     ._btn_04 a{
     font-size:15px;
     color:#fff;

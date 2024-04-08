@@ -51,7 +51,7 @@ class HomeController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect('/login');
     }
 
     public function role()
@@ -165,24 +165,24 @@ class HomeController extends Controller
         return redirect()->route('dashboard')->with('success', 'Password changed successfully.');
     }
 
-    public function showForgetPasswordForm()
-    {
-        return view('roles.forgetpass');
-    }
+    // public function showForgetPasswordForm()
+    // {
+    //     return view('roles.forgetpass');
+    // }
 
-    public function sendResetLinkEmail(Request $request)
-    {
-        $request->validate(['email' => 'required|email']);
-        $user = User::where('email','=',$request->email)->first();
-        if(!empty($user)){
-            $user->remember_token =  Str::random(40);
-            $user->save();
+    // public function sendResetLinkEmail(Request $request)
+    // {
+    //     $request->validate(['email' => 'required|email']);
+    //     $user = User::where('email','=',$request->email)->first();
+    //     if(!empty($user)){
+    //         $user->remember_token =  Str::random(40);
+    //         $user->save();
 
-            Mail::to($user->email)->send(new ForgotPasswordMail($user));
-            return back()->with('success', 'Password reset link sent successfully.');
+    //         Mail::to($user->email)->send(new ForgotPasswordMail($user));
+    //         return back()->with('success', 'Password reset link sent successfully.');
 
-        }
-    }
+    //     }
+    // }
 
     public function reset($token){
         $user = User::where('remember_token','=',$token)->first();

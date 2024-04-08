@@ -110,14 +110,9 @@ class StudentAdmissionController extends Controller
     }
     public function StudentEdit($id)
     {
-        $student = StudentAdmission::find($id);
-        // dd($students);
-        // $classes = DB::table('class')->get()->pluck('class')->toArray();
-        // $sections = DB::table('sections')->get()->pluck('section')->toArray();
         $classes = Clas::pluck('class')->toArray();
         $sections = Clas::pluck('section')->toArray();
-        // $class = DB::table('class')->get();
-        // $sections = DB::table('sections')->get();
+       
         return view('superadmin.StudentInformation.student_admission',compact('student','classes','sections'));
     }
     public function StudentUpdate(Request $request, $id)
@@ -194,5 +189,10 @@ class StudentAdmissionController extends Controller
 
         // Redirect back or to a specific route
         return redirect()->route('student.details.view');
+    }
+
+    public function profilepic()
+    {
+        return view('superadmin.StudentInformation.profilepic');
     }
 }

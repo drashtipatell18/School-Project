@@ -46,7 +46,18 @@
 
                             </form>
 
-                            <div class="form-group pt-0">
+                            <div class="form-group rolebtn">
+                                <div class="btn-group btn-group-justified" style="margin-top:10px;"> 
+                                    <a href="#" class="btn btn-primary width100" data-toggle="tooltip" data-placement="top" title="" data-original-title="copy" style="background:#0084B4;"><i class="bi bi-people"></i> Super Admin</a>
+                                    <a href="#" class="btn btn-primary width50" data-toggle="tooltip" data-placement="top" title="" data-original-title="copy" style="background:#1bbed3;"><i class="bi bi-person"></i></i> Admin</a>
+                                    <a href="#" class="btn btn-primary width100" data-toggle="tooltip" data-placement="top" title="" data-original-title="copy" style="background:#999999;"><i class="bi bi-people"></i> Teacher</a>                                    
+                                </div>
+
+                                <div class="btn-group btn-group-justified" style="margin-top:10px;"> 
+                                    <a href="#" class="btn btn-primary width100" data-toggle="tooltip" data-placement="top" title="" data-original-title="copy"style="background:#999;"><i class="bi bi-people"></i> Librarian</a>
+                                    <a href="#" class="btn btn-primary width50" data-toggle="tooltip" data-placement="top" title="" data-original-title="copy" style="background:#e91e63;"><i class="bi bi-person"></i></i> Student</a>
+                                    <a href="#" class="btn btn-primary width100" data-toggle="tooltip" data-placement="top" u8i="" data-original-title="copy" style="background:#4aa64e;"><i class="bi bi-people"></i> Parents</a>                                    
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -40,6 +40,7 @@ class ResultController extends Controller
    
     public function resultCreate()
     {
+        
         $class = DB::table('class')->get();
         // $subjects = Schedule::all();
 
@@ -93,19 +94,19 @@ class ResultController extends Controller
     public function resultInsert(Request $request)
     {
         // dd($request->all());
-        // $request->validate([
-        //     'exam_group' => 'required',
-        //     'exam' => 'required',
-        //     'class' => 'required',
-        //     'section' => 'required',
-        //     'student_name' => 'required',
-        //     'subject' => 'required',
-        //     'marks' => 'required',
-        //     'grand_total' => 'required',
-        //     'percent' => 'required',
-        //     'rank' => 'required',
-        //     'result' => 'required',
-        // ]);
+        $request->validate([
+            'exam_group' => 'required',
+            'exam' => 'required',
+            'class' => 'required',
+            'section' => 'required',
+            'student_name' => 'required',
+            'subject' => 'required',
+            'marks' => 'required',
+            'grand_total' => 'required',
+            'percent' => 'required',
+            'rank' => 'required',
+            'result' => 'required',
+        ]);
 
         $subjects = $request->input('subject');
         
