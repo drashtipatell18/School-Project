@@ -12,6 +12,10 @@
                 <div class="title_left">
                     <h3>Role List</h3>
                 </div>
+                <div class="button-container">
+                    <a href="{{ route('create.role') }}"><button type="button"
+                            class="btn btn-primary btn-sm mt-1">Add Role</button></a>
+                </div>
             </div>
             <div class="clearfix"></div>
             <div class="row" style="display: block;">
@@ -31,10 +35,6 @@
 
                         <div class="x_content">
                             <div class="table-responsive">
-                                <div class="button-container">
-                                    <a href="{{ route('create.role') }}"><button type="button"
-                                            class="btn btn-primary btn-sm mb-2">Add Role</button></a>
-                                </div>
                                 <table class="table table-striped jambo_table bulk_action" id="table">
                                     <thead>
                                         <tr class="">

@@ -1,26 +1,20 @@
 @extends('admin.main')
 @section('content')
-<style>
-    .button-container {
-        display: flex;
-        justify-content: flex-end;
-    }
-</style>
+    <style>
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+    </style>
     <div class="right_col" role="main">
         <div class="">
             <div class="page-title">
                 <div class="title_left">
                     <h3>Events List</h3>
                 </div>
-                <div class="title_right">
-                    <div class="col-md-5 col-sm-5   form-group pull-right top_search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Go!</button>
-                            </span>
-                        </div>
-                    </div>
+                <div class="button-container">
+                    <a href="{{ route('create.event') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Add
+                            Event</button></a>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -33,14 +27,6 @@
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                        aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Settings 1</a>
-                                        <a class="dropdown-item" href="#">Settings 2</a>
-                                    </div>
-                                </li>
                                 <li><a class="close-link"><i class="fa fa-close"></i></a>
                                 </li>
                             </ul>
@@ -49,9 +35,6 @@
 
                         <div class="x_content">
                             <div class="table-responsive">
-                                <div class="button-container">
-                                    <a href="{{ route('create.event') }}"><button type="button" class="btn btn-primary btn-sm mb-2">Add Event</button></a>
-                                </div>
                                 <table class="table table-striped jambo_table bulk_action" id="table">
                                     <thead>
                                         <tr class="">
@@ -67,12 +50,15 @@
                                         @foreach ($events as $index => $event)
                                             <tr class="">
                                                 <td>{{ $index + 1 }}</td>
-                                                <td class="">{{ $event->title }}</td>                          
-                                                <td class="">{{ $event->startdate }}</td>                          
-                                                <td class="">{{ $event->venue }}</td>                          
-                                                <td> 
-                                                    <a href="{{ route('edit.event', $event->id) }}" class="btn btn-info btn-sm">Edit</a>
-                                                    <a href="{{ route('destroy.event',$event->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('are you sure ?')">Delete</a>
+                                                <td class="">{{ $event->title }}</td>
+                                                <td class="">{{ $event->startdate }}</td>
+                                                <td class="">{{ $event->venue }}</td>
+                                                <td>
+                                                    <a href="{{ route('edit.event', $event->id) }}"
+                                                        class="btn btn-info btn-sm">Edit</a>
+                                                    <a href="{{ route('destroy.event', $event->id) }}"
+                                                        class="btn btn-danger btn-sm"
+                                                        onclick="return confirm('are you sure ?')">Delete</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -87,10 +73,10 @@
     </div>
 @endsection
 @push('scripts')
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
     <script>
-    $(document).ready(function () {
-        $('#table').DataTable();
-    });
+        $(document).ready(function() {
+            $('#table').DataTable();
+        });
     </script>
 @endpush

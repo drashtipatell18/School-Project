@@ -1,26 +1,20 @@
 @extends('admin.main')
 @section('content')
-<style>
-    .button-container {
-        display: flex;
-        justify-content: flex-end;
-    }
-</style>
+    <style>
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+    </style>
     <div class="right_col" role="main">
         <div class="">
             <div class="page-title">
                 <div class="title_left">
                     <h3>Item Store List</h3>
                 </div>
-                <div class="title_right">
-                    <div class="col-md-5 col-sm-5   form-group pull-right top_search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Go!</button>
-                            </span>
-                        </div>
-                    </div>
+                <div class="button-container">
+                    <a href="{{ route('create.itemstock') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Add
+                            Item Stock</button></a>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -41,9 +35,6 @@
 
                         <div class="x_content">
                             <div class="table-responsive">
-                                <div class="button-container">
-                                    <a href="{{ route('create.itemstock') }}"><button type="button" class="btn btn-primary btn-sm mb-2">Add Item Stock</button></a>
-                                </div>
                                 <table class="table table-striped jambo_table bulk_action" id="table">
                                     <thead>
                                         <tr class="">
@@ -63,16 +54,18 @@
                                         @foreach ($itemstocks as $index => $itemstock)
                                             <tr class="">
                                                 <td>{{ $index + 1 }}</td>
-                                                <td class="">{{ $itemstock->item }}</td>                          
-                                                <td class="">{{ $itemstock->category }}</td>                          
-                                                <td class="">{{ $itemstock->supplier }}</td>                          
-                                                <td class="">{{ $itemstock->store }}</td>                          
-                                                <td class="">{{ $itemstock->quantity }}</td>                          
-                                                <td class="">{{ $itemstock->price }}</td>                          
-                                                <td class="">{{ $itemstock->date }}</td>                
-                                                <td> 
-                                                    <a href="{{ route('edit.itemstock', $itemstock->id) }}" class="btn btn-info btn-sm">Edit</a>
-                                                    <a href="{{ route('destroy.itemstock',$itemstock->id) }}" class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>
+                                                <td class="">{{ $itemstock->item }}</td>
+                                                <td class="">{{ $itemstock->category }}</td>
+                                                <td class="">{{ $itemstock->supplier }}</td>
+                                                <td class="">{{ $itemstock->store }}</td>
+                                                <td class="">{{ $itemstock->quantity }}</td>
+                                                <td class="">{{ $itemstock->price }}</td>
+                                                <td class="">{{ $itemstock->date }}</td>
+                                                <td>
+                                                    <a href="{{ route('edit.itemstock', $itemstock->id) }}"
+                                                        class="btn btn-info btn-sm">Edit</a>
+                                                    <a href="{{ route('destroy.itemstock', $itemstock->id) }}"
+                                                        class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -87,11 +80,10 @@
     </div>
 @endsection
 @push('scripts')
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
     <script>
-    $(document).ready(function () {
-        $('#table').DataTable();
-    });
+        $(document).ready(function() {
+            $('#table').DataTable();
+        });
     </script>
 @endpush
-

@@ -7,28 +7,17 @@
         }
     </style>
     <div class="right_col" role="main">
-        <div class="">
+        <div>
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Add Phone Call Log</h3>
+                    <h3>{{ isset($phone_call_log) ? 'Edit Phone Call Log' : 'Add Phone Call Log' }}</h3>
                 </div>
-
-                <div class="title_right">
-                    <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Go!</button>
-                            </span>
-                        </div>
-                    </div>
+                <div class="button-container">
+                    <a href="{{ route('phone.call.log') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Phone
+                            Call Log List</button></a>
                 </div>
             </div>
             <div class="clearfix"></div>
-            <div class="button-container">
-                <a href="{{ route('admission.enquiry') }}"><button type="button" class="btn btn-primary btn-sm mb-2">Phone
-                        Call Log List</button></a>
-            </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="x_panel">
@@ -167,8 +156,6 @@
                                         @enderror
                                     </div>
                                 </div>
-
-
 
                                 <div class="ln_solid"></div>
                                 <div class="item form-group">

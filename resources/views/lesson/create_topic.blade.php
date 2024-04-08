@@ -5,39 +5,31 @@
             display: flex;
             justify-content: flex-end;
         }
-        .topic{
+
+        .topic {
             margin-right: 18px;
         }
-        .add-topic{
+
+        .add-topic {
             margin-left: 69%;
         }
-        .hideBtn{
-            border:0;
+
+        .hideBtn {
+            border: 0;
         }
     </style>
     <div class="right_col" role="main">
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>{{ isset($topic) ? 'Edit Topic' : 'Add Topic'}}</h3>
+                    <h3>{{ isset($topic) ? 'Edit Topic' : 'Add Topic' }}</h3>
                 </div>
-
-                <div class="title_right">
-                    <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Go!</button>
-                            </span>
-                        </div>
-                    </div>
+                <div class="button-container">
+                    <a href="{{ route('topics') }}"><button type="button" class="btn btn-primary btn-sm mt-1">View
+                            Topic </button></a>
                 </div>
             </div>
             <div class="clearfix"></div>
-            <div class="button-container">
-                <a href="{{ route('topics') }}"><button type="button" class="btn btn-primary btn-sm mb-2">View
-                    Topic </button></a>
-            </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12 ">
                     <div class="x_panel">
@@ -76,7 +68,8 @@
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Section *</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <select id="section" name="section" class="form-control @error('section') is-invalid @enderror">
+                                        <select id="section" name="section"
+                                            class="form-control @error('section') is-invalid @enderror">
                                             <option value="">Select Section</option>
                                         </select>
                                         @error('section')
@@ -90,10 +83,12 @@
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Subject Group *</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <select id="subject_group" name="subject_group" class="form-control @error('subject_group') is-invalid @enderror">
+                                        <select id="subject_group" name="subject_group"
+                                            class="form-control @error('subject_group') is-invalid @enderror">
                                             <option value="">Select Subject Group</option>
-                                            @foreach($subjectGroup as $subject_name => $subject_value)
-                                                <option value="{{ $subject_name }}" {{ (isset($topic) && $topic->subject_group == $subject_name) ? 'selected' : '' }}>
+                                            @foreach ($subjectGroup as $subject_name => $subject_value)
+                                                <option value="{{ $subject_name }}"
+                                                    {{ isset($topic) && $topic->subject_group == $subject_name ? 'selected' : '' }}>
                                                     {{ $subject_name }}
                                                 </option>
                                             @endforeach
@@ -105,14 +100,16 @@
                                         @enderror
                                     </div>
                                 </div>
-                               
+
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Subject *</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <select id="subject" name="subject" class="form-control @error('subject') is-invalid @enderror">
+                                        <select id="subject" name="subject"
+                                            class="form-control @error('subject') is-invalid @enderror">
                                             <option value="">Select Subject</option>
-                                            @foreach($subject as $subject_name => $subject_value)
-                                                <option value="{{ $subject_name }}" {{ (isset($topic) && $topic->subject == $subject_name) ? 'selected' : '' }}>
+                                            @foreach ($subject as $subject_name => $subject_value)
+                                                <option value="{{ $subject_name }}"
+                                                    {{ isset($topic) && $topic->subject == $subject_name ? 'selected' : '' }}>
                                                     {{ $subject_name }}
                                                 </option>
                                             @endforeach
@@ -128,10 +125,12 @@
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Lesson *</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <select id="lesson" name="lesson" class="form-control @error('lesson') is-invalid @enderror">
+                                        <select id="lesson" name="lesson"
+                                            class="form-control @error('lesson') is-invalid @enderror">
                                             <option value="">Select Lesson</option>
-                                            @foreach($lessons as $lesson)
-                                                <option value="{{ $lesson }}" {{ (isset($topic) && $topic->lesson == $lesson) ? 'selected' : '' }}>
+                                            @foreach ($lessons as $lesson)
+                                                <option value="{{ $lesson }}"
+                                                    {{ isset($topic) && $topic->lesson == $lesson ? 'selected' : '' }}>
                                                     {{ $lesson }}
                                                 </option>
                                             @endforeach
@@ -143,17 +142,20 @@
                                         @enderror
                                     </div>
                                 </div>
-                                
+
                                 <div class="topic-section">
                                     @isset($names)
                                         @foreach ($names as $topicName)
                                             <div class="item form-group topic-container">
                                                 <label class="col-form-label col-md-3 col-sm-3 label-align">Topic Name *</label>
                                                 <div class="col-md-6 col-sm-6">
-                                                        <div class="topic d-flex">
-                                                            <input type="text" name="name[]" value="{{ isset($topicName) ? $topicName : ''}}" class="form-control topic @error('name') is-invalid @enderror">
-                                                            <button class="hideBtn remove-topic"><i class="fa fa-remove"></i></button>
-                                                        </div>
+                                                    <div class="topic d-flex">
+                                                        <input type="text" name="name[]"
+                                                            value="{{ isset($topicName) ? $topicName : '' }}"
+                                                            class="form-control topic @error('name') is-invalid @enderror">
+                                                        <button class="hideBtn remove-topic"><i
+                                                                class="fa fa-remove"></i></button>
+                                                    </div>
                                                     @error('name')
                                                         <span class="invalid-feedback" style="color: red">
                                                             <strong>{{ $message }}</strong>
@@ -163,7 +165,7 @@
                                             </div>
                                         @endforeach
                                     @endisset
-                                </div>                                       
+                                </div>
                                 <div class="add-topic">
                                     <button class="btn btn-light add-more" type="button">Add More</button>
                                 </div>
@@ -200,17 +202,17 @@
                 fetchSections($(this).val());
             });
 
-           $('#section').on('change', function() {
+            $('#section').on('change', function() {
                 fetchSubjectGroups($('#class').val(), $(this).val());
                 fetchSubjects($('#class').val(), $(this).val());
-           });
+            });
 
-           $('#subjectgroup').on('change', function() {
+            $('#subjectgroup').on('change', function() {
                 fetchSubjects($('#class').val(), $(this).val());
-           });
-           $('#subject').on('change', function() {
+            });
+            $('#subject').on('change', function() {
                 fetchLessons($('#class').val(), $(this).val());
-           });
+            });
             // Function to fetch classes
             function fetchClasses() {
                 $.ajax({
@@ -218,7 +220,8 @@
                     type: 'GET',
                     success: function(data) {
                         // Populate class dropdown and trigger change event
-                        populateDropdown($('#class'), data.classes, '{{ old('class', isset($topic) ? $topic->class : '') }}');
+                        populateDropdown($('#class'), data.classes,
+                            '{{ old('class', isset($topic) ? $topic->class : '') }}');
                         $('#class').change(); // Trigger change event
                     },
                     error: function(error) {
@@ -237,7 +240,8 @@
                     },
                     success: function(data) {
                         // Populate section dropdown
-                        populateDropdown($('#section'), data.sections, '{{ old('section', isset($topic) ? $topic->section : '') }}');
+                        populateDropdown($('#section'), data.sections,
+                            '{{ old('section', isset($topic) ? $topic->section : '') }}');
                     },
                     error: function(error) {
                         console.log(error);
@@ -258,7 +262,8 @@
                         success: function(data) {
                             // Populate student dropdown
                             populateDropdown($('#subject_group'), data.subjectGroups,
-                                '{{ old('subject_group', isset($topic) ? $topic->subject_group : '') }}');
+                                '{{ old('subject_group', isset($topic) ? $topic->subject_group : '') }}'
+                            );
                         },
                         error: function(error) {
                             console.log(error);
@@ -268,7 +273,8 @@
                     populateDropdown($('#subjectgroup'), [], '');
                 }
             }
-            function fetchSubjects(selectedClass,selectedSubjectGroup) {
+
+            function fetchSubjects(selectedClass, selectedSubjectGroup) {
                 $.ajax({
                     url: '/get-subjects',
                     type: 'GET',
@@ -277,15 +283,17 @@
                         subject_group: selectedSubjectGroup
                     },
                     success: function(data) {
-                        populateDropdown($('#subject'), data.subjects, '{{ old('subject', isset($topic) ? $topic->subject : '') }}');
-                        $('#subject').change(); 
+                        populateDropdown($('#subject'), data.subjects,
+                            '{{ old('subject', isset($topic) ? $topic->subject : '') }}');
+                        $('#subject').change();
                     },
                     error: function(error) {
                         console.error('Error fetching subjects:', error);
                     }
                 });
             }
-            function fetchLessons(selectedClass,selectedSubjectGroup) {
+
+            function fetchLessons(selectedClass, selectedSubjectGroup) {
                 $.ajax({
                     url: '/get-lessons',
                     type: 'GET',
@@ -294,8 +302,9 @@
                         subject_group: selectedSubjectGroup
                     },
                     success: function(data) {
-                        populateDropdown($('#lesson'), data.lessons, '{{ old('lesson', isset($topic) ? $topic->lesson : '') }}');
-                        $('#lesson').change(); 
+                        populateDropdown($('#lesson'), data.lessons,
+                            '{{ old('lesson', isset($topic) ? $topic->lesson : '') }}');
+                        $('#lesson').change();
                     },
                     error: function(error) {
                         console.error('Error fetching lesson:', error);
@@ -317,7 +326,7 @@
             }
 
             $('.add-more').click(function() {
-                var count = $('.topic-section').find('.topic-container').length; 
+                var count = $('.topic-section').find('.topic-container').length;
                 var topicContainer = $('.topic-section');
                 var newTopicField = `
                     <div class="item form-group topic-container">

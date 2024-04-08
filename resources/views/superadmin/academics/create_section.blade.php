@@ -10,25 +10,14 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Section</h3>
+                    <h3>{{ isset($section) ? 'Edit Section Group' : 'Add Section Group'}}</h3>
                 </div>
-
-                <div class="title_right">
-                    <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Go!</button>
-                            </span>
-                        </div>
-                    </div>
+                <div class="button-container">
+                    <a href="{{ route('section') }}"><button type="button" class="btn btn-primary btn-sm mt-1">View
+                            Section</button></a>
                 </div>
             </div>
             <div class="clearfix"></div>
-            <div class="button-container">
-                <a href="{{ route('section') }}"><button type="button" class="btn btn-primary btn-sm mb-2">View
-                        Section</button></a>
-            </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12 ">
                     <div class="x_panel">
@@ -59,7 +48,7 @@
                                               $sections = range('A', 'Z');
                                           @endphp
                               
-                                          @foreach($sections as $sectionOption)
+                                          @foreach ($sections as $sectionOption)
                                               <option value="{{ $sectionOption }}" {{ old('section', isset($section) ? $section->section : '') == $sectionOption ? 'selected' : '' }}>
                                                   {{ $sectionOption }}
                                               </option>
@@ -74,34 +63,38 @@
                                   </div>
                               </div>
                                --}}
-                               <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align">Section *</label>
-                                <div class="col-md-6 col-sm-6">
-                                    <select name="section" class="form-control @error('section') is-invalid @enderror">
-                                        <option value="">Select Section</option>
-                            
-                                        @php
-                                            // $sections = range('A', 'Z');
-                                            $sections = array_map('chr', range(ord('A'), ord('Z')));
-                                            $selectedValue = old('section', isset($section) ? $section->section : '');
-                                        @endphp
-                            
-                                        @foreach($sections as $sectionOption)
-                                            <option value="{{ $sectionOption }}" {{ $selectedValue == $sectionOption ? 'selected' : '' }}>
-                                                {{ $sectionOption }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                            
-                                    @error('section')
-                                        <span class="invalid-feedback" style="color: red">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                <div class="item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Section *</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <select name="section" class="form-control @error('section') is-invalid @enderror">
+                                            <option value="">Select Section</option>
+
+                                            @php
+                                                // $sections = range('A', 'Z');
+                                                $sections = array_map('chr', range(ord('A'), ord('Z')));
+                                                $selectedValue = old(
+                                                    'section',
+                                                    isset($section) ? $section->section : '',
+                                                );
+                                            @endphp
+
+                                            @foreach ($sections as $sectionOption)
+                                                <option value="{{ $sectionOption }}"
+                                                    {{ $selectedValue == $sectionOption ? 'selected' : '' }}>
+                                                    {{ $sectionOption }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+
+                                        @error('section')
+                                            <span class="invalid-feedback" style="color: red">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            
+
+
                                 <div class="ln_solid"></div>
                                 <div class="item form-group">
                                     <div class="col-md-6 col-sm-6 offset-md-3">

@@ -10,25 +10,14 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>{{ isset($supplier) ? 'Edit Item Supplier' : 'Add Item Supplier'}}</h3>
+                    <h3>{{ isset($supplier) ? 'Edit Item Supplier' : 'Add Item Supplier' }}</h3>
                 </div>
-
-                <div class="title_right">
-                    <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Go!</button>
-                            </span>
-                        </div>
-                    </div>
+                <div class="button-container">
+                    <a href="{{ route('suppliers') }}"><button type="button" class="btn btn-primary btn-sm mt-1">View
+                            Item Supplier </button></a>
                 </div>
             </div>
             <div class="clearfix"></div>
-            <div class="button-container">
-                <a href="{{ route('suppliers') }}"><button type="button" class="btn btn-primary btn-sm mb-2">View
-                    Item Supplier </button></a>
-            </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12 ">
                     <div class="x_panel">
@@ -49,11 +38,12 @@
                                 method="POST"
                                 action="{{ isset($supplier) ? '/admin/supplier/update/' . $supplier->id : '/admin/supplier/insert' }}">
                                 @csrf
-                                
+
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align"> Name*</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input type="text" name="name" value="<?php echo isset($supplier->name) ? $supplier->name : '' ?>" class="form-control @error('name') is-invalid @enderror">
+                                        <input type="text" name="name" value="<?php echo isset($supplier->name) ? $supplier->name : ''; ?>"
+                                            class="form-control @error('name') is-invalid @enderror">
                                         @error('name')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -64,7 +54,8 @@
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Phone*</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input type="text" name="phone" value="<?php echo isset($supplier->phone) ? $supplier->phone : '' ?>" class="form-control @error('phone') is-invalid @enderror">
+                                        <input type="text" name="phone" value="<?php echo isset($supplier->phone) ? $supplier->phone : ''; ?>"
+                                            class="form-control @error('phone') is-invalid @enderror">
                                         @error('phone')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -75,7 +66,8 @@
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Email*</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input type="text" name="email" value="<?php echo isset($supplier->email) ? $supplier->email : '' ?>" class="form-control @error('email') is-invalid @enderror">
+                                        <input type="text" name="email" value="<?php echo isset($supplier->email) ? $supplier->email : ''; ?>"
+                                            class="form-control @error('email') is-invalid @enderror">
                                         @error('email')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -93,11 +85,12 @@
                                             </span>
                                         @enderror
                                     </div>
-                                </div>                                
+                                </div>
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Contact Person Name*</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input type="text" name="contact_person_name" value="<?php echo isset($supplier->contact_person_name) ? $supplier->contact_person_name : '' ?>" class="form-control @error('contact_person_name') is-invalid @enderror">
+                                        <input type="text" name="contact_person_name" value="<?php echo isset($supplier->contact_person_name) ? $supplier->contact_person_name : ''; ?>"
+                                            class="form-control @error('contact_person_name') is-invalid @enderror">
                                         @error('contact_person_name')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -106,9 +99,11 @@
                                     </div>
                                 </div>
                                 <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Contact Person Phone*</label>
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Contact Person
+                                        Phone*</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input type="text" name="contact_person_phone" value="<?php echo isset($supplier->contact_person_phone) ? $supplier->contact_person_phone : '' ?>" class="form-control @error('contact_person_phone') is-invalid @enderror">
+                                        <input type="text" name="contact_person_phone" value="<?php echo isset($supplier->contact_person_phone) ? $supplier->contact_person_phone : ''; ?>"
+                                            class="form-control @error('contact_person_phone') is-invalid @enderror">
                                         @error('contact_person_phone')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -117,9 +112,11 @@
                                     </div>
                                 </div>
                                 <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Contact Person Email*</label>
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Contact Person
+                                        Email*</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input type="text" name="contact_person_email" value="<?php echo isset($supplier->contact_person_email) ? $supplier->contact_person_email : '' ?>" class="form-control @error('contact_person_email') is-invalid @enderror">
+                                        <input type="text" name="contact_person_email" value="<?php echo isset($supplier->contact_person_email) ? $supplier->contact_person_email : ''; ?>"
+                                            class="form-control @error('contact_person_email') is-invalid @enderror">
                                         @error('contact_person_email')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -137,7 +134,7 @@
                                             </span>
                                         @enderror
                                     </div>
-                                </div>    
+                                </div>
                                 <div class="ln_solid"></div>
                                 <div class="item form-group">
                                     <div class="col-md-6 col-sm-6 offset-md-3">

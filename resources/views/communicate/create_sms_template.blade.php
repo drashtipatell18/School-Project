@@ -10,25 +10,14 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>{{ isset($smstemplates) ? 'Edit SMS Template' : 'Add SMS Template'}}</h3>
+                    <h3>{{ isset($smstemplates) ? 'Edit SMS Template' : 'Add SMS Template' }}</h3>
                 </div>
-
-                <div class="title_right">
-                <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Go!</button>
-                            </span>
-                        </div>
-                    </div>
+                <div class="button-container">
+                    <a href="{{ route('smstemplates') }}"><button type="button" class="btn btn-primary btn-sm mt-1">View
+                            SMS Template </button></a>
                 </div>
             </div>
             <div class="clearfix"></div>
-            <div class="button-container">
-                <a href="{{ route('smstemplates') }}"><button type="button" class="btn btn-primary btn-sm mb-2">View
-                    SMS Template </button></a>
-            </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12 ">
                     <div class="x_panel">
@@ -47,13 +36,15 @@
                             <h2>{{ isset($smstemplates) ? 'Edit a Record' : 'Create a new Record' }}</h2>
                             <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"
                                 method="POST"
-                                action="{{ isset($smstemplates) ? '/admin/smstemplate/update/' . $smstemplates->id : '/admin/smstemplate/insert' }}" enctype="multipart/form-data">
+                                action="{{ isset($smstemplates) ? '/admin/smstemplate/update/' . $smstemplates->id : '/admin/smstemplate/insert' }}"
+                                enctype="multipart/form-data">
                                 @csrf
-                                
+
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align"> Title*</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input type="text" name="title" value="<?php echo isset($smstemplates->title) ? $smstemplates->title : '' ?>" class="form-control @error('title') is-invalid @enderror">
+                                        <input type="text" name="title" value="<?php echo isset($smstemplates->title) ? $smstemplates->title : ''; ?>"
+                                            class="form-control @error('title') is-invalid @enderror">
                                         @error('title')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -61,7 +52,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                              
+
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Attach Document*</label>
                                     <div class="col-md-6 col-sm-6">
@@ -87,7 +78,7 @@
                                             </span>
                                         @enderror
                                     </div>
-                                </div>    
+                                </div>
                                 <div class="ln_solid"></div>
                                 <div class="item form-group">
                                     <div class="col-md-6 col-sm-6 offset-md-3">

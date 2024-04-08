@@ -4,6 +4,7 @@ namespace App\Models\Admin\FrontOffice;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class purpose extends Model
 {
