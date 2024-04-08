@@ -190,14 +190,26 @@
                                         </li>
                                     </ul>
                                 </li>
-                                @if ($userRole == 'student')
-                                    <li>
-                                        <a href="{{ route('profilepic', ['id' => $student->id ?? null]) }}">
+
+                                {{-- @if ($userRole == 'student') --}}
+                                {{-- <li>
+                                        <a href="{{ route('profile', ['id' => $student->id ?? null]) }}">
                                             <i class="fa fa-user-plus ftlayer"></i> My Profile
                                         </a>
-                                    </li>
-                                @endif
+                                    </li> --}}
+                                {{-- @endif --}}
 
+                                
+                                    @if ($userRole === 'parents' && isset($student) && $student->id)
+                                        <li>
+                                            <a href="{{ route('parents', ['id' => $student->id]) }}">
+                                                <i class="fa fa-user-plus ftlayer"></i> My Profile
+                                            </a>
+                                        </li>
+                                    @endif
+                            
+                            
+                            
                                 @if ($userRole != 'teacher' && $userRole != 'librarian')
                                     <li><a><i class="fa fa-user-plus ftlayer"></i> Role
                                             <span class="fa fa-chevron-down"></span></a>
@@ -207,6 +219,8 @@
                                         </ul>
                                     </li>
                                 @endif
+
+
                                 @if ($userRole != 'librarian')
                                     <li><a><i class="fa fa-edit"></i> Academics
                                             <span class="fa fa-chevron-down"></span></a>
@@ -271,6 +285,7 @@
                                         </ul>
                                     </li>
                                 @endif
+
                                 @if ($userRole != 'librarian')
                                     <li><a><i class="fa fa-user-plus ftlayer"></i>
                                             Student Information<span class="fa fa-chevron-down"></span></a>
@@ -283,6 +298,7 @@
                                         </ul>
                                     </li>
                                 @endif
+
                                 @if ($userRole != 'librarian')
                                     <li><a><i class="fa fa-calendar-check-o ftlayer"></i>Attendance<span
                                                 class="fa fa-chevron-down"></span></a>
@@ -302,6 +318,7 @@
                                         </ul>
                                     </li>
                                 @endif
+
                                 @if ($userRole != 'librarian')
                                     <li><a><i class="fa fa-map-o ftlayer"></i>Examinations<span
                                                 class="fa fa-chevron-down"></span></a>
@@ -321,6 +338,7 @@
                                         </ul>
                                     </li>
                                 @endif
+
                                 @if ($userRole != 'librarian')
                                     <li><a><i class="fa fa-usd ftlayer"></i>Income<span
                                                 class="fa fa-chevron-down"></span></a>
@@ -340,6 +358,7 @@
                                         </ul>
                                     </li>
                                 @endif
+
                                 @if ($userRole != 'teacher' && $userRole != 'librarian')
                                     <li><a><i class="fa fa-ioxhost ftlayer"></i>Front Office<span
                                                 class="fa fa-chevron-down"></span></a>

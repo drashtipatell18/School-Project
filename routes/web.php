@@ -231,7 +231,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/student/admission/edit/{id}', [StudentAdmissionController::class, 'StudentEdit'])->name('edit.student');
     Route::post('/admin/student/admission/update/{id}', [StudentAdmissionController::class, 'StudentUpdate'])->name('update.student');
     Route::get('/admin/student/admission/destroy/{id}',[StudentAdmissionController::class,'StudentDestroy'])->name('destroy');   
-    Route::get('/admin/student/profilepic/{id}',[StudentAdmissionController::class,'profilepic'])->name('profilepic');   
+    Route::get('/admin/student/profilepic/{id}',[StudentAdmissionController::class,'profilepic'])->name('profilepic');  
+
+    //Parents
+    Route::get('/admin/student/parents/{id}', [StudentAdmissionController::class, 'parents'])->name('parents');
+
+
+
     Route::get('/get-imagebyidstud',[StudentAdmissionController::class,'getImageByIdStud'])->name('get-imagebyidstud');   
     
     Route::get('/get-classes', [StudentAdmissionController::class, 'getClasses']);

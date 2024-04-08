@@ -12,6 +12,7 @@ use App\Models\Admin\StudentAdmission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class StudentAdmissionController extends Controller
 {
@@ -98,10 +99,12 @@ class StudentAdmissionController extends Controller
         $student->father_name = $request->input('father_name');
         $student->father_phone = $request->input('father_phone');
         $student->father_occupation = $request->input('father_occupation');
+        $student->father_email = $request->input('father_email');
         $student->father_photo = $timestampedFather;
         $student->mother_name = $request->input('mother_name');
         $student->mother_phone = $request->input('mother_phone');
         $student->mother_occupation = $request->input('mother_occupation');
+        $student->mother_email = $request->input('mother_email');
         $student->mother_photo = $timestampedMother;
         $student->save();
 
@@ -142,9 +145,11 @@ class StudentAdmissionController extends Controller
         $student->father_name = $request->input('father_name');
         $student->father_phone = $request->input('father_phone');
         $student->father_occupation = $request->input('father_occupation');
+        $student->father_email = $request->input('father_email');
         $student->mother_name = $request->input('mother_name');
         $student->mother_phone = $request->input('mother_phone');
         $student->mother_occupation = $request->input('mother_occupation');
+        $student->mother_email = $request->input('mother_email');
   
         if ($request->hasFile('student_photo')) {
             $studentPhoto = $request->file('student_photo');
@@ -199,13 +204,20 @@ class StudentAdmissionController extends Controller
             return redirect()->back();
         }
     public function profilepic(Request $request,$id)
-    {
-       
+    {     
         $student = StudentAdmission::find($id);
         $class = Clas::all();
         $sections = Section::all();
         return view('superadmin.StudentInformation.profilepic', compact('student', 'class', 'sections'));
     }
+    public function parents(Request $request, $id)
+    {
+        $userRole = 'parents'; // Assuming $userRole is set to 'parents' in this context
+        $student = StudentAdmission::find($id); // Fetch the student with the given ID
+        return view('superadmin.StudentInformation.parents', compact('userRole', 'student'));
+    }
+    
+    
 
     public function getImageByIdStud(Request $request)
     {
