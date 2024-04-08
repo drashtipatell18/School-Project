@@ -12,10 +12,18 @@
                 <div class="title_left">
                     <h3>Homework</h3>
                 </div>
-                <div class="button-container">
-                    <a href="{{ route('create.student') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Add
-                            Student Admission</button></a>
-                </div>
+                @if (auth()->check())
+                    @php
+                        $userRole = strtolower(auth()->user()->role);
+                    @endphp
+                @endif
+                @if ($userRole != 'student' || $userRole != 'parents')
+                    <div class="button-container">
+                        <a href="{{ route('create.student') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Add
+                                Student Admission</button></a>
+                    </div>
+                @endif
+
             </div>
             <div class="clearfix"></div>
             <div class="row" style="display: block;">
@@ -76,11 +84,15 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('edit.student', $student->id) }}"
-                                                        class="btn btn-info btn-sm">Edit</a>
-
-                                                    <a href="{{ route('destroy', $student->id) }}"
-                                                        class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>
+                                                    @if ($userRole == 'student' || $userRole == 'parents')
+                                                        <a href="{{ route('profilepic', $student->id) }}"
+                                                            class="btn btn-info btn-sm"><i class="fa fa-sign-out"></i></a>
+                                                    @else
+                                                        <a href="{{ route('edit.student', $student->id) }}"
+                                                            class="btn btn-info btn-sm">Edit</a>
+                                                        <a href="{{ route('destroy', $student->id) }}"
+                                                            class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

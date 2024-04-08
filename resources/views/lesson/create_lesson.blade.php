@@ -86,12 +86,14 @@
                                         <select id="subject_group" name="subject_group"
                                             class="form-control @error('subject_group') is-invalid @enderror">
                                             <option value="">Select Subject Group</option>
-                                            @foreach ($subjectGroup as $subject_name => $subject_value)
-                                                <option value="{{ $subject_name }}"
-                                                    {{ isset($lesson) && $lesson->subject_group == $subject_name ? 'selected' : '' }}>
-                                                    {{ $subject_name }}
-                                                </option>
-                                            @endforeach
+                                            @isset($subjectGroup)
+                                                @foreach ($subjectGroup as $subject_name => $subject_value)
+                                                    <option value="{{ $subject_name }}"
+                                                        {{ isset($lesson) && $lesson->subject_group == $subject_name ? 'selected' : '' }}>
+                                                        {{ $subject_name }}
+                                                    </option>
+                                                @endforeach
+                                            @endisset
                                         </select>
                                         @error('subject_group')
                                             <span class="invalid-feedback" style="color: red">
@@ -107,12 +109,15 @@
                                         <select id="subject" name="subject"
                                             class="form-control @error('subject') is-invalid @enderror">
                                             <option value="">Select Subject</option>
-                                            @foreach ($subject as $subject_name => $subject_value)
-                                                <option value="{{ $subject_name }}"
-                                                    {{ isset($lesson) && $lesson->subject == $subject_name ? 'selected' : '' }}>
-                                                    {{ $subject_name }}
-                                                </option>
-                                            @endforeach
+                                            @isset($subject)
+                                                @foreach ($subject as $subject_name => $subject_value)
+                                                    <option value="{{ $subject_name }}"
+                                                        {{ isset($lesson) && $lesson->subject == $subject_name ? 'selected' : '' }}>
+                                                        {{ $subject_name }}
+                                                    </option>
+                                                @endforeach
+                                            @endisset
+
                                         </select>
                                         @error('subject')
                                             <span class="invalid-feedback" style="color: red">

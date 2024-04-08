@@ -198,15 +198,15 @@ class StudentAdmissionController extends Controller
             $student->delete();
             return redirect()->back();
         }
-    public function profilepic(Request $request,$id)
-    {
-       
-        $student = StudentAdmission::find($id);
-        $class = Clas::all();
-        $sections = Section::all();
-        return view('superadmin.StudentInformation.profilepic', compact('student', 'class', 'sections'));
-    }
+        public function profilepic(Request $request, $id)
+        {  
+            $student = StudentAdmission::find($id);
 
+            return view('superadmin.StudentInformation.profilepic', compact('student'));
+
+
+        }
+        
     public function getImageByIdStud(Request $request)
     {
         echo 'hfghfgh';

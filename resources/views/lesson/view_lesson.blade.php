@@ -12,10 +12,18 @@
                 <div class="title_left">
                     <h3>Lesson List</h3>
                 </div>
-                <div class="button-container">
-                    <a href="{{ route('create.lesson') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Add
-                            Lesson</button></a>
-                </div>
+                @if (auth()->check())
+                    @php
+                        $userRole = strtolower(auth()->user()->role);
+                    @endphp
+                @endif
+                @if ($userRole != 'student' || $userRole != 'parents')
+                    <div class="button-container">
+                        <a href="{{ route('create.lesson') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Add
+                                Lesson</button></a>
+                    </div>
+                @endif
+
             </div>
             <div class="clearfix"></div>
             <div class="row" style="display: block;">
@@ -44,7 +52,7 @@
                                             <th class="">Subject Group</th>
                                             <th class="">Subject</th>
                                             <th class="">Lesson</th>
-                                            <th class=""><span class="nobr">Action</span></th>
+                                            @if ($userRole != 'student' || $userRole != 'parents') <th class=""><span class="nobr">Action</span></th>@endif
                                         </tr>
                                     </thead>
 
@@ -57,6 +65,7 @@
                                                 <td class="">{{ $lesson->subject_group }}</td>
                                                 <td class="">{{ $lesson->subject }}</td>
                                                 <td class="">{!! str_replace(',', '<br>', $lesson->name) !!}</td>
+                                                @if ($userRole != 'student' || $userRole != 'parents')
                                                 <td>
                                                     <a href="{{ route('edit.lesson', $lesson->id) }}"
                                                         class="btn btn-info btn-sm">Edit</a>
@@ -64,6 +73,7 @@
                                                     <a href="{{ route('destroy.lesson', $lesson->id) }}"
                                                         class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>
                                                 </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                     </tbody>

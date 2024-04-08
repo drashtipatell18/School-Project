@@ -12,10 +12,17 @@
                 <div class="title_left">
                     <h3>Member List</h3>
                 </div>
-                <div class="button-container">
-                    <a href="{{ route('create.member') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Add
-                            Member</button></a>
-                </div>
+                @if (auth()->check())
+                    @php
+                        $userRole = strtolower(auth()->user()->role);
+                    @endphp
+                @endif
+                @if ($userRole != 'student' || $userRole != 'parents')
+                    <div class="button-container">
+                        <a href="{{ route('create.member') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Add
+                                Member</button></a>
+                    </div>
+                @endif
             </div>
             <div class="clearfix"></div>
             <div class="row" style="display: block;">

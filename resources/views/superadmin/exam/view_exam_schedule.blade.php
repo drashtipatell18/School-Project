@@ -12,10 +12,17 @@
                 <div class="title_left">
                     <h3>Schedule</h3>
                 </div>
-                <div class="button-container">
-                    <a href="{{ route('create.schedule') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Add
-                            Schedule</button></a>
-                </div>
+                @if (auth()->check())
+                    @php
+                        $userRole = strtolower(auth()->user()->role);
+                    @endphp
+                @endif
+                @if ($userRole != 'student' || $userRole != 'parents')
+                    <div class="button-container">
+                        <a href="{{ route('create.schedule') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Add
+                                Schedule</button></a>
+                    </div>
+                @endif
             </div>
             <div class="clearfix"></div>
             <div class="row" style="display: block;">
@@ -48,7 +55,9 @@
                                             <th class="">Room No</th>
                                             <th class="">Max Maeks</th>
                                             <th class="">Min Marks</th>
-                                            <th class=""><span class="nobr">Action</span></th>
+                                            @if ($userRole != 'student' || $userRole != 'parents')
+                                                <th class=" no-link last"><span class="nobr">Action</span></th>
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -64,12 +73,14 @@
                                                 <td class="">{{ $sche->room_no }}</td>
                                                 <td class="">{{ $sche->max_marks }}</td>
                                                 <td class="">{{ $sche->min_marks }}</td>
-                                                <td>
-                                                    <a href="{{ route('edit.schedule', $sche->id) }}"
-                                                        class="btn btn-info btn-sm">Edit</a>
-                                                    <a href="{{ route('destroy', $sche->id) }}"
-                                                        class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>
-                                                </td>
+                                                @if ($userRole != 'student' || $userRole != 'parents')
+                                                    <td>
+                                                        <a href="{{ route('edit.schedule', $sche->id) }}"
+                                                            class="btn btn-info btn-sm">Edit</a>
+                                                        <a href="{{ route('destroy', $sche->id) }}"
+                                                            class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>
+                                                    </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                     </tbody>
