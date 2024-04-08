@@ -1,16 +1,20 @@
 @extends('admin.main')
 @section('content')
-<style>
-    .button-container {
-        display: flex;
-        justify-content: flex-end;
-    }
-</style>
+    <style>
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+    </style>
     <div class="right_col" role="main">
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Book List</h3>
+                    <h3>Member List</h3>
+                </div>
+                <div class="button-container">
+                    <a href="{{ route('create.member') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Add
+                            Member</button></a>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -31,9 +35,7 @@
 
                         <div class="x_content">
                             <div class="table-responsive">
-                                <div class="button-container">
-                                    <a href="{{ route('create.member') }}"><button type="button" class="btn btn-primary btn-sm mb-2">Add Member</button></a>
-                                </div>
+
                                 <table class="table table-striped jambo_table bulk_action" id="table">
                                     <thead>
                                         <tr class="">
@@ -50,14 +52,15 @@
                                     <tbody>
                                         @foreach ($members as $index => $member)
                                             <tr class="">
-                                                <td class="">{{ $member->userid }}</td>                          
+                                                <td class="">{{ $member->userid }}</td>
                                                 <td>{{ $index + 1 }}</td>
-                                                <td class="">{{ $member->addmissionno }}</td>                                               
-                                                <td class="">{{ $member->role }}</td>                          
-                                                <td class="">{{ $member->name }}</td>                          
-                                                <td class="">{{ $member->phone }}</td>                                                
-                                                <td> 
-                                                    <a href="{{ route('view.member', $member->id) }}" class="btn btn-info btn-sm"><i class="fa fa-sign-out"></i></a>
+                                                <td class="">{{ $member->addmissionno }}</td>
+                                                <td class="">{{ $member->role }}</td>
+                                                <td class="">{{ $member->name }}</td>
+                                                <td class="">{{ $member->phone }}</td>
+                                                <td>
+                                                    <a href="{{ route('view.member', $member->id) }}"
+                                                        class="btn btn-info btn-sm"><i class="fa fa-sign-out"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -72,10 +75,10 @@
     </div>
 @endsection
 @push('scripts')
-  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
     <script>
-    $(document).ready(function () {
-        $('#table').DataTable();
-    });
+        $(document).ready(function() {
+            $('#table').DataTable();
+        });
     </script>
 @endpush

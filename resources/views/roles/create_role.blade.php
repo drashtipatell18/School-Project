@@ -12,23 +12,13 @@
                 <div class="title_left">
                     <h3>{{ isset($roles) ? 'Edit Role' : 'Add Role' }}</h3>
                 </div>
-
-                <div class="title_right">
-                    <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Go!</button>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-            <div class="button-container">
-                <a href="{{ route('roles') }}"><button type="button" class="btn btn-primary btn-sm mb-2">View
+                   <div class="button-container">
+                <a href="{{ route('roles') }}"><button type="button" class="btn btn-primary btn-sm mt-1">View
                         Roles </button></a>
             </div>
+            </div>
+            <div class="clearfix"></div>
+         
             <div class="row">
                 <div class="col-md-12 col-sm-12 ">
                     <div class="x_panel">

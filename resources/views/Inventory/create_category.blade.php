@@ -10,25 +10,14 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>{{ isset($categorys) ? 'Edit Items Category' : 'Add Items Category'}}</h3>
+                    <h3>{{ isset($categorys) ? 'Edit Items Category' : 'Add Items Category' }}</h3>
                 </div>
-
-                <div class="title_right">
-                    <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Go!</button>
-                            </span>
-                        </div>
-                    </div>
+                <div class="button-container">
+                    <a href="{{ route('categorys') }}"><button type="button" class="btn btn-primary btn-sm mt-1">View
+                            Item Category </button></a>
                 </div>
             </div>
             <div class="clearfix"></div>
-            <div class="button-container">
-                <a href="{{ route('categorys') }}"><button type="button" class="btn btn-primary btn-sm mb-2">View
-                    Item Category </button></a>
-            </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12 ">
                     <div class="x_panel">
@@ -49,11 +38,12 @@
                                 method="POST"
                                 action="{{ isset($categorys) ? '/admin/category/update/' . $categorys->id : '/admin/category/insert' }}">
                                 @csrf
-                                
+
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align"> Name*</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input type="text" name="name" value="<?php echo isset($categorys->name) ? $categorys->name : '' ?>" class="form-control @error('name') is-invalid @enderror">
+                                        <input type="text" name="name" value="<?php echo isset($categorys->name) ? $categorys->name : ''; ?>"
+                                            class="form-control @error('name') is-invalid @enderror">
                                         @error('name')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -61,7 +51,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                            
+
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Description*</label>
                                     <div class="col-md-6 col-sm-6">
@@ -72,7 +62,7 @@
                                             </span>
                                         @enderror
                                     </div>
-                                </div>    
+                                </div>
                                 <div class="ln_solid"></div>
                                 <div class="item form-group">
                                     <div class="col-md-6 col-sm-6 offset-md-3">

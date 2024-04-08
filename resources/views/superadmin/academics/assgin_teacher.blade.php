@@ -5,34 +5,25 @@
             display: flex;
             justify-content: flex-end;
         }
+
         .select2-search__field {
             font-size: 129% !important;
             margin-left: 10px;
-        }   
+        }
     </style>
     <div class="right_col" role="main">
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>{{ isset($teacherassign) ? 'Edit Assign Teacher' : 'Add Assign Teacher'}} </h3>
+                    <h3>{{ isset($teacherassign) ? 'Edit Assign Teacher' : 'Add Assign Teacher' }} </h3>
                 </div>
-
-                <div class="title_right">
-                    <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Go!</button>
-                            </span>
-                        </div>
-                    </div>
+                <div class="button-container">
+                    <a href="{{ route('teacherassign') }}"><button type="button" class="btn btn-primary btn-sm mt-1">View
+                            Assign
+                            teachers</button></a>
                 </div>
             </div>
             <div class="clearfix"></div>
-            <div class="button-container">
-                <a href="{{ route('teacherassign') }}"><button type="button" class="btn btn-primary btn-sm mb-2">View Assign
-                        teachers</button></a>
-            </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12 ">
                     <div class="x_panel">
@@ -71,7 +62,8 @@
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Section *</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <select id="section" name="section" class="form-control @error('section') is-invalid @enderror">
+                                        <select id="section" name="section"
+                                            class="form-control @error('section') is-invalid @enderror">
                                             <option value="">Select Section</option>
                                         </select>
                                         @error('section')
@@ -81,20 +73,21 @@
                                         @enderror
                                     </div>
                                 </div>
-                               
+
                                 <div class="item form-group">
                                     <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Teacher
                                         *</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <select id="teacher" name="teacher[]" class="form-control  @error('teacher') is-invalid @enderror" multiple>
+                                        <select id="teacher" name="teacher[]"
+                                            class="form-control  @error('teacher') is-invalid @enderror" multiple>
                                             <option value="">Select Teacher</option>
-                                            @foreach ($teacher as  $teacherName)
+                                            @foreach ($teacher as $teacherName)
                                                 <option value="{{ $teacherName }}"
-                                                {{ in_array($teacherName, old('teacher', [])) || (isset($teacherassign) && in_array($teacherName, explode(',', $teacherassign->teacher))) ? 'selected' : '' }}>
-                                                {{ $teacherName }}
+                                                    {{ in_array($teacherName, old('teacher', [])) || (isset($teacherassign) && in_array($teacherName, explode(',', $teacherassign->teacher))) ? 'selected' : '' }}>
+                                                    {{ $teacherName }}
                                                 </option>
                                             @endforeach
-                                        </select>                                                                           
+                                        </select>
                                         @error('teacher')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -102,7 +95,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                
+
                                 <div class="ln_solid"></div>
                                 <div class="item form-group">
                                     <div class="col-md-6 col-sm-6 offset-md-3">
@@ -112,7 +105,7 @@
                                             @else
                                                 Submit
                                             @endif
-                                        </button> 
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -142,7 +135,9 @@
                     type: 'GET',
                     success: function(data) {
                         // Populate class dropdown and trigger change event
-                        populateDropdown($('#class'), data.classes, '{{ old('class', isset($teacherassign) ? $teacherassign->class : '') }}');
+                        populateDropdown($('#class'), data.classes,
+                            '{{ old('class', isset($teacherassign) ? $teacherassign->class : '') }}'
+                        );
                         $('#class').change(); // Trigger change event
                     },
                     error: function(error) {
@@ -161,7 +156,9 @@
                     },
                     success: function(data) {
                         // Populate section dropdown
-                        populateDropdown($('#section'), data.sections, '{{ old('section', isset($teacherassign) ? $teacherassign->section : '') }}');
+                        populateDropdown($('#section'), data.sections,
+                            '{{ old('section', isset($teacherassign) ? $teacherassign->section : '') }}'
+                        );
                     },
                     error: function(error) {
                         console.log(error);

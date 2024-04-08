@@ -5,10 +5,12 @@
             display: flex;
             justify-content: flex-end;
         }
+
         .miplus {
             position: absolute;
             width: 60px;
         }
+
         .miplusinput {
             padding-left: 70px;
         }
@@ -17,25 +19,14 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>{{ isset($itemstocks) ? 'Edit Items Stock' : 'Add Items Stock'}}</h3>
+                    <h3>{{ isset($itemstocks) ? 'Edit Items Stock' : 'Add Items Stock' }}</h3>
                 </div>
-
-                <div class="title_right">
-                    <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Go!</button>
-                            </span>
-                        </div>
-                    </div>
+                <div class="button-container">
+                    <a href="{{ route('itemstocks') }}"><button type="button" class="btn btn-primary btn-sm mt-1">View
+                            Item Stocks </button></a>
                 </div>
             </div>
             <div class="clearfix"></div>
-            <div class="button-container">
-                <a href="{{ route('itemstocks') }}"><button type="button" class="btn btn-primary btn-sm mb-2">View
-                    Item Stocks </button></a>
-            </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12 ">
                     <div class="x_panel">
@@ -54,9 +45,10 @@
                             <h2>{{ isset($itemstocks) ? 'Edit a Record' : 'Create a new Record' }}</h2>
                             <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"
                                 method="POST"
-                                action="{{ isset($itemstocks) ? '/admin/itemstock/update/' . $itemstocks->id : '/admin/itemstock/insert' }}" enctype="multipart/form-data">
+                                action="{{ isset($itemstocks) ? '/admin/itemstock/update/' . $itemstocks->id : '/admin/itemstock/insert' }}"
+                                enctype="multipart/form-data">
                                 @csrf
-                                
+
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align"> Category*</label>
                                     <div class="col-md-6 col-sm-6">
@@ -85,39 +77,41 @@
                                         @enderror
                                     </div>
                                 </div>
-                              
+
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Supplier*</label>
                                     <div class="col-md-6 col-sm-6">
-                                    <select class="form-control @error('supplier') is-invalid @enderror" name="supplier"
-                                        id="supplier">
-                                        <option value="">Select a Supplier</option>
-                                        @foreach($suppliers as $supplier)
-                                            <option value="{{ $supplier }}" {{ old('supplier', isset($itemstocks) ? $itemstocks->supplier : '') == $supplier ? 'selected' : '' }}>
-                                                {{ $supplier }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                        <select class="form-control @error('supplier') is-invalid @enderror" name="supplier"
+                                            id="supplier">
+                                            <option value="">Select a Supplier</option>
+                                            @foreach ($suppliers as $supplier)
+                                                <option value="{{ $supplier }}"
+                                                    {{ old('supplier', isset($itemstocks) ? $itemstocks->supplier : '') == $supplier ? 'selected' : '' }}>
+                                                    {{ $supplier }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                         @error('supplier')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
-                                </div>    
+                                </div>
 
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Store*</label>
                                     <div class="col-md-6 col-sm-6">
-                                    <select class="form-control @error('store') is-invalid @enderror" name="store"
-                                    id="store">
-                                        <option value="">Select a Store</option>
-                                        @foreach($stores as $store)
-                                            <option value="{{ $store }}" {{ old('store', isset($itemstocks) ? $itemstocks->store : '') == $store ? 'selected' : '' }}>
-                                                {{ $store }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                        <select class="form-control @error('store') is-invalid @enderror" name="store"
+                                            id="store">
+                                            <option value="">Select a Store</option>
+                                            @foreach ($stores as $store)
+                                                <option value="{{ $store }}"
+                                                    {{ old('store', isset($itemstocks) ? $itemstocks->store : '') == $store ? 'selected' : '' }}>
+                                                    {{ $store }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                         @error('store')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -129,32 +123,37 @@
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Quantity*</label>
                                     <div class="col-md-6 col-sm-6">
-                                            <span class="miplus">
-                                                <select class="form-control @error('quantity') is-invalid @enderror" name="symbol" autocomplete="off">
-                                                    <option value="+">+</option>
-                                                    <option value="-">-</option>
-                                                </select>
-                                            </span>
-                                            <input id="quantity" name="quantity" placeholder="" type="text" class="form-control miplusinput @error('quantity') is-invalid @enderror" value="<?php echo isset($itemstocks->quantity) ? $itemstocks->quantity : '' ?>">
+                                        <span class="miplus">
+                                            <select class="form-control @error('quantity') is-invalid @enderror"
+                                                name="symbol" autocomplete="off">
+                                                <option value="+">+</option>
+                                                <option value="-">-</option>
+                                            </select>
+                                        </span>
+                                        <input id="quantity" name="quantity" placeholder="" type="text"
+                                            class="form-control miplusinput @error('quantity') is-invalid @enderror"
+                                            value="<?php echo isset($itemstocks->quantity) ? $itemstocks->quantity : ''; ?>">
                                         @error('quantity')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
-                                </div>  
-                            
+                                </div>
+
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Purchase Price ($)*</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input id="price" name="price" placeholder="" type="text" class="form-control @error('price') is-invalid @enderror" value="<?php echo isset($itemstocks->price) ? $itemstocks->price : '' ?>">
+                                        <input id="price" name="price" placeholder="" type="text"
+                                            class="form-control @error('price') is-invalid @enderror"
+                                            value="<?php echo isset($itemstocks->price) ? $itemstocks->price : ''; ?>">
                                         @error('price')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
-                                </div>  
+                                </div>
 
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Date *</label>
@@ -193,7 +192,7 @@
                                             </span>
                                         @enderror
                                     </div>
-                                </div>    
+                                </div>
 
                                 <div class="ln_solid"></div>
                                 <div class="item form-group">
@@ -222,14 +221,14 @@
         $(document).ready(function() {
             // Fetch classes when the page loads
             fetchCategory();
-    
+
             // Event listener for class selection change
             $('#category').on('change', function() {
                 // Fetch and populate items based on the selected class
                 fetchItem($(this).val());
             });
-    
-        
+
+
             // Function to fetchCategory
             function fetchCategory() {
                 $.ajax({
@@ -237,7 +236,9 @@
                     type: 'GET',
                     success: function(data) {
                         // Populate class dropdown and trigger change event
-                        populateDropdown($('#category'), data.categorys, '{{ old('category', isset($itemstocks) ? $itemstocks->category : '') }}');
+                        populateDropdown($('#category'), data.categorys,
+                            '{{ old('category', isset($itemstocks) ? $itemstocks->category : '') }}'
+                        );
                         $('#category').change(); // Trigger change event
                     },
                     error: function(error) {
@@ -245,7 +246,7 @@
                     }
                 });
             }
-    
+
             // Function to fetch sections based on the selected class
             function fetchItem(selectedCategory) {
                 $.ajax({
@@ -256,19 +257,20 @@
                     },
                     success: function(data) {
                         // Populate section dropdown
-                        populateDropdown($('#item'), data.items, '{{ old('item', isset($itemstocks) ? $itemstocks->item : '') }}');
+                        populateDropdown($('#item'), data.items,
+                            '{{ old('item', isset($itemstocks) ? $itemstocks->item : '') }}');
                     },
                     error: function(error) {
                         console.log(error);
                     }
                 });
             }
-    
+
             // Function to populate a dropdown with options
             function populateDropdown(dropdown, options, selectedValue) {
                 dropdown.empty();
                 dropdown.append('<option value="">Select...</option>');
-    
+
                 $.each(options, function(key, value) {
                     let selected = value == selectedValue ? 'selected="selected"' : '';
                     dropdown.append('<option value="' + value + '" ' + selected + '>' + value +
@@ -278,5 +280,4 @@
 
         });
     </script>
-    
 @endpush

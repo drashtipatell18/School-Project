@@ -10,24 +10,14 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>{{ isset($noticeborads) ? 'Edit Message' : 'Add Message'}}</h3>
+                    <h3>{{ isset($noticeborads) ? 'Edit Message' : 'Add Message' }}</h3>
                 </div>
-
-                <div class="title_right">
-                <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Go!</button>
-                            </span>
-                        </div>
-                    </div>
+                <div class="button-container">
+                    <a href="{{ route('noticeborads') }}"><button type="button" class="btn btn-primary btn-sm mt-1">View Post
+                            Message</button></a>
                 </div>
             </div>
             <div class="clearfix"></div>
-            <div class="button-container">
-                <a href="{{ route('noticeborads') }}"><button type="button" class="btn btn-primary btn-sm mb-2">View Post Message</button></a>
-            </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12 ">
                     <div class="x_panel">
@@ -46,13 +36,15 @@
                             <h2>{{ isset($noticeborads) ? 'Edit a Record' : 'Create a new Record' }}</h2>
                             <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"
                                 method="POST"
-                                action="{{ isset($noticeborads) ? '/admin/noticeborad/update/' . $noticeborads->id : '/admin/noticeborad/insert' }}" enctype="multipart/form-data">
+                                action="{{ isset($noticeborads) ? '/admin/noticeborad/update/' . $noticeborads->id : '/admin/noticeborad/insert' }}"
+                                enctype="multipart/form-data">
                                 @csrf
-                                
+
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align"> Title*</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input type="text" name="title" value="<?php echo isset($noticeborads->title) ? $noticeborads->title : '' ?>" class="form-control @error('title') is-invalid @enderror">
+                                        <input type="text" name="title" value="<?php echo isset($noticeborads->title) ? $noticeborads->title : ''; ?>"
+                                            class="form-control @error('title') is-invalid @enderror">
                                         @error('title')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -65,7 +57,8 @@
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Notice Date *</label>
                                     <div class="col-md-6 col-sm-6">
                                         <input type="date" class="form-control @error('noticedate') is-invalid @enderror"
-                                            name="noticedate" value="{{ old('noticedate', $noticeborads->noticedate ?? '') }}">
+                                            name="noticedate"
+                                            value="{{ old('noticedate', $noticeborads->noticedate ?? '') }}">
                                         @error('noticedate')
                                             <span style="color: red"
                                                 class="invalid-feedback"><strong>{{ $message }}</strong></span>
@@ -110,19 +103,21 @@
                                             </span>
                                         @enderror
                                     </div>
-                                </div>    
+                                </div>
 
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align"> Message*</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <select id="messageto" name="messageto" class="form-control  @error('messageto') is-invalid @enderror">
+                                        <select id="messageto" name="messageto"
+                                            class="form-control  @error('messageto') is-invalid @enderror">
                                             <option value="">Select Message To</option>
-                                            @foreach($roles as $role)
-                                                <option value="{{ $role }}" {{ old('messageto', isset($noticeborads) ? $noticeborads->messageto : '') == $role ? 'selected' : '' }}>
+                                            @foreach ($roles as $role)
+                                                <option value="{{ $role }}"
+                                                    {{ old('messageto', isset($noticeborads) ? $noticeborads->messageto : '') == $role ? 'selected' : '' }}>
                                                     {{ $role }}
                                                 </option>
                                             @endforeach
-                                        </select>                                                                            
+                                        </select>
                                         @error('messageto')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>

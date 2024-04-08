@@ -10,25 +10,14 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Schedule</h3>
+                    <h3>{{ isset($schedule) ? 'Edit Schedule' : 'Add Schedule' }}</h3>
                 </div>
-
-                <div class="title_right">
-                    <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Go!</button>
-                            </span>
-                        </div>
-                    </div>
+                <div class="button-container">
+                    <a href="{{ route('schedule') }}"><button type="button" class="btn btn-primary btn-sm mt-1">View
+                            Schedule</button></a>
                 </div>
             </div>
             <div class="clearfix"></div>
-            <div class="button-container">
-                <a href="{{ route('schedule') }}"><button type="button" class="btn btn-primary btn-sm mb-2">View
-                        Schedule</button></a>
-            </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12 ">
                     <div class="x_panel">
@@ -148,8 +137,8 @@
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Max Marks *</label>
                                     <div class="col-md-6 col-sm-6 ">
-                                        <input type="text"
-                                            class="form-control @error('max_marks') is-invalid @enderror" name="max_marks"
+                                        <input type="text" class="form-control @error('max_marks') is-invalid @enderror"
+                                            name="max_marks"
                                             value="{{ old('max_marks', isset($schedule) ? $schedule->max_marks : '') }}">
                                         @error('max_marks')
                                             <span class="invalid-feedback" style="color: red">

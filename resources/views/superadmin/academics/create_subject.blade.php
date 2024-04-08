@@ -12,23 +12,12 @@
                 <div class="title_left">
                     <h3>{{ isset($subjects) ? 'Edit Subject' : 'Add Subject' }}</h3>
                 </div>
-
-                <div class="title_right">
-                    <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Go!</button>
-                            </span>
-                        </div>
-                    </div>
+                <div class="button-container">
+                    <a href="{{ route('subject') }}"><button type="button" class="btn btn-primary btn-sm mt-1">View
+                            Subject </button></a>
                 </div>
             </div>
             <div class="clearfix"></div>
-            <div class="button-container">
-                <a href="{{ route('subject') }}"><button type="button" class="btn btn-primary btn-sm mb-2">View
-                        Subject </button></a>
-            </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12 ">
                     <div class="x_panel">

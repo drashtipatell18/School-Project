@@ -9,7 +9,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Student Admission</h3>
+                    <h3>{{ isset($staff_directory) ? 'Edit Student Admission' : 'Add Student Admission' }}</h3>
                 </div>
                 <div class="title_right">
                     <div class="col-md-5 col-sm-5  form-group pull-right top_search">

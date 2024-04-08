@@ -5,37 +5,28 @@ _@extends('admin.main')
             display: flex;
             justify-content: flex-end;
         }
+
         .select2-search__field {
             font-size: 129% !important;
             margin-left: 10px;
-        }   
-        .individual{
-            border:0;
-        } 
+        }
+
+        .individual {
+            border: 0;
+        }
     </style>
     <div class="right_col" role="main">
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>{{ isset($smstemplates) ? 'Edit SMS Template' : 'Add SMS Template'}}</h3>
+                    <h3>{{ isset($smstemplates) ? 'Edit SMS Template' : 'Add SMS Template' }}</h3>
                 </div>
-
-                <div class="title_right">
-                <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Go!</button>
-                            </span>
-                        </div>
-                    </div>
+                <div class="button-container">
+                    <a href="{{ route('smstemplates') }}"><button type="button" class="btn btn-primary btn-sm mt-1">View
+                            SMS Template </button></a>
                 </div>
             </div>
             <div class="clearfix"></div>
-            <div class="button-container">
-                <a href="{{ route('smstemplates') }}"><button type="button" class="btn btn-primary btn-sm mb-2">View
-                    SMS Template </button></a>
-            </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12 ">
                     <div class="x_panel">
@@ -54,30 +45,35 @@ _@extends('admin.main')
                             <h2>{{ isset($sendsms) ? 'Edit a Record' : 'Create a new Record' }}</h2>
                             <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"
                                 method="POST"
-                                action="{{ isset($sendsms) ? '/admin/sendsms/update/' . $sendsms->id : '/admin/sendsms/insert' }}" enctype="multipart/form-data">
+                                action="{{ isset($sendsms) ? '/admin/sendsms/update/' . $sendsms->id : '/admin/sendsms/insert' }}"
+                                enctype="multipart/form-data">
                                 @csrf
-                                
-                                    <div class="item form-group">
-                                        <label class="col-form-label col-md-3 col-sm-3 label-align">Template*</label>
-                                        <div class="col-md-6 col-sm-6">
-                                            <select name="template" class="form-control @error('template') is-invalid @enderror">
-                                                <option value="">Select Template</option>
-                                                @foreach($smstemplate as $template)
-                                                    <option value="{{ $template }}" {{ isset($sendsms->template) && $sendsms->template == $template ? 'selected' : '' }}>{{ $template }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('template')
-                                                <span class="invalid-feedback" style="color: red">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
+
+                                <div class="item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Template*</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <select name="template"
+                                            class="form-control @error('template') is-invalid @enderror">
+                                            <option value="">Select Template</option>
+                                            @foreach ($smstemplate as $template)
+                                                <option value="{{ $template }}"
+                                                    {{ isset($sendsms->template) && $sendsms->template == $template ? 'selected' : '' }}>
+                                                    {{ $template }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('template')
+                                            <span class="invalid-feedback" style="color: red">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
+                                </div>
 
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align"> Title*</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input type="text" name="title" value="<?php echo isset($sendsms->title) ? $sendsms->title : '' ?>" class="form-control @error('title') is-invalid @enderror">
+                                        <input type="text" name="title" value="<?php echo isset($sendsms->title) ? $sendsms->title : ''; ?>"
+                                            class="form-control @error('title') is-invalid @enderror">
                                         @error('title')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -104,7 +100,7 @@ _@extends('admin.main')
                                         @enderror
                                     </div>
                                 </div>
-                              
+
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Message*</label>
                                     <div class="col-md-6 col-sm-6">
@@ -115,7 +111,7 @@ _@extends('admin.main')
                                             </span>
                                         @enderror
                                     </div>
-                                </div>    
+                                </div>
 
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align"></label>
@@ -126,19 +122,20 @@ _@extends('admin.main')
                                             <div class="clearfix"></div>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align"> Group*</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <select id="messageto" name="messageto[]" class="form-control  @error('messageto') is-invalid @enderror" multiple>
+                                        <select id="messageto" name="messageto[]"
+                                            class="form-control  @error('messageto') is-invalid @enderror" multiple>
                                             <option value="">Select Message To</option>
-                                            @foreach ($roles as  $role)
+                                            @foreach ($roles as $role)
                                                 <option value="{{ $role }}"
-                                                {{ in_array($role, old('messageto', [])) || (isset($sendsms) && in_array($role, explode(',', $sendsms->group))) ? 'selected' : '' }}>
-                                                {{ $role }}
+                                                    {{ in_array($role, old('messageto', [])) || (isset($sendsms) && in_array($role, explode(',', $sendsms->group))) ? 'selected' : '' }}>
+                                                    {{ $role }}
                                                 </option>
                                             @endforeach
-                                        </select>          
+                                        </select>
                                         @error('messageto')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -151,25 +148,30 @@ _@extends('admin.main')
                                     <label class="col-form-label col-md-3 col-sm-3 label-align"> Individual*</label>
                                     <div class="col-md-6 col-sm-6">
                                         <div class="input-group">
-                                            <button type="button" data-toggle="dropdown" class="individual" aria-haspopup="true" >
-                                                <select class="form-control @error('individual') is-invalid @enderror" name="individual" id="individual">
+                                            <button type="button" data-toggle="dropdown" class="individual"
+                                                aria-haspopup="true">
+                                                <select class="form-control @error('individual') is-invalid @enderror"
+                                                    name="individual" id="individual">
                                                     <option value="">Select</option>
-                                                    @foreach($roles as $role)
-                                                        <option value="{{ $role }}" {{ old('individual', isset($sendsms) ? $sendsms->individual : '') == $role ? 'selected' : '' }}>
+                                                    @foreach ($roles as $role)
+                                                        <option value="{{ $role }}"
+                                                            {{ old('individual', isset($sendsms) ? $sendsms->individual : '') == $role ? 'selected' : '' }}>
                                                             {{ $role }}
                                                         </option>
                                                     @endforeach
                                                 </select>
                                             </button>
-                                            <input type="text" value="<?php echo isset($sendsms->individual_name) ? $sendsms->individual_name : '' ?>" class="form-control" autocomplete="off" name="individual_name" id="search-query">
-                                                <button class="btn btn-primary btn-searchsm add-btn" type="button" autocomplete="off">Add</button>
+                                            <input type="text" value="<?php echo isset($sendsms->individual_name) ? $sendsms->individual_name : ''; ?>" class="form-control"
+                                                autocomplete="off" name="individual_name" id="search-query">
+                                            <button class="btn btn-primary btn-searchsm add-btn" type="button"
+                                                autocomplete="off">Add</button>
                                         </div>
                                     </div>
-                                        @error('individual')
-                                            <span class="invalid-feedback" style="color: red">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                                    @error('individual')
+                                        <span class="invalid-feedback" style="color: red">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align"></label>
@@ -197,7 +199,8 @@ _@extends('admin.main')
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Section *</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <select id="section" name="section" class="form-control @error('section') is-invalid @enderror">
+                                        <select id="section" name="section"
+                                            class="form-control @error('section') is-invalid @enderror">
                                             <option value="">Select Section</option>
                                         </select>
                                         @error('section')
@@ -207,7 +210,7 @@ _@extends('admin.main')
                                         @enderror
                                     </div>
                                 </div>
-                               
+
                                 <div class="ln_solid"></div>
                                 <div class="item form-group">
                                     <div class="col-md-6 col-sm-6 offset-md-3">
@@ -220,7 +223,7 @@ _@extends('admin.main')
                                         </button>
                                         {{-- <button class="btn btn-info" type="reset">Reset</button> --}}
                                     </div>
-                            </div>
+                                </div>
 
                             </form>
                         </div>
@@ -250,7 +253,8 @@ _@extends('admin.main')
                     type: 'GET',
                     success: function(data) {
                         // Populate class dropdown and trigger change event
-                        populateDropdown($('#class'), data.classes, '{{ old('class', isset($sendsms) ? $sendsms->class : '') }}');
+                        populateDropdown($('#class'), data.classes,
+                            '{{ old('class', isset($sendsms) ? $sendsms->class : '') }}');
                         $('#class').change(); // Trigger change event
                     },
                     error: function(error) {
@@ -269,7 +273,8 @@ _@extends('admin.main')
                     },
                     success: function(data) {
                         // Populate section dropdown
-                        populateDropdown($('#section'), data.sections, '{{ old('section', isset($sendsms) ? $sendsms->section : '') }}');
+                        populateDropdown($('#section'), data.sections,
+                            '{{ old('section', isset($sendsms) ? $sendsms->section : '') }}');
                     },
                     error: function(error) {
                         console.log(error);
@@ -290,9 +295,9 @@ _@extends('admin.main')
             }
 
             $("#messageto").select2({
-                    placeholder: "Select Message To",
-                    allowClear: true
-            }); 
+                placeholder: "Select Message To",
+                allowClear: true
+            });
 
             $('.add-btn').click(function() {
                 var selectedOption = $('select[name="individual"]').val();

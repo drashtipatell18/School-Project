@@ -10,25 +10,14 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Homework</h3>
+                    <h3>{{ isset($homework) ? 'Edit Homework' : 'Add Homework' }}</h3>
                 </div>
-
-                <div class="title_right">
-                    <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Go!</button>
-                            </span>
-                        </div>
-                    </div>
+                <div class="button-container">
+                    <a href="{{ route('homework') }}"><button type="button" class="btn btn-primary btn-sm mt-1">View
+                            Homework</button></a>
                 </div>
             </div>
             <div class="clearfix"></div>
-            <div class="button-container">
-                <a href="{{ route('homework') }}"><button type="button" class="btn btn-primary btn-sm mb-2">View
-                        Homework</button></a>
-            </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12 ">
                     <div class="x_panel">
@@ -67,7 +56,8 @@
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Section *</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <select id="section" name="section" class="form-control @error('section') is-invalid @enderror">
+                                        <select id="section" name="section"
+                                            class="form-control @error('section') is-invalid @enderror">
                                             <option value="">Select Section</option>
                                         </select>
                                         @error('section')
@@ -135,26 +125,30 @@
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Status *</label>
                                     <div class="col-md-6 col-sm-6">
                                         <div class="btn-group" data-toggle="buttons">
-                                            <label class="btn btn-warning btn-sm mr-2 {{ old('status', isset($homework) ? $homework->status : '') == 'pending' ? 'active focus' : '' }}" data-toggle-class="btn-primary"
-                                                data-toggle-passive-class="btn-default">
+                                            <label
+                                                class="btn btn-warning btn-sm mr-2 {{ old('status', isset($homework) ? $homework->status : '') == 'pending' ? 'active focus' : '' }}"
+                                                data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
                                                 <input type="radio" name="status" value="pending" class="join-btn"
                                                     {{ old('status', isset($homework) ? $homework->status : '') == 'pending' ? 'checked' : '' }}>
                                                 &nbsp; Pending &nbsp;
                                             </label>
-                                            <label class="btn btn-success btn-sm mr-2 {{ old('status', isset($homework) ? $homework->status : '') == 'submitted' ? 'active focus' : '' }}" data-toggle-class="btn-primary"
-                                                data-toggle-passive-class="btn-default">
+                                            <label
+                                                class="btn btn-success btn-sm mr-2 {{ old('status', isset($homework) ? $homework->status : '') == 'submitted' ? 'active focus' : '' }}"
+                                                data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
                                                 <input type="radio" name="status" value="submitted" class="join-btn"
                                                     {{ old('status', isset($homework) ? $homework->status : '') == 'submitted' ? 'checked' : '' }}>
                                                 Submitted
                                             </label>
-                                            <label class="btn btn-danger btn-sm {{ old('status', isset($homework) ? $homework->status : '') == 'late_submission' ? 'active focus' : '' }}" data-toggle-class="btn-primary"
-                                                data-toggle-passive-class="btn-default">
-                                                <input type="radio" name="status" value="late_submission" class="join-btn"
+                                            <label
+                                                class="btn btn-danger btn-sm {{ old('status', isset($homework) ? $homework->status : '') == 'late_submission' ? 'active focus' : '' }}"
+                                                data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                                <input type="radio" name="status" value="late_submission"
+                                                    class="join-btn"
                                                     {{ old('status', isset($homework) ? $homework->status : '') == 'late_submission' ? 'checked' : '' }}>
                                                 Late Submission
                                             </label>
                                         </div>
-                                        
+
                                         @error('status')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -173,7 +167,7 @@
                                             @else
                                                 Submit
                                             @endif
-                                        </button> 
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -203,7 +197,8 @@
                     type: 'GET',
                     success: function(data) {
                         // Populate class dropdown and trigger change event
-                        populateDropdown($('#class'), data.classes, '{{ old('class', isset($homework) ? $homework->class : '') }}');
+                        populateDropdown($('#class'), data.classes,
+                            '{{ old('class', isset($homework) ? $homework->class : '') }}');
                         $('#class').change(); // Trigger change event
                     },
                     error: function(error) {
@@ -222,7 +217,8 @@
                     },
                     success: function(data) {
                         // Populate section dropdown
-                        populateDropdown($('#section'), data.sections, '{{ old('section', isset($homework) ? $homework->section : '') }}');
+                        populateDropdown($('#section'), data.sections,
+                            '{{ old('section', isset($homework) ? $homework->section : '') }}');
                     },
                     error: function(error) {
                         console.log(error);
