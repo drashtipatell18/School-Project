@@ -36,10 +36,12 @@ return new class extends Migration
             $table->string('father_name')->nullable();
             $table->string('father_phone')->nullable();
             $table->string('father_occupation')->nullable();
+            $table->string('father_email')->nullable();
             $table->string('father_photo')->nullable();
             $table->string('mother_name')->nullable();
             $table->string('mother_phone')->nullable();
             $table->string('mother_occupation')->nullable();
+            $table->string('mother_email')->nullable();
             $table->string('mother_photo')->nullable();
             $table->timestamps();
             $table->softDeletes();

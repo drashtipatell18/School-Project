@@ -33,19 +33,44 @@ class HomeController extends Controller
         return view('auth.login');
     }
 
-     public function loginStore(Request $request)
+    //  public function loginStore(Request $request)
+    // {
+    //     $credentials = $request->validate([
+    //         'email' => 'required|email',
+    //         'password' => 'required',
+    //     ]);
+    //     if (Auth::attempt($credentials)) {
+    //         return redirect()->route('dashboard'); 
+    //     } else {
+    //         return back()->withErrors(['email' => 'Invalid credentials'])->withInput($request->only('email'));
+    //     }
+    // }
+    public function loginStore(Request $request)
     {
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
-        if (Auth::attempt($credentials)) {
-            return redirect()->route('dashboard'); 
-        } else {
-            return back()->withErrors(['email' => 'Invalid credentials'])->withInput($request->only('email'));
+    
+        // Attempt to authenticate using the user's email
+        if (Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']])) {
+            return redirect()->route('dashboard');
         }
+    
+        // Attempt to authenticate using the father's email
+        if (Auth::attempt(['father_email' => $credentials['email'], 'password' => $credentials['password']])) {
+            return redirect()->route('dashboard');
+        }
+    
+        // Attempt to authenticate using the mother's email
+        if (Auth::attempt(['mother_email' => $credentials['email'], 'password' => $credentials['password']])) {
+            return redirect()->route('dashboard');
+        }
+    
+        // If none of the attempts succeed, redirect back with an error message
+        return back()->withErrors(['email' => 'Invalid credentials'])->withInput($request->only('email'));
     }
-
+    
     public function logout(Request $request)
     {
         Auth::logout();

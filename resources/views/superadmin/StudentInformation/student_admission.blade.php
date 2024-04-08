@@ -190,21 +190,26 @@
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="row mt-3">
-                                    <div class="col-md-3 col-sm-3">
+                                    <div class="col-md-2 col-sm-2">
                                         <label>Father Name *</label>
                                         <input type="text" class="form-control" name="father_name"
                                             value="{{ old('father_name', isset($student) ? $student->father_name : '') }}">
                                     </div>
-                                    <div class="col-md-3 col-sm-3">
+                                    <div class="col-md-2 col-sm-2">
                                         <label>Father Phone *</label>
                                         <input type="text" class="form-control" name="father_phone"
                                             value="{{ old('father_phone', isset($student) ? $student->father_phone : '') }}">
                                     </div>
 
-                                    <div class="col-md-3 col-sm-3">
+                                    <div class="col-md-2 col-sm-2">
                                         <label>Father Occupation *</label>
                                         <input type="text" class="form-control" name="father_occupation"
                                             value="{{ old('father_occupation', isset($student) ? $student->father_occupation : '') }}">
+                                    </div>
+                                    <div class="col-md-3 col-sm-3">
+                                        <label>Father Email *</label>
+                                        <input type="email" class="form-control" name="father_email"
+                                            value="{{ old('father_email', isset($student) ? $student->father_email : '') }}">
                                     </div>
                                     <div class="col-md-3 col-sm-3">
                                         <label>Father Photo *</label>
@@ -219,20 +224,25 @@
 
                                 </div>
                                 <div class="row mt-3">
-                                    <div class="col-md-3 col-sm-3">
+                                    <div class="col-md-2 col-sm-2">
                                         <label>Mother Name *</label>
                                         <input type="text" class="form-control"
                                             name="mother_name"value="{{ old('weight', isset($student) ? $student->mother_name : '') }}">
                                     </div>
-                                    <div class="col-md-3 col-sm-3">
+                                    <div class="col-md-2 col-sm-2">
                                         <label>Mother Phone *</label>
                                         <input type="text" class="form-control"
                                             name="mother_phone"value="{{ old('weight', isset($student) ? $student->mother_phone : '') }}">
                                     </div>
-                                    <div class="col-md-3 col-sm-3">
+                                    <div class="col-md-2 col-sm-2">
                                         <label>Mother Occupation *</label>
                                         <input type="text" class="form-control"
                                             name="mother_occupation"value="{{ old('weight', isset($student) ? $student->mother_occupation : '') }}">
+                                    </div>
+                                    <div class="col-md-3 col-sm-3">
+                                        <label>Mother Email *</label>
+                                        <input type="email" class="form-control" name="mother_email"
+                                            value="{{ old('mother_email', isset($student) ? $student->mother_email : '') }}">
                                     </div>
                                     <div class="col-md-3 col-sm-3">
                                         <label>Mother Photo *</label>
