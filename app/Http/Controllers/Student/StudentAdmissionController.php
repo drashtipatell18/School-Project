@@ -110,6 +110,7 @@ class StudentAdmissionController extends Controller
     }
     public function StudentEdit($id)
     {
+        $student = StudentAdmission::find($id);
         $classes = Clas::pluck('class')->toArray();
         $sections = Clas::pluck('section')->toArray();
        
@@ -191,8 +192,32 @@ class StudentAdmissionController extends Controller
         return redirect()->route('student.details.view');
     }
 
-    public function profilepic()
+    public function StudentDestroy($id)
+        {
+            $student = StudentAdmission::find($id);
+            $student->delete();
+            return redirect()->back();
+        }
+    public function profilepic(Request $request,$id)
     {
-        return view('superadmin.StudentInformation.profilepic');
+       
+        $student = StudentAdmission::find($id);
+        $class = Clas::all();
+        $sections = Section::all();
+        return view('superadmin.StudentInformation.profilepic', compact('student', 'class', 'sections'));
+    }
+
+    public function getImageByIdStud(Request $request)
+    {
+        echo 'hfghfgh';
+        $studentid = $request->input('id');
+        $student = StudentAdmission::find($studentid);
+        echo '<pre>';
+        print_r($student);
+        echo '</pre>';exit;
+        if ($student && $student->image) {
+            return response()->json(['image' => $student->image]);
+        }
+        return response()->json(['image' => null]);
     }
 }

@@ -190,7 +190,14 @@
                                         </li>
                                     </ul>
                                 </li>
-                                
+                                @if ($userRole == 'student')
+                                    <li>
+                                        <a href="{{ route('profilepic', ['id' => $student->id ?? null]) }}">
+                                            <i class="fa fa-user-plus ftlayer"></i> My Profile
+                                        </a>
+                                    </li>
+                                @endif
+
                                 @if ($userRole != 'teacher' && $userRole != 'librarian')
                                     <li><a><i class="fa fa-user-plus ftlayer"></i> Role
                                             <span class="fa fa-chevron-down"></span></a>

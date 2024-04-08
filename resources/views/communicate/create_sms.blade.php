@@ -1,4 +1,4 @@
-_@extends('admin.main')
+@extends('admin.main')
 @section('content')
     <style>
         .button-container {
