@@ -9,18 +9,9 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>{{ isset($staff_directory) ? 'Edit Student Admission' : 'Add Student Admission' }}</h3>
+                    <h3>{{ isset($staff_directory) ? 'Edit Basic Information' : 'Add Basic Information' }}</h3>
                 </div>
-                <div class="title_right">
-                    <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Go!</button>
-                            </span>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
             <div class="clearfix"></div>
             <div class="row">
@@ -61,8 +52,8 @@
                                             <option value="">Select a Role</option>
                                             @foreach ($roles as $role)
                                                 <option value="{{ $role }}"
-                                                    {{ old('role', $staff_directory->role) == $role ? 'selected' : '' }}>
-                                                    {{ $role }}
+                                                {{ old('role', isset($staff_directory->role) ? $staff_directory->role : '') == $role ? 'selected' : '' }}>
+                                                {{ $role }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -81,7 +72,7 @@
                                             <option value="">Select a Designation</option>
                                             @foreach ($designations as $designation)
                                                 <option value="{{ $designation }}"
-                                                    {{ old('designation', $staff_directory->designation) == $designation ? 'selected' : '' }}>
+                                                    {{ old('designation', isset($staff_directory->designation) ? $staff_directory->designation : '') == $designation ? 'selected' : '' }}>
                                                     {{ $designation }}
                                                 </option>
                                             @endforeach
@@ -101,7 +92,7 @@
                                             <option value="">Select a Department</option>
                                             @foreach ($departments as $department)
                                                 <option value="{{ $department }}"
-                                                    {{ old('department', $staff_directory->department) == $department ? 'selected' : '' }}>
+                                                    {{ old('department', isset($staff_directory->department) ? $staff_directory->department : '') == $department ? 'selected' : '' }}>
                                                     {{ $department }}
                                                 </option>
                                             @endforeach

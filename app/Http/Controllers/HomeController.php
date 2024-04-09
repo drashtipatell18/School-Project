@@ -112,7 +112,7 @@ class HomeController extends Controller
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
             'role' => strtolower($request->input('role')),
-            'image' => $filename,
+            'image' => isset($filename) ? '' : '',
         ]);
         
         return redirect()->route('roles')->with('success', 'Roles created successfully.');

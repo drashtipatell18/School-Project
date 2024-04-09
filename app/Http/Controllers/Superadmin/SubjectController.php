@@ -25,7 +25,7 @@ class SubjectController extends Controller
         $request->validate([
             'code' => 'required',
             'name' => 'required',
-            'subject_type' => 'required',
+            'subject_type' => 'required|in:Practical,Theory',
         ]);
         Subject::create([
             'code' => $request->input('code'),
@@ -85,7 +85,6 @@ class SubjectController extends Controller
             'class' => 'required',
             'section' => 'required', 
             'subject' => 'required|array', 
-            'description' => 'required', 
         ]);
         $name = $request->input('name');
         $class = $request->input('class');
@@ -118,7 +117,6 @@ class SubjectController extends Controller
             'class' => 'required',
             'section' => 'required',
             'subject' => 'required|array',
-            'description' => 'required',
         ]);
         $subjectgroup = SubjectGroup::find($id);
         

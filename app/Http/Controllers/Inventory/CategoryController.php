@@ -31,7 +31,6 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'description' => 'required', 
         ]);
     
         $name = $request->input('name');
@@ -62,7 +61,6 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'description' => 'required', 
         ]);
 
         $categorys = Category::find($id);

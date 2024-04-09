@@ -40,7 +40,7 @@ class SMSTemplateController extends Controller
 
     public function smstemplateEdit($id){
         $smstemplates = SMSTemplate::find($id);
-        return view('communicate.create_sms', compact('smstemplates'));
+        return view('communicate.create_sms_template', compact('smstemplates'));
     }
 
     public function smstemplateUpdate(Request $request,$id){

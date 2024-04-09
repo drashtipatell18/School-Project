@@ -37,7 +37,6 @@ class SupplierController extends Controller
             'contact_person_name' => 'required', 
             'contact_person_phone' => 'required|numeric', 
             'contact_person_email' => 'required|email', 
-            'description' => 'required', 
         ]);
     
         $name = $request->input('name');
@@ -86,7 +85,6 @@ class SupplierController extends Controller
             'contact_person_name' => 'required', 
             'contact_person_phone' => 'required|numeric', 
             'contact_person_email' => 'required|email', 
-            'description' => 'required', 
         ]);
 
         $supplier = Supplier::find($id);

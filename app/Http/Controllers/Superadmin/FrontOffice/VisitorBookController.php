@@ -53,13 +53,9 @@ class VisitorBookController extends Controller
     {
         // dd($request->all());
         $request->validate([
-            // 'purpose' => 'required',
-            // 'meeting_with' => 'required',
-            // 'visitor_name' => 'required',
-            // 'class' => 'required',
-            // 'section' => 'required',
-            // 'student' => 'required',
-            // 'staff' => 'required',
+            'purpose' => 'required',
+            'meeting_with' => 'required',
+            'visitor_name' => 'required',
         ]);
 
         $filename = null;

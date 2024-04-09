@@ -73,7 +73,7 @@ class MemberController extends Controller
              'duereturndate' => $request->input('duereturndate'),
          ]);
      
-         $bookissues = BookIssue::find($id); 
+         $bookissues = BookIssue::find($bookId); 
          $availableQty = Book::where('title', $bookId)->pluck('available')->first();
         if ($availableQty !== null) {
             $availableQty -= 1;

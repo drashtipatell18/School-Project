@@ -51,7 +51,7 @@ class HomeworkController extends Controller
             'homework_date' => 'required',
             'submission_date' => 'required',
             'note' => 'required',
-            'status' => 'required',
+            'status' => 'required|in:pending,submitted,late_submission',
         ]);
         Homework::create([
             'class' => $request->input('class'),

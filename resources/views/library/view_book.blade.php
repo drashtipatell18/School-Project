@@ -81,7 +81,7 @@
                                                 <td class="">{{ $book->qty }}</td>
                                                 <td class="">{{ $book->available }}</td>
                                                 <td class="">{{ $book->price }}</td>
-                                                <td class="">{{ $book->postdate }}</td>
+                                                <td class="">{{ $dateFormatted = date('d-m-Y', strtotime($book->postdate)) }}</td>
                                                 @if ($userRole != 'student' && $userRole != 'parents')
                                                     <td>
                                                         <a href="{{ route('edit.book', $book->id) }}"

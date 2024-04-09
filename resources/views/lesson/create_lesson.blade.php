@@ -151,7 +151,7 @@
                                     @endisset
                                 </div>
                                 <div class="add-lesson">
-                                    <button class="btn btn-light add-more" type="button">Add More</button>
+                                    <button class="btn btn-dark btn-sm add-more" type="button">Add More</button>
                                 </div>
                                 <div class="ln_solid"></div>
                                 <div class="item form-group">

@@ -60,7 +60,8 @@
                                                 <td class="">{{ $itemstock->store }}</td>
                                                 <td class="">{{ $itemstock->quantity }}</td>
                                                 <td class="">{{ $itemstock->price }}</td>
-                                                <td class="">{{ $itemstock->date }}</td>
+                                                <td>{{ $dateFormatted = date('d-m-Y', strtotime($itemstock->date)) }}</td>
+
                                                 <td>
                                                     <a href="{{ route('edit.itemstock', $itemstock->id) }}"
                                                         class="btn btn-info btn-sm">Edit</a>

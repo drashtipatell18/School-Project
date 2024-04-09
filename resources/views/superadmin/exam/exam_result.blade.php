@@ -133,15 +133,25 @@
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Grand Total*</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input type="text" class="form-control" id="grand-total" name="grand_total">
+                                        <input type="text" class="form-control @error('grand_total') is-invalid @enderror" id="grand-total" name="grand_total">
                                     </div>
+                                    @error('grand_total')
+                                    <span class="invalid-feedback" style="color: red">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 </div>
 
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Percent *</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input type="text" class="form-control" id="percent" name="percent">
+                                        <input type="text" class="form-control @error('percent') is-invalid @enderror" id="percent" name="percent">
                                     </div>
+                                    @error('percent')
+                                    <span class="invalid-feedback" style="color: red">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 </div>
                                 {{-- 
                                 <input type="hidden" id="grand-total" name="grand_total">
@@ -437,7 +447,7 @@
                     success: function(data) {
                         // Populate class dropdown and trigger change event
                         populateDropdown($('#class'), data.classes,
-                            '{{ old('class', isset($leave) ? $leave->class : '') }}');
+                            '{{ old('class', isset($result) ? $result->class : '') }}');
                         $('#class').change(); // Trigger change event
                     },
                     error: function(error) {
@@ -457,7 +467,7 @@
                     success: function(data) {
                         // Populate section dropdown
                         populateDropdown($('#section'), data.sections,
-                            '{{ old('section', isset($leave) ? $leave->section : '') }}');
+                            '{{ old('section', isset($result) ? $result->section : '') }}');
 
                         // Trigger change event for section dropdown
                         $('#section').change();
@@ -482,7 +492,7 @@
                         success: function(data) {
                             // Populate student dropdown
                             populateDropdown($('#student'), data.students,
-                                '{{ old('student', isset($leave) ? $leave->student : '') }}');
+                                '{{ old('student', isset($result) ? $result->student : '') }}');
                         },
                         error: function(error) {
                             console.log(error);

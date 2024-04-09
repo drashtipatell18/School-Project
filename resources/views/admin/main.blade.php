@@ -357,13 +357,15 @@
                                         </ul>
                                     </li>
                                 @endif
+                                @if($userRole == 'student' && $userRole == 'parents')
                                 <li><a><i class="fa fa-ioxhost ftlayer"></i>Front Office<span
                                             class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="{{ route('visitor.book') }}">Visitor Book</a></li>
                                     </ul>
                                 </li>
-                                @if ($userRole != 'teacher' && $userRole != 'librarian' && $userRole == 'student' && $userRole == 'parents')
+                                @endif
+                                @if ($userRole != 'teacher' && $userRole != 'librarian')
                                     <li><a><i class="fa fa-ioxhost ftlayer"></i>Front Office<span
                                                 class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">

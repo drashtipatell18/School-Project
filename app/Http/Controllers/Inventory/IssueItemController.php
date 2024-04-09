@@ -36,6 +36,8 @@ class IssueItemController extends Controller
     {
         $request->validate([
             'usertype' => 'required',
+            'issueto' => 'required',
+            'issueby' => 'required',
             'issuedate' => 'required',
             'returndate' => 'required', 
             'quantity' => 'required', 
@@ -125,8 +127,11 @@ class IssueItemController extends Controller
 
     public function getAllname(Request $request)
     {
+        echo 'dfgdfgdf';exit;
         $selectedusertype = $request->input('class');
+        echo $selectedUserType;
         $names = User::where('role', $selectedusertype)->pluck('name')->toArray();
+        dd($names);
         return response()->json(['names' => $names]);
     }
 

@@ -99,7 +99,7 @@ class ResultController extends Controller
             'exam' => 'required',
             'class' => 'required',
             'section' => 'required',
-            'student_name' => 'required',
+            'student' => 'required',
             'subject' => 'required',
             'marks' => 'required',
             'grand_total' => 'required',
@@ -131,10 +131,8 @@ class ResultController extends Controller
         'result' => $request->input('result'),
     ]);
 
- 
-
-        return redirect()->back();
-    }
+    return redirect()->route('result');
+}
     public function resultEdit($id)
     {
         $result = ResultExam::find($id);
@@ -143,19 +141,19 @@ class ResultController extends Controller
 
     public function resultUpdate(Request $request, $id)
     {
-        // $request->validate([
-        //     'exam_group' => 'required',
-        //     'exam' => 'required',
-        //     'class' => 'required',
-        //     'section' => 'required',
-        //     'student_name' => 'required',
-        //     'subject' => 'required',
-        //     'marks' => 'required',
-        //     'grand_total' => 'required',
-        //     'percent' => 'required',
-        //     'rank' => 'required',
-        //     'result' => 'required',
-        // ]);
+        $request->validate([
+            'exam_group' => 'required',
+            'exam' => 'required',
+            'class' => 'required',
+            'section' => 'required',
+            'student_name' => 'required',
+            'subject' => 'required',
+            'marks' => 'required',
+            'grand_total' => 'required',
+            'percent' => 'required',
+            'rank' => 'required',
+            'result' => 'required',
+        ]);
         $marks = json_decode($request->input('marks'));
         $result = ResultExam::find($id);
         $result->update([

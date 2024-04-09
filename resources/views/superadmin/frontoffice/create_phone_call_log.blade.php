@@ -5,6 +5,14 @@
             display: flex;
             justify-content: flex-end;
         }
+        .circus .form-control{
+            display: inline; 
+            height: 12px; 
+            width: 15px !important;
+        }
+        #outgoing{
+            padding-left: 12px;
+        }
     </style>
     <div class="right_col" role="main">
         <div>
@@ -133,22 +141,15 @@
                                     </div>
                                 </div>
 
-                                <div class="item form-group">
+                                <div class="item form-group circus">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Call Type *</label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <label style="margin-right: 20px;">
-                                            <input type="radio" name="call_type" value="Incoming"
-                                                {{ old('call_type', isset($phone_call_log) && $phone_call_log->call_type == 'Incoming' ? 'checked' : '') }}class="mt-2">
-                                            Incoming
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="call_type" value="Outgoing"
-                                                {{ old('call_type', isset($phone_call_log) && $phone_call_log->call_type == 'Outgoing' ? 'checked' : '') }}
-                                                class="mt-2">
-                                            Outgoing
-                                        </label>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6">
+                                    <div class="col-md-6 col-sm-6 mt-2">
+                                        <input type="radio" id="incoming" name="call_type" value="Incoming"
+                                            {{ isset($phone_call_log->call_type) && $phone_call_log->call_type == 'Incoming' ? 'checked' : '' }} class="form-control @error('call_type') is-invalid @enderror">
+                                        <label for="incoming">Incoming</label>
+                                        <input type="radio" id="outgoing" name="call_type" value="Outgoing"
+                                            {{ isset($phone_call_log->call_type) && $phone_call_log->call_type == 'Outgoing' ? 'checked' : '' }} class="form-control @error('call_type') is-invalid @enderror">
+                                        <label for="outgoing">Outgoing</label>
                                         @error('call_type')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>

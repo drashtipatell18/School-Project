@@ -10,12 +10,11 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Add </h3>
-                    <h3>{{ isset($postal_receive) ? 'Edit Postal Receive' : 'Add Postal Receive' }}</h3>
+                    <h3>{{ isset($postal_dispatch) ? 'Edit Postal Dispatch' : 'Add Postal Dispatch' }}</h3>
                 </div>
                 <div class="button-container">
-                    <a href="{{ route('postal.receive') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Postal
-                            Receive List</button></a>
+                    <a href="{{ route('postal.dispatch') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Postal
+                        Dispatch List</button></a>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -34,10 +33,10 @@
                         </div>
                         <div class="x_content">
                             <br />
-                            <h2>{{ isset($postal_receive) ? 'Edit a Record' : 'Create a new Record' }}</h2>
+                            <h2>{{ isset($postal_dispatch) ? 'Edit a Record' : 'Create a new Record' }}</h2>
                             <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"
                                 method="POST"
-                                action="{{ isset($postal_receive) ? '/admin/postal/receive/update/' . $postal_receive->id : '/admin/postal/receive/insert' }}"
+                                action="{{ isset($postal_dispatch) ? '/admin/postal/dispatch/update/' . $postal_dispatch->id : '/admin/postal/dispatch/insert' }}"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="item form-group">
@@ -45,7 +44,7 @@
                                     <div class="col-md-6 col-sm-6">
                                         <input type="text" class="form-control @error('from_title') is-invalid @enderror"
                                             name="from_title"
-                                            value="{{ old('from_title', isset($postal_receive) ? $postal_receive->from_title : '') }}">
+                                            value="{{ old('from_title', isset($postal_dispatch) ? $postal_dispatch->from_title : '') }}">
                                         @error('from_title')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -62,7 +61,7 @@
                                         <input id="middle-name"
                                             class="form-control @error('reference_no') is-invalid @enderror" type="number"
                                             name="reference_no"
-                                            value="{{ old('reference_no', $postal_receive->reference_no ?? '') }}">
+                                            value="{{ old('reference_no', $postal_dispatch->reference_no ?? '') }}">
                                         @error('reference_no')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -74,14 +73,14 @@
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Address *</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <textarea class="form-control" name="address" rows="4">{{ old('address', isset($postal_receive) ? $postal_receive->address : '') }}</textarea>
+                                        <textarea class="form-control" name="address" rows="4">{{ old('address', isset($postal_dispatch) ? $postal_dispatch->address : '') }}</textarea>
                                     </div>
                                 </div>
 
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Note *</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <textarea class="form-control" name="note" rows="4">{{ old('note', isset($postal_receive) ? $postal_receive->note : '') }}</textarea>
+                                        <textarea class="form-control" name="note" rows="4">{{ old('note', isset($postal_dispatch) ? $postal_dispatch->note : '') }}</textarea>
                                     </div>
                                 </div>
 
@@ -90,7 +89,7 @@
                                     <div class="col-md-6 col-sm-6">
                                         <input type="text" class="form-control @error('to_title') is-invalid @enderror"
                                             name="to_title"
-                                            value="{{ old('to_title', isset($postal_receive) ? $postal_receive->to_title : '') }}">
+                                            value="{{ old('to_title', isset($postal_dispatch) ? $postal_dispatch->to_title : '') }}">
                                         @error('to_title')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -103,7 +102,7 @@
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Date *</label>
                                     <div class="col-md-6 col-sm-6">
                                         <input type="date" class="form-control @error('date') is-invalid @enderror"
-                                            name="date" value="{{ old('date', $postal_receive->date ?? '') }}">
+                                            name="date" value="{{ old('date', $postal_dispatch->date ?? '') }}">
                                         @error('date')
                                             <span style="color: red"
                                                 class="invalid-feedback"><strong>{{ $message }}</strong></span>
@@ -114,11 +113,11 @@
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Attach Document*</label>
                                     <div class="col-md-6 col-sm-6">
-                                        @if (isset($postal_receive) && $postal_receive->attach_document)
-                                            <img src="{{ asset('storage/attach_documents/' . $postal_receive->attach_document) }}"
+                                        @if (isset($postal_dispatch) && $postal_dispatch->attach_document)
+                                            <img src="{{ asset('storage/attach_documents/' . $postal_dispatch->attach_document) }}"
                                                 alt="Uploaded Document" width="100">
                                             <input type="file" class="form-control" name="attach_document">
-                                            <p class="mt-1">{{ $postal_receive->attach_document }}</p>
+                                            <p class="mt-1">{{ $postal_dispatch->attach_document }}</p>
                                         @else
                                             <input type="file" class="form-control" name="attach_document">
                                             <span class="invalid-feedback" style="color: red">Please select a file</span>
@@ -131,7 +130,7 @@
                                 <div class="item form-group">
                                     <div class="col-md-6 col-sm-6 offset-md-3">
                                         <button type="submit" class="btn btn-primary">
-                                            @if (isset($postal_receive))
+                                            @if (isset($postal_dispatch))
                                                 Update
                                             @else
                                                 Submit

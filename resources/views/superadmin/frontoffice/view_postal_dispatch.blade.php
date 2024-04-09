@@ -10,11 +10,11 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Postal Receive List</h3>
+                    <h3>Postal Dispatch List</h3>
                 </div>
                 <div class="button-container">
-                    <a href="{{ route('create.postal.receive') }}"><button type="button"
-                            class="btn btn-primary btn-sm mt-1">Add Postal Receive</button></a>
+                    <a href="{{ route('create.postal.dispatch') }}"><button type="button"
+                            class="btn btn-primary btn-sm mt-1">Add Postal Dispatch</button></a>
                 </div>
             </div>
             <div class="clearfix"></div>

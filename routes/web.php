@@ -207,8 +207,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/issueitem/edit/{id}', [IssueItemController::class, 'issueitemEdit'])->name('edit.issueitem');
     Route::post('/admin/issueitem/update/{id}', [IssueItemController::class, 'issueitemUpdate'])->name('update.issueitem');
     Route::get('/admin/issueitem/destroy/{id}',[IssueItemController::class,'issueitemDestroy'])->name('destroy.issueitem');
-    Route::get('/get-usertype',[IssueItemController::class,'getUsertype'])->name('get-usertype');
-    Route::get('/get-allname',[IssueItemController::class,'getAllname'])->name('get-allname');
     Route::get('/get-byname',[IssueItemController::class,'GetIdByName'])->name('get-byname');
     Route::get('/get-imagebyid',[IssueItemController::class,'getImageById'])->name('get-imagebyid');
 

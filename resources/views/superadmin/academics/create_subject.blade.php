@@ -5,6 +5,14 @@
             display: flex;
             justify-content: flex-end;
         }
+        .circus .form-control{
+            display: inline; 
+            height: 12px; 
+            width: 15px !important;
+        }
+        #theory{
+            padding-left: 12px;
+        }
     </style>
     <div class="right_col" role="main">
         <div class="">
@@ -63,16 +71,14 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="item form-group">
+                                <div class="item form-group circus">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Subject Type *</label>
                                     <div class="col-md-6 col-sm-6 mt-2">
                                         <input type="radio" id="practical" name="subject_type" value="Practical"
-                                            {{ isset($subject->subject_type) == 'Practical' ? 'checked' : '' }}
-                                            class="@error('subject_type') is-invalid @enderror">
+                                            {{ isset($subject->subject_type) && $subject->subject_type == 'Practical' ? 'checked' : '' }} class="form-control subjectradio @error('subject_type') is-invalid @enderror">
                                         <label for="practical">Practical</label>
                                         <input type="radio" id="theory" name="subject_type" value="Theory"
-                                            {{ isset($subject->subject_type) == 'Theory' ? 'checked' : '' }}
-                                            class="@error('subject_type') is-invalid @enderror">
+                                            {{ isset($subject->subject_type) && $subject->subject_type == 'Theory' ? 'checked' : '' }} class="form-control subjectradio @error('subject_type') is-invalid @enderror">
                                         <label for="theory">Theory</label>
                                         @error('subject_type')
                                             <span class="invalid-feedback" style="color: red">
@@ -81,6 +87,7 @@
                                         @enderror
                                     </div>
                                 </div>
+                                
 
                                 <div class="ln_solid"></div>
                                 <div class="item form-group">

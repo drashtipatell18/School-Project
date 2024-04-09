@@ -14,6 +14,15 @@
         .individual {
             border: 0;
         }
+
+        .circus .form-control{
+            display: inline; 
+            height: 12px; 
+            width: 15px !important;
+        }
+        #moblieapp{
+            padding-left: 12px;
+        }
     </style>
     <div class="right_col" role="main">
         <div class="">
@@ -55,11 +64,13 @@
                                         <select name="template"
                                             class="form-control @error('template') is-invalid @enderror">
                                             <option value="">Select Template</option>
-                                            @foreach ($smstemplate as $template)
-                                                <option value="{{ $template }}"
-                                                    {{ isset($sendsms->template) && $sendsms->template == $template ? 'selected' : '' }}>
-                                                    {{ $template }}</option>
-                                            @endforeach
+                                            @isset($smstemplate)
+                                                @foreach ($smstemplate as $template)
+                                                    <option value="{{ $template }}"
+                                                        {{ isset($sendsms->template) && $sendsms->template == $template ? 'selected' : '' }}>
+                                                        {{ $template }}</option>
+                                                @endforeach
+                                            @endisset
                                         </select>
                                         @error('template')
                                             <span class="invalid-feedback" style="color: red">
@@ -82,16 +93,16 @@
                                     </div>
                                 </div>
 
-                                <div class="item form-group">
+                                
+
+                                <div class="item form-group circus">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Send Through*</label>
                                     <div class="col-md-6 col-sm-6 mt-2">
                                         <input type="radio" id="sms" name="send_through" value="SMS"
-                                            {{ isset($sendsms->send_through) == 'SMS' ? 'checked' : '' }}
-                                            class="@error('send_through') is-invalid @enderror">
-                                        <label for="SMS">SMS</label>
-                                        <input type="radio" id="theory" name="send_through" value="Mobile App"
-                                            {{ isset($sendsms->send_through) == 'Mobile App' ? 'checked' : '' }}
-                                            class="@error('send_through') is-invalid @enderror">
+                                            {{ isset($sendsms->send_through) && $sendsms->send_through == 'SMS' ? 'checked' : '' }} class="form-control @error('send_through') is-invalid @enderror">
+                                        <label for="sms">SMS</label>
+                                        <input type="radio" id="mobileapp" name="send_through" value="Mobile App"
+                                            {{ isset($sendsms->send_through) && $sendsms->send_through == 'Mobile App' ? 'checked' : '' }} class="form-control @error('send_through') is-invalid @enderror">
                                         <label for="Mobile App">Mobile App</label>
                                         @error('send_through')
                                             <span class="invalid-feedback" style="color: red">
@@ -129,12 +140,15 @@
                                         <select id="messageto" name="messageto[]"
                                             class="form-control  @error('messageto') is-invalid @enderror" multiple>
                                             <option value="">Select Message To</option>
-                                            @foreach ($roles as $role)
-                                                <option value="{{ $role }}"
-                                                    {{ in_array($role, old('messageto', [])) || (isset($sendsms) && in_array($role, explode(',', $sendsms->group))) ? 'selected' : '' }}>
-                                                    {{ $role }}
-                                                </option>
-                                            @endforeach
+                                            @isset($roles)
+                                                @foreach ($roles as $role)
+                                                    <option value="{{ $role }}"
+                                                        {{ in_array($role, old('messageto', [])) || (isset($sendsms) && in_array($role, explode(',', $sendsms->group))) ? 'selected' : '' }}>
+                                                        {{ $role }}
+                                                    </option>
+                                                @endforeach
+                                            @endisset
+
                                         </select>
                                         @error('messageto')
                                             <span class="invalid-feedback" style="color: red">
@@ -153,12 +167,15 @@
                                                 <select class="form-control @error('individual') is-invalid @enderror"
                                                     name="individual" id="individual">
                                                     <option value="">Select</option>
-                                                    @foreach ($roles as $role)
-                                                        <option value="{{ $role }}"
-                                                            {{ old('individual', isset($sendsms) ? $sendsms->individual : '') == $role ? 'selected' : '' }}>
-                                                            {{ $role }}
-                                                        </option>
-                                                    @endforeach
+                                                    @isset($roles)
+                                                        @foreach ($roles as $role)
+                                                            <option value="{{ $role }}"
+                                                                {{ old('individual', isset($sendsms) ? $sendsms->individual : '') == $role ? 'selected' : '' }}>
+                                                                {{ $role }}
+                                                            </option>
+                                                        @endforeach
+                                                    @endisset
+
                                                 </select>
                                             </button>
                                             <input type="text" value="<?php echo isset($sendsms->individual_name) ? $sendsms->individual_name : ''; ?>" class="form-control"
@@ -301,7 +318,7 @@
 
             $('.add-btn').click(function() {
                 var selectedOption = $('select[name="individual"]').val();
-                var inputValue = $('input[name="text"]').val();
+                var inputValue = $('input[name="individual_name"]').val();
 
                 console.log("Selected Option: ", selectedOption);
                 console.log("Text Input Value: ", inputValue);

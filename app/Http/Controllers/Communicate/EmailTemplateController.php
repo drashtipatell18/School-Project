@@ -40,7 +40,7 @@ class EmailTemplateController extends Controller
 
     public function emailtemplateEdit($id){
         $emailtemplates = EmailTemplate::find($id);
-        return view('communicate.create_email', compact('emailtemplates'));
+        return view('communicate.create_email_template', compact('emailtemplates'));
     }
 
     public function emailtemplateUpdate(Request $request,$id){

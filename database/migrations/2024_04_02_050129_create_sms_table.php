@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('message')->nullable();
             $table->string('group')->nullable();
             $table->string('individual')->nullable();
+            $table->string('individual_name ')->nullable();
             $table->string('class')->nullable();
             $table->string('section')->nullable();
             $table->timestamps();

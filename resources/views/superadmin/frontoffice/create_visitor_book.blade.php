@@ -67,7 +67,7 @@
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Meeting With *</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <select name="meeting_with" id="meeting_with" class="form-control">
+                                        <select name="meeting_with" id="meeting_with" class="form-control @error('meeting_with') is-invalid @enderror">
                                             <option value="">Select</option>
                                             <option value="staff"
                                                 {{ old('meeting_with', $visitor_book->meeting_with ?? '') == 'staff' ? 'selected' : '' }}>
@@ -76,6 +76,11 @@
                                                 {{ old('meeting_with', $visitor_book->meeting_with ?? '') == 'student' ? 'selected' : '' }}>
                                                 Student</option>
                                         </select>
+                                        @error('meeting_with')
+                                            <span class="invalid-feedback" style="color: red">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
 

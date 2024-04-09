@@ -36,8 +36,6 @@ class EventController extends Controller
             'venue' => 'required',
             'startdate' => 'required|date',
             'enddate' => 'required|date', 
-            'description' => 'required',
-            'image' => 'required',
         ]);
         $fileName = '';
         if ($request->hasFile('image')){
@@ -74,14 +72,10 @@ class EventController extends Controller
     public function eventUpdate(Request $request, $id)
     {
         $request->validate([
-            'category' => 'required',
-            'item' => 'required',
-            'supplier' => 'required',
-            'store' => 'required', 
-            'quantity' => 'required|numeric', 
-            'price' => 'required|numeric', 
-            'date' => 'required|date', 
-            'description' => 'required', 
+            'title' => 'required',
+            'venue' => 'required',
+            'startdate' => 'required|date',
+            'enddate' => 'required|date', 
         ]);
 
         $events = Event::find($id);
@@ -92,19 +86,16 @@ class EventController extends Controller
             $image->move('images', $filename);
     
             // Update user's image information in the database
-            $events->image = $filename;
+            $events->image = isset($filename) ? $filename : null;
         }
 
         // Update a new ItemStock record
         $events->update([
-           'category'        => $request->input('category'),
-            'item'           => $request->input('item'),
-            'supplier'       => $request->input('supplier'),
-            'store'          => $request->input('store'), 
-            'quantity'       => $request->input('quantity'), 
-            'price'          => $request->input('price'), 
-            'date'           => $request->input('date'), 
-            'description'    => $request->input('description'), 
+            'title'           => $request->input('title'),
+            'venue'           => $request->input('venue'),
+            'startdate'       => $request->input('startdate'),
+            'enddate'         => $request->input('enddate'), 
+            'description'     => $request->input('description'), 
         ]);
     
         return redirect()->route('events');

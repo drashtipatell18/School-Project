@@ -37,7 +37,6 @@ class ItemController extends Controller
             'name' => 'required',
             'category' => 'required',
             'unit' => 'required|numeric', 
-            'description' => 'required', 
         ]);
     
         $name = $request->input('name');
@@ -75,7 +74,6 @@ class ItemController extends Controller
             'name' => 'required',
             'category' => 'required',
             'unit' => 'required|numeric', 
-            'description' => 'required', 
         ]);
         $items = Item::find($id);
 

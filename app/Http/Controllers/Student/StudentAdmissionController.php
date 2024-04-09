@@ -56,7 +56,7 @@ class StudentAdmissionController extends Controller
         if ($request->hasFile('student_photo')){
             $studentPhoto = $request->file('student_photo');
             $fileName = time() . '.' . $studentPhoto->getClientOriginalExtension();
-            $studentPhoto->move('student_photos', $fileName);
+            $studentPhoto->move('student_photo', $fileName);
         }
 
         if ($request->hasFile('father_photo')){

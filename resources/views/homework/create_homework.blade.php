@@ -128,14 +128,14 @@
                                             <label
                                                 class="btn btn-warning btn-sm mr-2 {{ old('status', isset($homework) ? $homework->status : '') == 'pending' ? 'active focus' : '' }}"
                                                 data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                                <input type="radio" name="status" value="pending" class="join-btn"
+                                                <input type="radio" name="status" value="pending" class="join-btn form-control @error('status') is-invalid @enderror"
                                                     {{ old('status', isset($homework) ? $homework->status : '') == 'pending' ? 'checked' : '' }}>
                                                 &nbsp; Pending &nbsp;
                                             </label>
                                             <label
                                                 class="btn btn-success btn-sm mr-2 {{ old('status', isset($homework) ? $homework->status : '') == 'submitted' ? 'active focus' : '' }}"
                                                 data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                                <input type="radio" name="status" value="submitted" class="join-btn"
+                                                <input type="radio" name="status" value="submitted" class="join-btn form-control @error('status') is-invalid @enderror"
                                                     {{ old('status', isset($homework) ? $homework->status : '') == 'submitted' ? 'checked' : '' }}>
                                                 Submitted
                                             </label>
@@ -143,17 +143,13 @@
                                                 class="btn btn-danger btn-sm {{ old('status', isset($homework) ? $homework->status : '') == 'late_submission' ? 'active focus' : '' }}"
                                                 data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
                                                 <input type="radio" name="status" value="late_submission"
-                                                    class="join-btn"
+                                                    class="join-btn form-control @error('status') is-invalid @enderror"
                                                     {{ old('status', isset($homework) ? $homework->status : '') == 'late_submission' ? 'checked' : '' }}>
                                                 Late Submission
                                             </label>
+                                            
                                         </div>
 
-                                        @error('status')
-                                            <span class="invalid-feedback" style="color: red">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
                                     </div>
 
                                 </div>

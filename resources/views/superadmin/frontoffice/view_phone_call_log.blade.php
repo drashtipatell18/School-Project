@@ -55,7 +55,7 @@
                                                 <td>{{ $phone_call->name }}</td>
                                                 <td>{{ $phone_call->phone }}</td>
                                                 <td class="">{{ date('d-m-Y', strtotime($phone_call->date)) }}</td>
-                                                <td>{{ $phone_call->next_follow_up_date }}</td>
+                                                <td class="">{{ date('d-m-Y', strtotime($phone_call->next_follow_up_date)) }}</td>
                                                 <td>{{ $phone_call->call_type }}</td>
                                                 <td>
                                                     <a href="{{ route('edit.phone.call.log', $phone_call->id) }}"

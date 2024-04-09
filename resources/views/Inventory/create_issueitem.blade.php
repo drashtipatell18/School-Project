@@ -141,7 +141,7 @@
                                     <label class="col-form-label col-md-3 col-sm-3 label-align"> Notes*</label>
                                     <div class="col-md-6 col-sm-6">
                                         <input type="text" name="note" value="<?php echo isset($issueitems->note) ? $issueitems->note : ''; ?>"
-                                            class="form-control @error('title') is-invalid @enderror">
+                                            class="form-control @error('note') is-invalid @enderror">
                                         @error('note')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -277,15 +277,15 @@
             }
 
 
-            function fetchIssueto(selectedusertype) {
+            function fetchIssueto(selectedRole) {
                 $.ajax({
                     url: '/get-allname',
                     type: 'GET',
                     data: {
-                        class: selectedusertype
+                        role: selectedRole
                     },
                     success: function(data) {
-                        // Populate section dropdown
+                        console.log('ghfghgffgh');
                         populateDropdown($('#issueto'), data.names,
                             '{{ old('issueto', isset($issueitems) ? $issueitems->issueto : '') }}');
                     },

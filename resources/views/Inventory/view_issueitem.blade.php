@@ -57,7 +57,8 @@
                                                 <td class="">{{ $item->item }}</td>
                                                 <td class="">{{ $item->note }}</td>
                                                 <td class="">{{ $item->category }}</td>
-                                                <td class="">{{ $item->issuedate }} - {{ $item->returndate }}</td>
+                                                <td>{{ $dateFormatted = date('d-m-Y', strtotime($item->issuedate)) }} - {{ $dateFormatted = date('d-m-Y', strtotime($item->returndate)) }}</td>
+
                                                 <td class="">{{ $item->issueto }}</td>
                                                 <td class="">{{ $item->issueby }}</td>
                                                 <td class="">{{ $item->quantity }}</td>
