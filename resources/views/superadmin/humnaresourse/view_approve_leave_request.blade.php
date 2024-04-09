@@ -12,10 +12,6 @@
                 <div class="title_left">
                     <h3>Add Details</h3>
                 </div>
-                <div class="button-container">
-                    <a href="{{ route('create.approve.leave.request') }}"><button type="button"
-                            class="btn btn-primary btn-sm mt-1">Add Leave Request</button></a>
-                </div>
             </div>
             <div class="clearfix"></div>
             <div class="row" style="display: block;">
@@ -74,12 +70,6 @@
                                                         <button type="button"
                                                             class="btn btn-danger btn-sm">Disapprove</button>
                                                     @endif
-                                                </td>
-                                                <td>
-                                                    <a href="{{ route('edit.approve.leave.request', $approve_leave_req->id) }}"
-                                                        class="btn btn-info btn-sm">Edit</a>
-                                                    <a href="{{ route('destroy.approve.leave.request', $approve_leave_req->id) }}"
-                                                        class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>
                                                 </td>
                                             </tr>
                                         @endforeach

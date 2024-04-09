@@ -12,10 +12,18 @@
                 <div class="title_left">
                     <h3>Approve Leave List</h3>
                 </div>
-                <div class="button-container">
-                    <a href="{{ route('create.approveleave') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Add
-                            Approve Leave</button></a>
-                </div>
+                @if (auth()->check())
+                    @php
+                        $userRole = strtolower(auth()->user()->role);
+                    @endphp
+                @endif
+                @if ($userRole != 'student' && $userRole != 'parents')
+                    <div class="button-container">
+                        <a href="{{ route('create.approveleave') }}"><button type="button"
+                                class="btn btn-primary btn-sm mt-1">Add
+                                Approve Leave</button></a>
+                    </div>
+                @endif
             </div>
             <div class="clearfix"></div>
             <div class="row" style="display: block;">
@@ -47,7 +55,9 @@
                                             <th>To Date</th>
                                             <th>reason</th>
                                             <th>Status</th>
-                                            <th class=" no-link last"><span class="nobr">Action</span></th>
+                                            @if ($userRole != 'student' && $userRole != 'parents')
+                                                <th>Action</th>
+                                            @endif
                                         </tr>
                                     </thead>
 
@@ -74,13 +84,15 @@
                                                             class="btn btn-danger btn-sm">Disapprove</button>
                                                     @endif
                                                 </td>
-                                                <td>
-                                                    <a href="{{ route('edit.approveleave', $leave->id) }}"
-                                                        class="btn btn-info btn-sm">Edit</a>
+                                                @if ($userRole != 'student' && $userRole != 'parents')
+                                                    <td>
+                                                        <a href="{{ route('edit.approveleave', $leave->id) }}"
+                                                            class="btn btn-info btn-sm">Edit</a>
 
-                                                    <a href="{{ route('destroy', $leave->id) }}"
-                                                        class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>
-                                                </td>
+                                                        <a href="{{ route('destroy', $leave->id) }}"
+                                                            class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>
+                                                    </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                     </tbody>

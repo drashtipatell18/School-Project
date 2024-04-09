@@ -12,10 +12,18 @@
                 <div class="title_left">
                     <h3>Staff Directory List</h3>
                 </div>
-                <div class="button-container">
-                    <a href="{{ route('create.staff.directory') }}"><button type="button"
-                            class="btn btn-primary btn-sm mt-1">Add Staff Direcory</button></a>
-                </div>
+                @if (auth()->check())
+                    @php
+                        $userRole = strtolower(auth()->user()->role);
+                    @endphp
+                @endif
+                @if ($userRole != 'librarian')
+                    <div class="button-container">
+                        <a href="{{ route('create.staff.directory') }}"><button type="button"
+                                class="btn btn-primary btn-sm mt-1">Add Staff Direcory</button></a>
+                    </div>
+                @endif
+
             </div>
             <div class="clearfix"></div>
             <div class="row" style="display: block;">
@@ -47,8 +55,9 @@
                                             <th>Mobile NUmber</th>
                                             <th>PAN Number</th>
                                             <th>Photo</th>
-                                            <th>Action</th>
-                                        </tr>
+                                            @if ($userRole != 'librarian')
+                                            <th class=" no-link last"><span class="nobr">Action</span></th>
+                                        @endif                                        </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($staff_directory as $index => $staff_dire)
@@ -70,7 +79,7 @@
                                                     @endif
                                                 </td>
 
-
+                                                @if ($userRole != 'librarian')
                                                 <td>
                                                     <a href="{{ route('edit.staff.directory', $staff_dire->id) }}"
                                                         class="btn btn-info btn-sm">Edit</a>
@@ -78,6 +87,7 @@
                                                         class="btn btn-danger btn-sm"
                                                         onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>
                                                 </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                     </tbody>

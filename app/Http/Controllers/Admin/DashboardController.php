@@ -8,12 +8,20 @@ use App\Models\User;
 use App\Mail\ForgotPasswordMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use App\Models\Admin\StudentAdmission;
+use App\Models\Admin\Teacher;
+use App\Models\Admin\Clas;
+use App\Models\FrontCMS\Event;
 
 class DashboardController extends Controller
 {
     public function adminDashboard()
     {
-        return view('dashboard.dashboard');
+        $students = StudentAdmission::count();
+        $teachers = Teacher::count();
+        $classs = Clas::count();
+        $events = Event::count();
+        return view('dashboard.dashboard',compact('students','teachers','classs','events'));
     }
 
     public function showForgetPasswordForm()

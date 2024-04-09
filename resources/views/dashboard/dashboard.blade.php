@@ -1,32 +1,32 @@
-@extends('admin.main')
+{{-- @extends('admin.main')
 @section('content')
      <!-- page content -->
      <div class="right_col" role="main">
       <div class="row" style="display: inline-block;">
         <div class=" top_tiles" style="margin: 10px 0;">
           <div class="col-md-3 col-sm-3  tile">
-            <span>Total Sessions</span>
+            <span>Total Student</span>
             <h2>231,809</h2>
             <span class="sparkline_one" style="height: 160px;">
                   <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
               </span>
           </div>
           <div class="col-md-3 col-sm-3  tile">
-            <span>Total Revenue</span>
+            <span>Total Teacher</span>
             <h2>$ 231,809</h2>
             <span class="sparkline_one" style="height: 160px;">
                   <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
               </span>
           </div>
           <div class="col-md-3 col-sm-3  tile">
-            <span>Total Sessions</span>
+            <span>Total Income</span>
             <h2>231,809</h2>
             <span class="sparkline_one" style="height: 160px;">
                   <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 125px;"></canvas>
               </span> 
           </div>
           <div class="col-md-3 col-sm-3  tile">
-            <span>Total Sessions</span>
+            <span>Total Events</span>
             <h2>231,809</h2>
             <span class="sparkline_one" style="height: 160px;">
                   <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
@@ -550,6 +550,88 @@
         </div>
       </div>
     </div>
-@endsection
-       
+@endsection --}}
+@extends('admin.main')
+@section('content')
+    <style>
+        @media (max-width: 576px) {
+            .ml-4 {
+                margin-left: 1rem !important;
+                text-align: center;
+                font-size: 1.25rem;
+            }
+
+            .text-center a button {
+                padding: 0.25rem 0.5rem;
+                font-size: 0.75rem;
+                margin-bottom: 5px !important;
+            }
+
+            .fa-money {
+                font-size: 2rem;
+            }
+
+            .mt-4 {
+                margin-top: 0 !important;
+            }
+
+            .mb-5 {
+                margin-bottom: 1rem !important;
+            }
+        }
+
+        .custom-column {
+            border: 1px solid #ccc;
+            padding: 70px;
+            color: black;
+            background-color: rgb(218, 216, 216);
+            text-align: center;
+            / Center the text within each column /
+        }
+    </style>
+    <div class="right_col" role="main">
+        <div class="page-title mb-5">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3 class="ml-4 mt-4">Dashboard</h3>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="row" style="display: block;">
+            <div class="clearfix"></div>
+            <div class="col-md-12 col-sm-12">
+                <div class="x_panel">
+                    <div class="x_content">
+
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-6">
+                                    <div class="custom-column mt-5">
+                                        <h4>Total Student</h4>
+                                        <h4>{{ $students }}</h4>
+                                    </div>
+                                    <div class="custom-column mt-3">
+                                        <h4>Total Teachers</h4>
+                                        <h4>{{ $teachers }}</h4>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="custom-column mt-5">
+                                        <h4>Total Class</h4>
+                                        <h4>{{ $classs }}</h4>
+                                    </div>
+                                    <div class="custom-column mt-3 mb-5">
+                                        <h4>Total Events</h4>
+                                        <h4>{{ $events }}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection      
       

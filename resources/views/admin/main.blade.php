@@ -95,6 +95,7 @@
         .profile_info {
             margin-left: -19px;
         }
+
         .navbar {
             padding: 0px !important;
         }
@@ -297,7 +298,7 @@
                                         </ul>
                                     </li>
                                 @endif
-                                @if ($userRole != 'librarian')
+                                @if ($userRole != 'librarian' )
                                     <li><a><i class="fa fa-calendar-check-o ftlayer"></i>Attendance<span
                                                 class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
@@ -338,7 +339,7 @@
                                         </ul>
                                     </li>
                                 @endif
-                                @if ($userRole != 'librarian')
+                                @if ($userRole != 'librarian' && $userRole != 'teacher' && $userRole != 'student'&& $userRole != 'parents')
                                     <li><a><i class="fa fa-usd ftlayer"></i>Income<span
                                                 class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
@@ -348,7 +349,7 @@
                                     </li>
                                 @endif
 
-                                @if ($userRole != 'teacher' && $userRole != 'librarian')
+                                @if ($userRole != 'teacher' && $userRole != 'librarian' && $userRole != 'student'&& $userRole != 'parents')
                                     <li><a><i class="fa fa-credit-card ftlayer"></i>Expenses<span
                                                 class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
@@ -357,15 +358,15 @@
                                         </ul>
                                     </li>
                                 @endif
-                                @if($userRole == 'student' && $userRole == 'parents')
-                                <li><a><i class="fa fa-ioxhost ftlayer"></i>Front Office<span
-                                            class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="{{ route('visitor.book') }}">Visitor Book</a></li>
-                                    </ul>
-                                </li>
+                                @if ($userRole == 'student' && $userRole == 'parents' )
+                                    <li><a><i class="fa fa-ioxhost ftlayer"></i>Front Office<span
+                                                class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="{{ route('visitor.book') }}">Visitor Book</a></li>
+                                        </ul>
+                                    </li>
                                 @endif
-                                @if ($userRole != 'teacher' && $userRole != 'librarian')
+                                @if ($userRole != 'teacher' && $userRole != 'librarian' && $userRole != 'student'&& $userRole != 'parents')
                                     <li><a><i class="fa fa-ioxhost ftlayer"></i>Front Office<span
                                                 class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
@@ -380,18 +381,30 @@
                                     </li>
                                 @endif
 
-                                <li><a><i class="fa fa-sitemap ftlayer"></i>Human Resource<span
-                                            class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="{{ route('staff.directory') }}">Staff Directory</a>
-                                        </li>
-                                        <li><a href="{{ route('approve.leave.request') }}">Approve Leave Request</a>
-                                        </li>
-                                        <li><a href="{{ route('leave.type') }}">Leave Type</a></li>
-                                        <li><a href="{{ route('designation') }}">Designation</a></li>
-                                        <li><a href="{{ route('department') }}">Department</a></li>
-                                    </ul>
-                                </li>
+                                @if ($userRole == 'librarian' )
+                                    <li><a><i class="fa fa-sitemap ftlayer"></i>Human Resource<span
+                                                class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="{{ route('staff.directory') }}">Staff Directory</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                @endif
+                                @if ($userRole != 'librarian' && $userRole != 'student'&& $userRole != 'parents')
+                                    <li><a><i class="fa fa-sitemap ftlayer"></i>Human Resource<span
+                                                class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="{{ route('staff.directory') }}">Staff Directory</a>
+                                            </li>
+                                            <li><a href="{{ route('approve.leave.request') }}">Approve Leave
+                                                    Request</a>
+                                            </li>
+                                            <li><a href="{{ route('leave.type') }}">Leave Type</a></li>
+                                            <li><a href="{{ route('designation') }}">Designation</a></li>
+                                            <li><a href="{{ route('department') }}">Department</a></li>
+                                        </ul>
+                                    </li>
+                                @endif
                                 @if ($userRole == 'student' && $userRole == 'parents')
                                     <li><a href="{{ route('noticeborads') }}"><i
                                                 class="fa fa-bullhorn ftlayer"></i>Notice Board</a></li>

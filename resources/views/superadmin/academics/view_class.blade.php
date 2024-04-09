@@ -12,10 +12,17 @@
                 <div class="title_left">
                     <h3>Class</h3>
                 </div>
-                <div class="button-container">
-                    <a href="{{ route('create.class') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Add
-                            Class</button></a>
-                </div>
+                @if (auth()->check())
+                    @php
+                        $userRole = strtolower(auth()->user()->role);
+                    @endphp
+                @endif
+                @if ($userRole != 'teacher')
+                    <div class="button-container">
+                        <a href="{{ route('create.class') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Add
+                                Class</button></a>
+                    </div>
+                @endif
             </div>
             <div class="clearfix"></div>
             <div class="row" style="display: block;">
@@ -41,7 +48,9 @@
                                             <th>No</th>
                                             <th class="">Class</th>
                                             <th class="">Section</th>
-                                            <th class=""><span class="nobr">Action</span></th>
+                                            @if ($userRole != 'teacher')
+                                                <th class=""><span class="nobr">Action</span></th>
+                                            @endif
                                         </tr>
                                     </thead>
 
@@ -51,13 +60,15 @@
                                                 <td>{{ $index + 1 }}</td>
                                                 <td class="">{{ $cla->class }}</td>
                                                 <td class="">{{ $cla->section }}</td>
-                                                <td>
-                                                    <a href="{{ route('edit.class', $cla->id) }}"
-                                                        class="btn btn-info btn-sm">Edit</a>
+                                                @if ($userRole != 'teacher')
+                                                    <td>
+                                                        <a href="{{ route('edit.class', $cla->id) }}"
+                                                            class="btn btn-info btn-sm">Edit</a>
 
-                                                    <a href="{{ route('destroy', $cla->id) }}"
-                                                        class="btn btn-danger btn-sm">Delete</a>
-                                                </td>
+                                                        <a href="{{ route('destroy', $cla->id) }}"
+                                                            class="btn btn-danger btn-sm">Delete</a>
+                                                    </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                     </tbody>

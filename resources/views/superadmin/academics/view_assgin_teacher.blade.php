@@ -12,10 +12,17 @@
                 <div class="title_left">
                     <h3>Assgin Teacher List</h3>
                 </div>
-                <div class="button-container">
-                    <a href="{{ route('create.teacherassign') }}"><button type="button"
-                            class="btn btn-primary btn-sm mt-1">Add Assign Teacher</button></a>
-                </div>
+                @if (auth()->check())
+                    @php
+                        $userRole = strtolower(auth()->user()->role);
+                    @endphp
+                @endif
+                @if ($userRole != 'teacher')
+                    <div class="button-container">
+                        <a href="{{ route('create.teacherassign') }}"><button type="button"
+                                class="btn btn-primary btn-sm mt-1">Add Assign Teacher</button></a>
+                    </div>
+                @endif
             </div>
             <div class="clearfix"></div>
             <div class="row" style="display: block;">
@@ -42,7 +49,9 @@
                                             <th class="">Class</th>
                                             <th class="">Section</th>
                                             <th class="">Teacher</th>
-                                            <th class=""><span class="nobr">Action</span></th>
+                                            @if ($userRole != 'teacher')
+                                                <th class=""><span class="nobr">Action</span></th>
+                                            @endif
                                         </tr>
                                     </thead>
 
@@ -53,13 +62,15 @@
                                                 <td class="">{{ $teacher->class }}</td>
                                                 <td class="">{{ $teacher->section }}</td>
                                                 <td class="">{{ $teacher->teacher }}</td>
-                                                <td>
-                                                    <a href="{{ route('edit.teacherassign', $teacher->id) }}"
-                                                        class="btn btn-info btn-sm">Edit</a>
+                                                @if ($userRole != 'teacher')
+                                                    <td>
+                                                        <a href="{{ route('edit.teacherassign', $teacher->id) }}"
+                                                            class="btn btn-info btn-sm">Edit</a>
 
-                                                    <a href="{{ route('destroy.teacherassign', $teacher->id) }}"
-                                                        class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>
-                                                </td>
+                                                        <a hr ef="{{ route('destroy.teacherassign', $teacher->id) }}"
+                                                            class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>
+                                                    </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                     </tbody>
