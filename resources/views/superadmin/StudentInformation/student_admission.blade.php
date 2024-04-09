@@ -138,14 +138,17 @@
                                             name="admission_date"
                                             value="{{ old('admission_date', isset($student) ? $student->admission_date : '') }}">
                                     </div>
+                                    @if (isset($student) && $student->student_photo)
+                                        <div class="col-md-3 col-sm-3">
+                                            <label class="col-form-label col-md-3 col-sm-3 label-align">Old Student Photo
+                                                *</label>
+                                            <input type="hidden" value="{{ $student->student_photo }}">
+                                            <img src="{{ asset('student_photo/' . $student->student_photo) }}"
+                                                alt="Image" width="100">
+                                        </div>
+                                    @endif
                                     <div class="col-md-3 col-sm-3">
                                         <label for="admissionno">Student Photo *</label>
-                                        @if (isset($student) && $student->student_photo)
-                                            <img src="{{ asset('storage/student_photos/' . $student->student_photo) }}"
-                                                alt="Student Photo" width="100">
-                                        @else
-                                            No Photo Available
-                                        @endif
                                         <input type="file" class="form-control" name="student_photo">
                                     </div>
 
@@ -211,14 +214,17 @@
                                         <input type="email" class="form-control" name="father_email"
                                             value="{{ old('father_email', isset($student) ? $student->father_email : '') }}">
                                     </div>
+                                    @if (isset($student) && $student->mother_photo)
+                                        <div class="item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3 label-align">Old Father Photo
+                                                *</label>
+                                            <input type="hidden" value="{{ $student->mother_photo }}">
+                                            <img src="{{ asset('father_photo/' . $student->mother_photo) }}"
+                                                alt="Image" width="100">
+                                        </div>
+                                    @endif
                                     <div class="col-md-3 col-sm-3">
                                         <label>Father Photo *</label>
-                                        @if (isset($student) && $student->father_photo)
-                                            <img src="{{ asset('storage/father_photos/' . $student->father_photo) }}"
-                                                alt="Father Photo" width="100">
-                                        @else
-                                            No Photo Available
-                                        @endif
                                         <input type="file" class="form-control" name="father_photo">
                                     </div>
 
@@ -244,14 +250,17 @@
                                         <input type="email" class="form-control" name="mother_email"
                                             value="{{ old('mother_email', isset($student) ? $student->mother_email : '') }}">
                                     </div>
+                                    @if (isset($student) && $student->mother_photo)
+                                        <div class="col-md-3 col-sm-3">
+                                            <label class="col-form-label col-md-3 col-sm-3 label-align">Old Mother Photo
+                                                *</label>
+                                            <input type="hidden" value="{{ $student->mother_photo }}">
+                                            <img src="{{ asset('mother_photo/' . $student->mother_photo) }}"
+                                                alt="Image" width="100">
+                                        </div>
+                                    @endif
                                     <div class="col-md-3 col-sm-3">
                                         <label>Mother Photo *</label>
-                                        @if (isset($student) && $student->mother_photo)
-                                            <img src="{{ asset('storage/mother_photos/' . $student->mother_photo) }}"
-                                                alt="Mother Photo" width="100">
-                                        @else
-                                            No Photo Available
-                                        @endif
                                         <input type="file" class="form-control" name="mother_photo">
                                     </div>
 

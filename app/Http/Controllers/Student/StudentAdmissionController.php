@@ -56,20 +56,19 @@ class StudentAdmissionController extends Controller
         if ($request->hasFile('student_photo')){
             $studentPhoto = $request->file('student_photo');
             $fileName = time() . '.' . $studentPhoto->getClientOriginalExtension();
-            $storedPath = $studentPhoto->storeAs('student_photos', $fileName, 'public');
+            $studentPhoto->move('student_photos', $fileName);
         }
 
         if ($request->hasFile('father_photo')){
             $fatherPhoto = $request->file('father_photo');
-            $timestampedFather = time() . '.' .$fatherPhoto->getClientOriginalExtension();
-            $storedPath = $fatherPhoto->storeAs('father_photos', $timestampedFather, 'public');
+            $fatherfileName = time() . '.' . $fatherPhoto->getClientOriginalExtension();
+            $fatherPhoto->move('father_photo', $fatherfileName);
         }
 
         if ($request->hasFile('mother_photo')){
             $motherPhoto = $request->file('mother_photo');
-            $timestampedMother = time() . '.' . $motherPhoto->getClientOriginalExtension();
-            $storedPath = $motherPhoto->storeAs('mother_photos', $timestampedMother, 'public');
-            // dd($fileName, $timestampedFather, $timestampedMother);
+            $motherfileName = time() . '.' . $motherPhoto->getClientOriginalExtension();
+            $motherPhoto->move('mother_photo', $motherfileName);
         }
 
         $student = new StudentAdmission();
@@ -97,12 +96,12 @@ class StudentAdmissionController extends Controller
         $student->father_phone = $request->input('father_phone');
         $student->father_occupation = $request->input('father_occupation');
         $student->father_email = $request->input('father_email');
-        $student->father_photo = $timestampedFather;
+        $student->father_photo = $fatherfileName;
         $student->mother_name = $request->input('mother_name');
         $student->mother_phone = $request->input('mother_phone');
         $student->mother_occupation = $request->input('mother_occupation');
         $student->mother_email = $request->input('mother_email');
-        $student->mother_photo = $timestampedMother;
+        $student->mother_photo = $motherfileName;
         $student->save();
 
         return redirect()->route('student.details.view');
@@ -151,42 +150,28 @@ class StudentAdmissionController extends Controller
         if ($request->hasFile('student_photo')) {
             $studentPhoto = $request->file('student_photo');
             $fileName = time() . '.' . $studentPhoto->getClientOriginalExtension();
-            $storedPath = $studentPhoto->storeAs('student_photos', $fileName, 'public');
-            Storage::disk('public')->delete('student_photos/' . $student->student_photo);
-
+            $studentPhoto->move('student_photo', $fileName);
+    
+            // Update user's image information in the database
             $student->student_photo = $fileName;
-        } else {
-            
-            $student->student_photo;
-        }
+        } 
         
-
         if ($request->hasFile('father_photo')) {
             $fatherPhoto = $request->file('father_photo');
             $timestampedFather = time() . '.' . $fatherPhoto->getClientOriginalExtension();
-            $storedPath = $fatherPhoto->storeAs('father_photos', $timestampedFather, 'public');
-
-            Storage::disk('public')->delete('father_photos/' . $student->father_photo);
-            
+            $fatherPhoto->move('father_photo', $timestampedFather);
+    
+            // Update user's image information in the database
             $student->father_photo = $timestampedFather;
         }
-        else{
-            $student->father_photo;
-        }
-
+       
         if ($request->hasFile('mother_photo')) {
             $motherPhoto = $request->file('mother_photo');
             $timestampedMother = time() . '.' . $motherPhoto->getClientOriginalExtension();
-            $storedPath = $motherPhoto->storeAs('mother_photos', $timestampedMother, 'public');
-
-            Storage::disk('public')->delete('mother_photos/ '. $student->mother_photo);
-
+            $motherPhoto->move('mother_photo', $timestampedMother);
             $student->mother_photo = $timestampedMother;
         }
-        else{
-            $student->mother_photo;
-        }
-
+        
         // Save the updated student record
         $student->save();
 

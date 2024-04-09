@@ -102,16 +102,18 @@
                                     </div>
                                 </div>
 
+                                @if (isset($events) && $events->image)
+                                <div class="item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Old Image *</label>                                   
+                                        <input type="hidden" value="{{ $events->image}}">
+                                        <img src="{{ asset('events/' . $events->image) }}" alt="Image" width="100">
+                                </div>
+                                @endif
+
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Image*</label>
                                     <div class="col-md-6 col-sm-6">
                                         <label for="admissionno">Image *</label>
-                                        @if (isset($events) && $events->image)
-                                            <img src="{{ asset('storage/events/' . $events->image) }}" alt="Event Image"
-                                                width="200">
-                                        @else
-                                            No Photo Available
-                                        @endif
                                         <input type="file" class="form-control" name="image">
                                         @error('image')
                                             <span class="invalid-feedback" style="color: red">

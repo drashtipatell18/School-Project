@@ -373,9 +373,9 @@
                                         <li><a href="{{ route('department') }}">Department</a></li>
                                     </ul>
                                 </li>
-
+                                @if ($userRole == 'student' && $userRole == 'parents')
                                 <li><a href="{{ route('noticeborads') }}"><i class="fa fa-bullhorn ftlayer"></i>Notice Board</a></li>
-                                
+                                @endif
                                 @if ($userRole != 'student' && $userRole != 'parents')
                                 <li><a><i class="fa fa-bullhorn ftlayer"></i>Communicate<span
                                             class="fa fa-chevron-down"></span></a>

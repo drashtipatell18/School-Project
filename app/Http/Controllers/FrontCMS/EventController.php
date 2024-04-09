@@ -43,7 +43,7 @@ class EventController extends Controller
         if ($request->hasFile('image')){
             $image = $request->file('image');
             $fileName = time() . '.' . $image->getClientOriginalExtension();
-            $storedPath = $image->storeAs('public/events', $fileName); 
+            $image->move('events', $fileName);
         }
 
         $event = Event::create([
@@ -87,16 +87,11 @@ class EventController extends Controller
         $events = Event::find($id);
 
         if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('events', $filename, 'public');
-
-            // Delete the old file if it exists
-            if ($events->image) {
-                Storage::disk('public')->delete('events/' . $events->image);
-            }
-
-            // Update the attach_document field with the new filename
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $image->move('images', $filename);
+    
+            // Update user's image information in the database
             $events->image = $filename;
         }
 

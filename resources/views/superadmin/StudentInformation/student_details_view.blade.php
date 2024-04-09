@@ -77,7 +77,7 @@
                                                 <td>{{ $student->phone }}</td>
                                                 <td>
                                                     @if ($student->student_photo)
-                                                        <img src="{{ asset('storage/student_photos/' . $student->student_photo) }}"
+                                                        <img src="{{ asset('student_photo/' . $student->student_photo) }}"
                                                             alt="Student Photo" width="100">
                                                     @else
                                                         No Photo Available
