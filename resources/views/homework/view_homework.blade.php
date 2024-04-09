@@ -17,7 +17,7 @@
                         $userRole = strtolower(auth()->user()->role);
                     @endphp
                 @endif
-                @if ($userRole != 'student' || $userRole != 'parents')
+                @if ($userRole != 'student' && $userRole != 'parents')
                     <div class="button-container">
                         <a href="{{ route('create.homework') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Add
                                 Homework</button></a>
@@ -54,7 +54,7 @@
                                             <th>Submission Date</th>
                                             <th>Note</th>
                                             <th>Status</th>
-                                            @if ($userRole != 'student' || $userRole != 'parents')
+                                            @if ($userRole != 'student' && $userRole != 'parents')
                                                 <th class=" no-link last"><span class="nobr">Action</span></th>
                                             @endif
                                         </tr>
@@ -84,7 +84,7 @@
                                                             Submission</button>
                                                     @endif
                                                 </td>
-                                                @if ($userRole != 'student' || $userRole != 'parents')
+                                                @if ($userRole != 'student' && $userRole != 'parents')
                                                     <td>
                                                         <a href="{{ route('edit.homework', $home->id) }}"
                                                             class="btn btn-info btn-sm">Edit</a>

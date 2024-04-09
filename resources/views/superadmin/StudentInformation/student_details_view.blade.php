@@ -17,7 +17,7 @@
                         $userRole = strtolower(auth()->user()->role);
                     @endphp
                 @endif
-                @if ($userRole != 'student' || $userRole != 'parents')
+                @if ($userRole != 'student' && $userRole != 'parents')
                     <div class="button-container">
                         <a href="{{ route('create.student') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Add
                                 Student Admission</button></a>
@@ -84,7 +84,7 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    @if ($userRole == 'student' || $userRole == 'parents')
+                                                    @if ($userRole == 'student' && $userRole == 'parents')
                                                         <a href="{{ route('profilepic', $student->id) }}"
                                                             class="btn btn-info btn-sm"><i class="fa fa-sign-out"></i></a>
                                                     @else

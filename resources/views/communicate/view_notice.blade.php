@@ -17,7 +17,7 @@
                         $userRole = strtolower(auth()->user()->role);
                     @endphp
                 @endif
-                @if ($userRole != 'student' || $userRole != 'parents')
+                @if ($userRole != 'student' && $userRole != 'parents')
                     <div class="button-container">
                         <a href="{{ route('create.noticeborad') }}"><button type="button"
                                 class="btn btn-primary btn-sm mt-1">Post
@@ -49,7 +49,7 @@
                                             <th>No</th>
                                             <th class="">Title </th>
                                             <th class="">Description </th>
-                                            @if ($userRole != 'student' || $userRole != 'parents')
+                                            @if ($userRole != 'student' && $userRole != 'parents')
                                                 <th class=" no-link last"><span class="nobr">Action</span></th>
                                             @endif
                                         </tr>
@@ -63,7 +63,7 @@
                                                 <td class="">
                                                     {{ implode(' ', array_slice(str_word_count($notice->message, 1), 0, 15)) }}
                                                 </td>
-                                                @if ($userRole != 'student' || $userRole != 'parents')
+                                                @if ($userRole != 'student' && $userRole != 'parents')
                                                     <td>
                                                         <a href="{{ route('edit.noticeborad', $notice->id) }}"
                                                             class="btn btn-info btn-sm">Edit</a>

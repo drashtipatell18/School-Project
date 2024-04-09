@@ -41,15 +41,12 @@ class StudentAdmissionController extends Controller
     {
         $selectedClass = $request->input('class');
         $sections = Clas::where('class', $selectedClass)->pluck('section');
-        // dd($sections);
         return response()->json(['sections' => $sections]);
     }    
     public function StudentCreate()
     {       
-        // $student = DB::table('student_addmissions')->first();
-        // dd($student);
+      
         $classes = DB::table('class')->get();
-        // dd($classes);
         $sections = Section::pluck('section');
         
         return view('superadmin.StudentInformation.student_admission',compact('classes','sections'));
@@ -213,9 +210,10 @@ class StudentAdmissionController extends Controller
     }
     public function parents(Request $request, $id)
     {
-        $userRole = 'parents'; // Assuming $userRole is set to 'parents' in this context
-        $student = StudentAdmission::find($id); // Fetch the student with the given ID
-        return view('superadmin.StudentInformation.parents', compact('userRole', 'student'));
+        $student = StudentAdmission::find($id);
+        $class = Clas::all();
+        $sections = Section::all();
+        return view('superadmin.StudentInformation.parents', compact('student', 'class', 'sections'));
     }
 
         

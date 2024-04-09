@@ -17,7 +17,7 @@
                         $userRole = strtolower(auth()->user()->role);
                     @endphp
                 @endif
-                @if ($userRole != 'student' || $userRole != 'parents')
+                @if ($userRole != 'student' && $userRole != 'parents')
                     <div class="button-container">
                         <a href="{{ route('create.offlinepayment') }}"><button type="button"
                                 class="btn btn-primary btn-sm mt-1">Add Payment</button></a>
@@ -58,7 +58,7 @@
                                             <th>Status</th>
                                             <th>Status Date</th>
                                             <th>Payment ID</th>
-                                            @if ($userRole != 'student' || $userRole != 'parents')<th class=" no-link last"><span class="nobr">Action</span></th> @endif
+                                            @if ($userRole != 'student' && $userRole != 'parents')<th class=" no-link last"><span class="nobr">Action</span></th> @endif
                                         </tr>
                                     </thead>
 
@@ -90,7 +90,7 @@
                                                 </td>
                                                 <td>{{ $dateFormatted = date('d-m-Y h:i A', strtotime($pay->created_at)) }}
                                                 <td>{{ $pay->id }}</td>
-                                                @if ($userRole != 'student' || $userRole != 'parents')
+                                                @if ($userRole != 'student' && $userRole != 'parents')
                                                 <td>
                                                     <a href="{{ route('edit.offlinepayment', $pay->id) }}"
                                                         class="btn btn-info btn-sm">Edit</a>

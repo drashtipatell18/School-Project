@@ -17,7 +17,7 @@
                         $userRole = strtolower(auth()->user()->role);
                     @endphp
                 @endif
-                @if ($userRole != 'student' || $userRole != 'parents')
+                @if ($userRole != 'student' && $userRole != 'parents')
                     <div class="button-container">
                         <a href="{{ route('create.book') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Add
                                 Book</button></a>
@@ -58,7 +58,7 @@
                                             <th class="">Available</th>
                                             <th class="">Price</th>
                                             <th class="">Post Date </th>
-                                            @if ($userRole != 'student' || $userRole != 'parents')
+                                            @if ($userRole != 'student' && $userRole != 'parents')
                                                 <th class=" no-link last"><span class="nobr">Action</span></th>
                                             @endif
                                         </tr>
@@ -82,7 +82,7 @@
                                                 <td class="">{{ $book->available }}</td>
                                                 <td class="">{{ $book->price }}</td>
                                                 <td class="">{{ $book->postdate }}</td>
-                                                @if ($userRole != 'student' || $userRole != 'parents')
+                                                @if ($userRole != 'student' && $userRole != 'parents')
                                                     <td>
                                                         <a href="{{ route('edit.book', $book->id) }}"
                                                             class="btn btn-info btn-sm">Edit</a>

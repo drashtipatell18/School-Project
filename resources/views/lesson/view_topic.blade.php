@@ -17,7 +17,7 @@
                     $userRole = strtolower(auth()->user()->role);
                 @endphp
             @endif
-            @if ($userRole != 'student' || $userRole != 'parents')
+            @if ($userRole != 'student' && $userRole != 'parents')
                 <div class="button-container">
                     <a href="{{ route('create.topic') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Add
                             Topic</button></a>
@@ -52,7 +52,7 @@
                                             <th class="">Subject</th>
                                             <th class="">Lesson</th>
                                             <th class="">Name</th>
-                                            @if ($userRole != 'student' || $userRole != 'parents')<th class=""><span class="nobr">Action</span></th>@endif
+                                            @if ($userRole != 'student' && $userRole != 'parents')<th class=""><span class="nobr">Action</span></th>@endif
                                         </tr>
                                     </thead>
 
@@ -66,7 +66,7 @@
                                                 <td class="">{{ $topic->subject }}</td>
                                                 <td class="">{{ $topic->lesson }}</td>
                                                 <td class="">{{ $topic->name }}</td>
-                                                @if ($userRole != 'student' || $userRole != 'parents')
+                                                @if ($userRole != 'student' && $userRole != 'parents')
                                                 <td>
                                                     <a href="{{ route('edit.topic', $topic->id) }}"
                                                         class="btn btn-info btn-sm">Edit</a>

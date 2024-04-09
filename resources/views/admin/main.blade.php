@@ -191,18 +191,7 @@
                                     </ul>
                                 </li>
 
-
-                                @if ($userRole === 'parents' && isset($student) && $student->id)
-                                    <li>
-                                        <a href="{{ route('parents', ['id' => $student->id]) }}">
-                                            <i class="fa fa-user-plus ftlayer"></i> My Profile
-                                        </a>
-                                    </li>
-                                @endif
-
-
-
-                                @if ($userRole != 'teacher' && $userRole != 'librarian')
+                                @if ($userRole != 'teacher' && $userRole != 'librarian' && $userRole != 'student' && $userRole != 'parents')
                                     <li><a><i class="fa fa-user-plus ftlayer"></i> Role
                                             <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
@@ -211,8 +200,7 @@
                                         </ul>
                                     </li>
                                 @endif
-
-                                @if ($userRole != 'librarian')
+                                @if ($userRole != 'librarian' && $userRole != 'student' && $userRole != 'parents')
                                     <li><a><i class="fa fa-edit"></i> Academics
                                             <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
@@ -276,13 +264,10 @@
                                         </ul>
                                     </li>
                                 @endif
-                                @if ($userRole == 'student' || $userRole == 'parents')
-                                    <li><a href="{{ route('student.details.view') }}"><i
-                                                class="fa fa-user-plus ftlayer"></i>My Profile</a></li>
+                                @if( $userRole == 'student' &&  $userRole == 'parents')
+                                    <li><a href="{{ route('student.details.view') }}"><i class="fa fa-user-plus ftlayer"></i>My Profile</a></li>
                                 @endif
-
-
-                                @if ($userRole != 'librarian')
+                                @if ($userRole != 'librarian'  && $userRole != 'student' && $userRole != 'parents')
                                     <li><a><i class="fa fa-user-plus ftlayer"></i>
                                             Student Information<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
@@ -294,7 +279,6 @@
                                         </ul>
                                     </li>
                                 @endif
-
                                 @if ($userRole != 'librarian')
                                     <li><a><i class="fa fa-calendar-check-o ftlayer"></i>Attendance<span
                                                 class="fa fa-chevron-down"></span></a>
@@ -314,7 +298,6 @@
                                         </ul>
                                     </li>
                                 @endif
-
                                 @if ($userRole != 'librarian')
                                     <li><a><i class="fa fa-map-o ftlayer"></i>Examinations<span
                                                 class="fa fa-chevron-down"></span></a>
@@ -337,7 +320,6 @@
                                         </ul>
                                     </li>
                                 @endif
-
                                 @if ($userRole != 'librarian')
                                     <li><a><i class="fa fa-usd ftlayer"></i>Income<span
                                                 class="fa fa-chevron-down"></span></a>
@@ -358,24 +340,24 @@
                                     </li>
                                 @endif
                                 <li><a><i class="fa fa-ioxhost ftlayer"></i>Front Office<span
-                                            class="fa fa-chevron-down"></span></a>
+                                    class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="{{ route('visitor.book') }}">Visitor Book</a></li>
                                     </ul>
                                 </li>
-                                @if ($userRole != 'teacher' && $userRole != 'librarian' && $userRole == 'student' && $userRole == 'parents')
-                                    <li><a><i class="fa fa-ioxhost ftlayer"></i>Front Office<span
-                                                class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
-                                            <li><a href="{{ route('admission.enquiry') }}">Admission Enquiry</a></li>
-                                            <li><a href="{{ route('visitor.book') }}">Visitor Book</a></li>
-                                            <li><a href="{{ route('phone.call.log') }}">Phone Call Log</a></li>
-                                            <li><a href="{{ route('postal.dispatch') }}">Postal Dispatch</a></li>
-                                            <li><a href="{{ route('postal.receive') }}">Postal Receive</a></li>
-                                            <li><a href="{{ route('complaint') }}">Complain</a></li>
-                                            <li><a href="{{ route('purpose') }}">Setup Front Office</a></li>
-                                        </ul>
-                                    </li>
+                                    @if ($userRole != 'teacher' && $userRole != 'librarian' && $userRole == 'student' && $userRole == 'parents')
+                                <li><a><i class="fa fa-ioxhost ftlayer"></i>Front Office<span
+                                            class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{{ route('admission.enquiry') }}">Admission Enquiry</a></li>
+                                        <li><a href="{{ route('visitor.book') }}">Visitor Book</a></li>
+                                        <li><a href="{{ route('phone.call.log') }}">Phone Call Log</a></li>
+                                        <li><a href="{{ route('postal.dispatch') }}">Postal Dispatch</a></li>
+                                        <li><a href="{{ route('postal.receive') }}">Postal Receive</a></li>
+                                        <li><a href="{{ route('complaint') }}">Complain</a></li>
+                                        <li><a href="{{ route('purpose') }}">Setup Front Office</a></li>
+                                    </ul>
+                                </li>
                                 @endif
 
                                 <li><a><i class="fa fa-sitemap ftlayer"></i>Human Resource<span
@@ -391,20 +373,19 @@
                                     </ul>
                                 </li>
 
-                                <li><a href="{{ route('noticeborads') }}"><i
-                                            class="fa fa-bullhorn ftlayer"></i>Notice Board</a></li>
-
+                                <li><a href="{{ route('noticeborads') }}"><i class="fa fa-bullhorn ftlayer"></i>Notice Board</a></li>
+                                
                                 @if ($userRole != 'student' && $userRole != 'parents')
-                                    <li><a><i class="fa fa-bullhorn ftlayer"></i>Communicate<span
-                                                class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
-                                            <li><a href="{{ route('noticeborads') }}">Notice Board</a></li>
-                                            <li><a href="{{ route('sendemails') }}">Send Email</a></li>
-                                            <li><a href="{{ route('sendsms') }}">Send SMS</a></li>
-                                            <li><a href="{{ route('emailtemplates') }}">Email Template</a></li>
-                                            <li><a href="{{ route('smstemplates') }}">SMS Template</a></li>
-                                        </ul>
-                                    </li>
+                                <li><a><i class="fa fa-bullhorn ftlayer"></i>Communicate<span
+                                            class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{{ route('noticeborads') }}">Notice Board</a></li>
+                                        <li><a href="{{ route('sendemails') }}">Send Email</a></li>
+                                        <li><a href="{{ route('sendsms') }}">Send SMS</a></li>
+                                        <li><a href="{{ route('emailtemplates') }}">Email Template</a></li>
+                                        <li><a href="{{ route('smstemplates') }}">SMS Template</a></li>
+                                    </ul>
+                                </li>
                                 @endif
                                 @if ($userRole != 'teacher')
                                     <li><a><i class="fa fa-book ftlayer"></i>Library<span

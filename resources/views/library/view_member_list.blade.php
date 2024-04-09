@@ -90,7 +90,7 @@
                 @endphp
             @endif
             <div class="col-md-9">
-                @if ($userRole != 'student' || $userRole != 'parents')
+                @if ($userRole != 'student' && $userRole != 'parents')
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Issue Book</h3>

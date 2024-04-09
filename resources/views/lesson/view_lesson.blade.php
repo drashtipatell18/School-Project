@@ -15,9 +15,10 @@
                 @if (auth()->check())
                     @php
                         $userRole = strtolower(auth()->user()->role);
+                        // dd($userRole);
                     @endphp
                 @endif
-                @if ($userRole != 'student' || $userRole != 'parents')
+                @if ($userRole != 'student' && $userRole != 'parents')
                     <div class="button-container">
                         <a href="{{ route('create.lesson') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Add
                                 Lesson</button></a>
@@ -52,7 +53,7 @@
                                             <th class="">Subject Group</th>
                                             <th class="">Subject</th>
                                             <th class="">Lesson</th>
-                                            @if ($userRole != 'student' || $userRole != 'parents') <th class=""><span class="nobr">Action</span></th>@endif
+                                            @if ($userRole != 'student' && $userRole != 'parents') <th class=""><span class="nobr">Action</span></th>@endif
                                         </tr>
                                     </thead>
 
@@ -65,7 +66,7 @@
                                                 <td class="">{{ $lesson->subject_group }}</td>
                                                 <td class="">{{ $lesson->subject }}</td>
                                                 <td class="">{!! str_replace(',', '<br>', $lesson->name) !!}</td>
-                                                @if ($userRole != 'student' || $userRole != 'parents')
+                                                @if ($userRole != 'student' && $userRole != 'parents')
                                                 <td>
                                                     <a href="{{ route('edit.lesson', $lesson->id) }}"
                                                         class="btn btn-info btn-sm">Edit</a>
