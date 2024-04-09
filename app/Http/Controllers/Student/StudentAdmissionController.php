@@ -204,15 +204,25 @@ class StudentAdmissionController extends Controller
         
     public function getImageByIdStud(Request $request)
     {
-        echo 'hfghfgh';
         $studentid = $request->input('id');
         $student = StudentAdmission::find($studentid);
-        echo '<pre>';
-        print_r($student);
-        echo '</pre>';exit;
-        if ($student && $student->image) {
-            return response()->json(['image' => $student->image]);
+        $photos = [];
+
+        // Check if student data exists and has photos
+        if ($student) {
+            if ($student->student_photo) {
+                $photos['student_photo'] = $student->student_photo;
+            }
+
+            if ($student->father_photo) {
+                $photos['father_photo'] = $student->father_photo;
+            }
+
+            if ($student->mother_photo) {
+                $photos['mother_photo'] = $student->mother_photo;
+            }
         }
-        return response()->json(['image' => null]);
+
+        return response()->json(['photos' => $photos]);
     }
 }

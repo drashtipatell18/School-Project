@@ -84,9 +84,12 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    @if ($userRole == 'student' && $userRole == 'parents')
+                                                    @if ($userRole == 'student')
                                                         <a href="{{ route('profilepic', $student->id) }}"
                                                             class="btn btn-info btn-sm"><i class="fa fa-sign-out"></i></a>
+                                                    @elseif ($userRole == 'parents')
+                                                         <a href="{{ route('parents', $student->id) }}"
+                                                        class="btn btn-info btn-sm"><i class="fa fa-sign-out"></i></a>
                                                     @else
                                                         <a href="{{ route('edit.student', $student->id) }}"
                                                             class="btn btn-info btn-sm">Edit</a>

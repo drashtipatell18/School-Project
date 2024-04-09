@@ -98,6 +98,9 @@
             border: 0;
             padding: 5px;
         }
+        .box-body .box-profile {
+            text-align: center !important;
+        }
     </style>
     <div class="right_col" role="main">
         <div class="row" style="display: block;">
@@ -105,9 +108,10 @@
                 <div class="box box-primary">
                     <div claclassss="box-body box-profile">
                         <input type="hidden" id="studentid" value="{{ $student->id }}">
+                        <div class="text-center">
                         <img class="profile-user-img img-responsive img-circle" id="profilePicture" src=""
                             alt="User profile picture" style="height:100px">
-
+                        </div>
                         <h3 class="profile-username text-center">{{ $student->first_name . ' ' . $student->last_name }}</h3>
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
@@ -203,11 +207,10 @@
                                             <tbody>
                                                 <tr>
                                                     <td width="35%">Father Name</td>
-                                                    <td>{{ $student->father_name	 }}</td>
-                                                    <td rowspan="3" width="100"><img
-                                                            class="profile-user-img img-responsive img-rounded border0"
-                                                            src="             
-                https://demo.smart-school.in/uploads/student_images/1676095456-61039820963e72fe03a814!4H8g7_587.jpg?1712565913        ">
+                                                    <td>{{ $student->father_name }}</td>
+                                                    <td rowspan="3" ><img
+                                                            class="profile-user-img img-responsive img-rounded border0" id="fatherPhoto"
+                                                            src="" width="100px">
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -223,10 +226,8 @@
                                                     <td>{{ $student->mother_name }}</td>
 
                                                     <td rowspan="3" width="100"> <img
-                                                            class="profile-user-img img-responsive img-rounded border0"
-                                                            src="
-            https://demo.smart-school.in/uploads/student_images/1mother.jpg?1712565913        
-            ">
+                                                            class="profile-user-img img-responsive img-rounded border0" id="motherPhoto"
+                                                            src="">
                                                     </td>
 
                                                 </tr>
@@ -280,29 +281,36 @@
         <script>
             $(document).ready(function() {
                 $('#table').DataTable();
+            });
 
-                function updateProfilePicture(studid) {
-                    $.ajax({
-                        type: 'GET',
-                        url: '/get-imagebyidstud',
-                        data: {
-                            id: studid
-                        },
-                        success: function(response) {
-                            console.log(response.image);
-                            if (response.image) {
-                                $('#profilePicture').attr('src', '/student_photos/' + response.image);
-                            }
-                        },
-                        error: function(xhr, status, error) {
-                            console.error('Error:', error);
+            function updateProfilePicture(studid) {
+                $.ajax({
+                    type: 'GET',
+                    url: '/get-imagebyidstud',
+                    data: {
+                        id: studid
+                    },
+                    success: function(response) {
+                        // Assuming response is a JSON object with student details
+                        var photos = response.photos;
+                        if (photos.student_photo) {
+                            $("#profilePicture").attr("src", '/father_photo/' + photos.student_photo);
+                        } else if (photos.father_photo) {
+                            $("#fatherPhoto").attr("src", '/student_photo/' + photos.father_photo);
+                        } else if (photos.mother_photo) {
+                            $("#motherPhoto").attr("src", '/mother_photo/' + photos.mother_photo);
                         }
-                    });
-                }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error fetching student details:", error);
+                    }
+                });
+            }
 
 
-
-
+            $(document).ready(function() {
+                var studentId = $("#studentid").val();
+                updateProfilePicture(studentId);
             });
         </script>
     @endpush

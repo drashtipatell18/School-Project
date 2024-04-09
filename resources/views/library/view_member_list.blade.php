@@ -60,9 +60,10 @@
                     <div class="box-body box-profile">
                         <input type="hidden" id="userIdInput" value="{{ $members->userid }}">
                         <input type="hidden" id="memberid" value="{{ $members->id }}">
-                        <img class="profile-user-img img-responsive img-circle" id="profilePicture" src=""
-                            alt="User profile picture">
-
+                        <div class="text-center">
+                            <img class="profile-user-img img-responsive img-circle" id="profilePicture" src=""
+                                alt="User profile picture">
+                        </div>
                         <h3 class="profile-username text-center">{{ $members->name }}</h3>
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
