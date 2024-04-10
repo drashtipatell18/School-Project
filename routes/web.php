@@ -70,6 +70,9 @@ Route::post('/loginstore',[HomeController::class,'LoginStore'])->name('loginstor
 Route::get('/logout',[HomeController::class,'Logout'])->name('logout');
 Route::get('/forget-password', [DashboardController::class, 'showForgetPasswordForm'])->name('forget.password');
 Route::post('/forget-password', [DashboardController::class, 'sendResetLinkEmail'])->name('forget.password.email');
+
+Route::get('/reset/{token}', [DashboardController::class, 'reset'])->name('reset');
+Route::post('/reset/{token}', [DashboardController::class, 'postReset'])->name('post_reset');
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
@@ -564,8 +567,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/cpassword',[HomeController::class,'cPassword'])->name('changepass'); 
     Route::post('/changepassword',[HomeController::class,'changePassword'])->name('changePassword'); 
 
-    Route::get('/reset/{token}', [HomeController::class, 'reset'])->name('reset');
-    Route::post('/reset/{token}', [HomeController::class, 'postReset'])->name('post_reset');
 
 
 
