@@ -212,7 +212,7 @@
                                     <li><a><i class="fa fa-user-plus ftlayer"></i> Role
                                             <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li><a href="{{ route('roles') }}">Role</a>
+                                            <li><a href="{{ route('users') }}">Role</a>
                                             </li>
                                         </ul>
                                     </li>

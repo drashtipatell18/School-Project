@@ -559,12 +559,12 @@ Route::middleware(['auth'])->group(function () {
 
     //Roles 
 
-    Route::get('/admin/role',[HomeController::class,'role'])->name('roles');
-    Route::get('/admin/role/create',[HomeController::class,'roleCreate'])->name('create.role');
-    Route::post('/admin/role/insert',[HomeController::class,'roleInsert'])->name('insert.role');
-    Route::get('/admin/role/edit/{id}', [HomeController::class, 'roleEdit'])->name('edit.role');
-    Route::post('/admin/role/update/{id}', [HomeController::class, 'roleUpdate'])->name('update.role');
-    Route::get('/admin/role/destroy/{id}',[HomeController::class,'roleDestroy'])->name('destroy.role'); 
+    Route::get('/admin/user',[HomeController::class,'user'])->name('users');
+    Route::get('/admin/user/create',[HomeController::class,'userCreate'])->name('create.user');
+    Route::post('/admin/user/insert',[HomeController::class,'userInsert'])->name('insert.user');
+    Route::get('/admin/user/edit/{id}', [HomeController::class, 'userEdit'])->name('edit.user');
+    Route::post('/admin/user/update/{id}', [HomeController::class, 'userUpdate'])->name('update.user');
+    Route::get('/admin/user/destroy/{id}',[HomeController::class,'userDestroy'])->name('destroy.user'); 
     Route::get('/cpassword',[HomeController::class,'cPassword'])->name('changepass'); 
     Route::post('/changepassword',[HomeController::class,'changePassword'])->name('changePassword'); 
 

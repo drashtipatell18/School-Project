@@ -79,18 +79,18 @@ class HomeController extends Controller
         return redirect('/login');
     }
 
-    public function role()
+    public function user()
     {
     //    echo Auth::user()->name;exit;
-        $roles = User::all();
-        return view('roles.view_role',compact('roles'));
+        $users = User::all();
+        return view('users.view_user',compact('users'));
     }
 
-    public function roleCreate()
+    public function userCreate()
     {
-        return view('roles.create_role');
+        return view('users.create_user');
     }
-    public function roleInsert(Request $request)
+    public function userInsert(Request $request)
     {
         $request->validate([
             'name' => 'required',
@@ -100,6 +100,7 @@ class HomeController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
            
         ]);
+        $filename = '';
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -112,20 +113,20 @@ class HomeController extends Controller
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
             'role' => strtolower($request->input('role')),
-            'image' => isset($filename) ? '' : '',
+            'image' => $filename
         ]);
         
-        return redirect()->route('roles')->with('success', 'Roles created successfully.');
+        return redirect()->route('users')->with('success', 'Roles created successfully.');
     }
-    public function roleEdit($id)
+    public function userEdit($id)
     {
-        $roles = User::find($id);
-        return view('roles.create_role', compact('roles'));
+        $users = User::find($id);
+        return view('users.create_user', compact('users'));
     }
 
-    public function roleUpdate(Request $request, $id)
+    public function userUpdate(Request $request, $id)
     {
-        $roles = User::find($id);
+        $users = User::find($id);
         
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -133,24 +134,24 @@ class HomeController extends Controller
             $image->move('images', $filename);
     
             // Update user's image information in the database
-            $roles->image = $filename;
+            $users->image = $filename;
         }
 
         // Update user name
-        $roles->update([
+        $users->update([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
             'role' => strtolower($request->input('role')),
         ]);
     
-        return redirect()->route('roles');
+        return redirect()->route('users');
     }
 
-    public function roleDestroy($id)
+    public function usersDestroy($id)
     {
-        $category = User::find($id);
-        $category->delete();
+        $users = User::find($id);
+        $users->delete();
         return redirect()->back();
     }
 

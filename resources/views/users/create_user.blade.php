@@ -10,11 +10,11 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>{{ isset($roles) ? 'Edit Role' : 'Add Role' }}</h3>
+                    <h3>{{ isset($users) ? 'Edit User' : 'Add User' }}</h3>
                 </div>
                    <div class="button-container">
-                <a href="{{ route('roles') }}"><button type="button" class="btn btn-primary btn-sm mt-1">View
-                        Roles </button></a>
+                <a href="{{ route('users') }}"><button type="button" class="btn btn-primary btn-sm mt-1">View
+                    Users </button></a>
             </div>
             </div>
             <div class="clearfix"></div>
@@ -34,17 +34,17 @@
                         </div>
                         <div class="x_content">
                             <br />
-                            <h2>{{ isset($roles) ? 'Edit a Record' : 'Create a new Record' }}</h2>
+                            <h2>{{ isset($users) ? 'Edit a Record' : 'Create a new Record' }}</h2>
                             <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"
                                 method="POST"
-                                action="{{ isset($roles) ? '/admin/role/update/' . $roles->id : '/admin/role/insert' }}"
+                                action="{{ isset($users) ? '/admin/user/update/' . $users->id : '/admin/user/insert' }}"
                                 enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align"> Name*</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input type="text" name="name" value="<?php echo isset($roles) ? $roles->name : ''; ?>"
+                                        <input type="text" name="name" value="<?php echo isset($users) ? $users->name : ''; ?>"
                                             class="form-control @error('name') is-invalid @enderror">
                                         @error('name')
                                             <span class="invalid-feedback" style="color: red">
@@ -58,7 +58,7 @@
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Role *</label>
                                     <div class="col-md-6 col-sm-6">
                                         <input type="text" class="form-control @error('role') is-invalid @enderror"
-                                            name="role" value="<?php echo isset($roles) ? $roles->role : ''; ?>">
+                                            name="role" value="<?php echo isset($users) ? $users->role : ''; ?>">
                                         @error('role')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -71,7 +71,7 @@
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Email *</label>
                                     <div class="col-md-6 col-sm-6">
                                         <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                            name="email" value="<?php echo isset($roles->email) ? $roles->email : ''; ?>">
+                                            name="email" value="<?php echo isset($users->email) ? $users->email : ''; ?>">
                                         @error('email')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -80,13 +80,13 @@
                                     </div>
                                 </div>
 
-                                @if(!isset($roles))
+                                @if(!isset($users))
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">PassWord *</label>
                                     <div class="col-md-6 col-sm-6">
                                         <input type="password" class="form-control @error('password') is-invalid @enderror"
 
-                                            name="password" value="<?php echo isset($roles->password) ? $roles->password : ''; ?>">
+                                            name="password" value="<?php echo isset($users->password) ? $users->password : ''; ?>">
                                         @error('password')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -96,11 +96,11 @@
                                 </div>
                                 @endif
 
-                                @if (isset($roles) && $roles->image)
+                                @if (isset($users) && $users->image)
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Old Image *</label>                                   
-                                        <input type="hidden" value="{{ $roles->image}}">
-                                        <img src="{{ asset('images/' . $roles->image) }}" alt="Image" width="100">
+                                        <input type="hidden" value="{{ $users->image}}">
+                                        <img src="{{ asset('images/' . $users->image) }}" alt="Image" width="100">
                                 </div>
                                 @endif
 
@@ -118,7 +118,7 @@
                                 <div class="item form-group">
                                     <div class="col-md-6 col-sm-6 offset-md-3">
                                         <button type="submit" class="btn btn-primary">
-                                            @if (isset($roles))
+                                            @if (isset($users))
                                                 Update
                                             @else
                                                 Submit
