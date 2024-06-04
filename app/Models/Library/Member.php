@@ -11,5 +11,5 @@ class Member extends Model
     use HasFactory,SoftDeletes;
     protected $dates = ['deleted_at'];
     protected $table = 'members';
-    protected $fillable = ['userid','role','addmissionno','name','phone'];
+    protected $fillable = ['userid','role','addmissionno','class','section','student','name','phone'];
 }

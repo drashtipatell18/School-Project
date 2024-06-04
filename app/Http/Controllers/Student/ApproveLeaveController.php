@@ -63,6 +63,29 @@ class ApproveLeaveController extends Controller
     
         return response()->json(['sections' => $uniqueSections, 'students' => $students]);
     }
+
+    public function getRollnoStudents(Request $request)
+    {
+        $selectedClass = $request->input('class');
+        $selectedSection = $request->input('section'); 
+
+        // Fetch sections associated with the selected class
+        $sections = Clas::where('class', $selectedClass)->pluck('section')->toArray();
+    
+        $studentsQuery = StudentAdmission::where('class', $selectedClass);
+    
+        if ($selectedSection) {
+            $studentsQuery->where('section', $selectedSection);
+        }
+
+        $uniqueSections = array_unique($sections);
+    
+        $students = $studentsQuery->pluck('rollnumber')->toArray();
+    
+        return response()->json(['sections' => $uniqueSections, 'students' => $students]);
+    }
+
+    
     public function approveLeaveInsert(Request $request)
     {
         $request->validate([

@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('userid')->nullable();
             $table->string('role')->nullable();
             $table->string('addmissionno')->nullable();
+            $table->string('class')->nullable();
+            $table->string('section')->nullable();
+            $table->string('student')->nullable();
             $table->string('name')->nullable();
             $table->string('phone')->nullable();
             $table->timestamps();

@@ -256,6 +256,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/approve_leave/update/{id}', [ApproveLeaveController::class, 'approveLeaveUpdate'])->name('update.approveleave');
     Route::get('/admin/approve_leave/destroy/{id}',[ApproveLeaveController::class,'approveLeaveDestroy'])->name('destroy');
     Route::get('/get-students', [ApproveLeaveController::class, 'getStudents']);
+    Route::get('/get-roll-students', [ApproveLeaveController::class, 'getRollnoStudents']);
 
 
 

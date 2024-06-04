@@ -46,11 +46,7 @@
                                         <select class="form-control @error('userid') is-invalid @enderror" name="userid"
                                             id="userid">
                                             <option value="">Select a UserType</option>
-                                            {{-- @foreach ($roles as $role)
-                                            <option value="{{ $role }}" {{ old('usertype', isset($issueitems) ? $issueitems->usertype : '') == $role ? 'selected' : '' }}>
-                                                {{ $role }}
-                                            </option>
-                                        @endforeach --}}
+
                                         </select>
                                         @error('userid')
                                             <span class="invalid-feedback" style="color: red">
@@ -59,28 +55,55 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align"> Addmission No*</label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <select class="form-control @error('addmissionno') is-invalid @enderror"
-                                            name="addmissionno" id="addmissionno">
-                                            <option value="">Select Addmission No</option>
-                                            @foreach ($admissionno as $no)
-                                                <option value="{{ $no }}"
-                                                    {{ old('addmissionno', isset($members) ? $members->addmissionno : '') == $no ? 'selected' : '' }}>
-                                                    {{ $no }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        @error('addmissionno')
-                                            <span class="invalid-feedback" style="color: red">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                                <div id="admissionNoDiv">
+                                    <div class="item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">Class *</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <select class="form-control @error('class') is-invalid @enderror" name="class"
+                                                id="class">
+                                                <option value="">Select a class</option>
+                                            </select>
+                                            @error('class')
+                                                <span class="invalid-feedback" style="color: red">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">Section *</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <select id="section" name="section"
+                                                class="form-control @error('section') is-invalid @enderror">
+                                                <option value="">Select Section</option>
+                                            </select>
+                                            @error('section')
+                                                <span class="invalid-feedback" style="color: red">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">Student Roll No*</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <select id="student" name="student"
+                                                class="form-control @error('student') is-invalid @enderror">
+                                                <option value="">Select Student</option>
+                                            </select>
+                                            @error('student')
+                                                <span class="invalid-feedback" style="color: red">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Member ID*</label>
+
+                                <div class="item form-group" id="memberIdDiv"> <label
+                                        class="col-form-label col-md-3 col-sm-3 label-align">Member ID*</label>
                                     <div class="col-md-6 col-sm-6">
                                         <select class="form-control @error('role') is-invalid @enderror" name="role"
                                             id="role">
@@ -146,15 +169,118 @@
     <script>
         $(document).ready(function() {
             fetchUsertype();
+            fetchClasses();
+            // Event listener for class selection change
+            $('#class').on('change', function() {
+                // Fetch and populate sections based on the selected class
+                fetchSections($(this).val());
+            });
+
+            // Event listener for section selection change
+            $('#section').on('change', function() {
+                // Fetch and populate students based on the selected class and section
+                fetchStudents($('#class').val(), $(this).val());
+            });
+
+            // Initialize Select2 for the student dropdown
+            $('#student').select2({
+                placeholder: 'Select Student',
+                allowClear: true, // Option to clear the selected value
+                width: '100%', // Adjust the width as needed
+            });
+            // Function to fetch classes
+            function fetchClasses() {
+                $.ajax({
+                    url: '/get-classes',
+                    type: 'GET',
+                    success: function(data) {
+                        // Populate class dropdown and trigger change event
+                        populateDropdown($('#class'), data.classes,
+                            '{{ old('class', isset($members) ? $members->class : '') }}');
+                        $('#class').change(); // Trigger change event
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            }
+
+            // Function to fetch sections based on the selected class
+            function fetchSections(selectedClass) {
+                $.ajax({
+                    url: '/get-sections',
+                    type: 'GET',
+                    data: {
+                        class: selectedClass
+                    },
+                    success: function(data) {
+                        // Populate section dropdown
+                        populateDropdown($('#section'), data.sections,
+                            '{{ old('section', isset($members) ? $members->section : '') }}');
+
+                        // Trigger change event for section dropdown
+                        $('#section').change();
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            }
+
+            // Function to fetch students based on the selected class and section
+            function fetchStudents(selectedClass, selectedSection) {
+                // Check if both class and section are selected
+                if (selectedClass && selectedSection) {
+                    $.ajax({
+                        url: '/get-roll-students',
+                        type: 'GET',
+                        data: {
+                            class: selectedClass,
+                            section: selectedSection
+                        },
+                        success: function(data) {
+                            // Populate student dropdown
+                            populateDropdown($('#student'), data.students,
+                                '{{ old('student', isset($members) ? $members->student : '') }}');
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    });
+                } else {
+                    // If either class or section is not selected, empty the student dropdown
+                    populateDropdown($('#student'), [], '');
+                }
+            }
+
+            // Function to populate a dropdown with options
+            function populateDropdown(dropdown, options, selectedValue) {
+                dropdown.empty();
+                dropdown.append('<option value="">Select...</option>');
+
+                $.each(options, function(key, value) {
+                    let selected = value == selectedValue ? 'selected="selected"' : '';
+                    dropdown.append('<option value="' + value + '" ' + selected + '>' + value +
+                        '</option>');
+                });
+            }
 
             $('#userid').change(function() {
                 var selectedUserType = $(this).val();
+                if (selectedUserType === "student") {
+                    $('#admissionNoDiv').show();
+                    $('#memberIdDiv').hide();
+                } else {
+                    $('#admissionNoDiv').hide();
+                    $('#memberIdDiv').show();
+                }
                 $.ajax({
                     type: 'GET',
                     url: '/get-byname',
                     data: {
                         class: selectedUserType
                     },
+
                     success: function(response) {
                         $('#role').empty();
                         $('#role').append($('<option>', {

@@ -37,15 +37,16 @@ class MemberController extends Controller
     {
         $request->validate([
             'userid' => 'required',
-            'addmissionno' => 'required',
-            'role' => 'required',
             'name' => 'required', 
             'phone' => 'required',
         ]);
         $members = Member::create([
             'userid'        => $request->input('role'),
             'addmissionno'  => $request->input('addmissionno'),
-            'role'          => $request->input('userid'),
+            'class'         => $request->input('class'),
+            'section'       => $request->input('section'),
+            'student'       => $request->input('student'),
+            'role'          => $request->input('role'),
             'name'          => $request->input('name'), 
             'phone'         => $request->input('phone'), 
         ]);
