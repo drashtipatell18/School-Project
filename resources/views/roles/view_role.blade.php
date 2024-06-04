@@ -38,32 +38,18 @@
                                 <table class="table table-striped jambo_table bulk_action" id="table">
                                     <thead>
                                         <tr class="">
-                                            <th>No</th>
-                                            <th>Name</th>
-                                            <th>Role</th>
-                                            <th>Email</th>
-                                            <th>Image</th>
-                                            <th class=""><span class="nobr">Action</span></th>
+                                            <th class="text-center">No</th>
+                                            <th class="text-center">Name</th>
+                                            <th class="text-center"><span class="nobr">Action</span></th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         @foreach ($roles as $index => $role)
                                             <tr class="">
-                                                <td>{{ $index + 1 }}</td>
-                                                <td class="">{{ $role->name }}</td>
-                                                <td class="">{{ $role->role }}</td>
-                                                <td class="">{{ $role->email }}</td>
-                                                <td>
-                                                    @if ($role->image)
-                                                        <img src="{{ asset('images/' . $role->image) }}" alt="User Image"
-                                                            width="100" height="50px">
-                                                    @else
-                                                        No Photo Available
-                                                    @endif
-                                                </td>
-
-                                                <td>
+                                                <td class="text-center">{{ $index + 1 }}</td>
+                                                <td class="text-center">{{ $role->name }}</td>
+                                                <td class="text-center">
                                                     <a href="{{ route('edit.role', $role->id) }}"
                                                         class="btn btn-info btn-sm">Edit</a>
                                                     <a href="{{ route('destroy.role', $role->id) }}"

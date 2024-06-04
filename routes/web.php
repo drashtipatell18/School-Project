@@ -47,10 +47,12 @@ use App\Http\Controllers\Library\BookController;
 use App\Http\Controllers\Library\MemberController;
 use App\Models\Admin\FrontOffice\SetupFrontOffice;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\FrontCMS\EventController;
 use App\Http\Controllers\Superadmin\HumanResourse\ApproveLeaveRequestController;
 use App\Http\Controllers\Superadmin\HumanResourse\StaffDirectoryController;
 use App\Models\Admin\HumanResourse\ApproveLeaveRequest;
+use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 /*
@@ -557,7 +559,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/save-date',[MemberController::class,'saveDate'])->name('save.date');
 
 
-    //Roles 
+    // User  
 
     Route::get('/admin/user',[HomeController::class,'user'])->name('users');
     Route::get('/admin/user/create',[HomeController::class,'userCreate'])->name('create.user');
@@ -568,11 +570,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/cpassword',[HomeController::class,'cPassword'])->name('changepass'); 
     Route::post('/changepassword',[HomeController::class,'changePassword'])->name('changePassword'); 
 
+    // role  
 
-
+    Route::get('/admin/role',[RoleController::class,'role'])->name('roles');
+    Route::get('/admin/role/create',[RoleController::class,'createRole'])->name('create.role');
+    Route::post('/admin/role/insert',[RoleController::class,'storeRole'])->name('insert.role');
+    Route::get('/admin/role/edit/{id}', [RoleController::class, 'RoleEdit'])->name('edit.role');
+    Route::post('/admin/role/update/{id}', [RoleController::class, 'RoleUpdate'])->name('update.role');
+    Route::get('/admin/role/destroy/{id}',[RoleController::class,'RoleDestroy'])->name('destroy.role');
 
     // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 
     //Approve Leave Requests
     Route::get('/admin/approve/leave/request',[ApproveLeaveRequestController::class,'approveLeaveRequest'])->name('approve.leave.request');

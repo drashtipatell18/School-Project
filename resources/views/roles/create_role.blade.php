@@ -54,66 +54,6 @@
                                     </div>
                                 </div>
 
-                                <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Role *</label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <input type="text" class="form-control @error('role') is-invalid @enderror"
-                                            name="role" value="<?php echo isset($roles) ? $roles->role : ''; ?>">
-                                        @error('role')
-                                            <span class="invalid-feedback" style="color: red">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Email *</label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                            name="email" value="<?php echo isset($roles->email) ? $roles->email : ''; ?>">
-                                        @error('email')
-                                            <span class="invalid-feedback" style="color: red">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                @if(!isset($roles))
-                                <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align">PassWord *</label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <input type="password" class="form-control @error('password') is-invalid @enderror"
-
-                                            name="password" value="<?php echo isset($roles->password) ? $roles->password : ''; ?>">
-                                        @error('password')
-                                            <span class="invalid-feedback" style="color: red">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                @endif
-
-                                @if (isset($roles) && $roles->image)
-                                <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Old Image *</label>                                   
-                                        <input type="hidden" value="{{ $roles->image}}">
-                                        <img src="{{ asset('images/' . $roles->image) }}" alt="Image" width="100">
-                                </div>
-                                @endif
-
-                                <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Image *</label>
-                                    <input type="file" class="form-control col-md-3 col-sm-3 ml-2" name="image">
-                                    @error('image')
-                                        <span class="invalid-feedback" role="alert" style="color: red">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror  
-                                </div>
-
                                 <div class="ln_solid"></div>
                                 <div class="item form-group">
                                     <div class="col-md-6 col-sm-6 offset-md-3">

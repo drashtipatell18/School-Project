@@ -209,14 +209,23 @@
                                 </li>
 
                                 @if ($userRole != 'teacher' && $userRole != 'librarian' && $userRole != 'student' && $userRole != 'parents')
-                                    <li><a><i class="fa fa-user-plus ftlayer"></i> Role
+                                    <li><a><i class="fa fa-user-plus ftlayer"></i> User
                                             <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li><a href="{{ route('users') }}">Role</a>
+                                            <li><a href="{{ route('users') }}">User</a>
                                             </li>
                                         </ul>
                                     </li>
                                 @endif
+                                @if ($userRole != 'teacher' && $userRole != 'librarian' && $userRole != 'student' && $userRole != 'parents')
+                                <li><a><i class="fa fa-user-plus ftlayer"></i> Role
+                                        <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{{ route('roles') }}">Role</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            @endif
                                 @if ($userRole != 'librarian' && $userRole != 'student' && $userRole != 'parents')
                                     <li><a><i class="fa fa-edit"></i> Academics
                                             <span class="fa fa-chevron-down"></span></a>
