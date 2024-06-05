@@ -14,7 +14,7 @@ class TeacherController extends Controller
     public function teachers()
     {
         $teachers = Teacher::all();
-        $section = Section::pluck('section');
+        $section = Section::pluck('section')->unique();
         return view('superadmin.academics.view_teacher', compact('teachers','section'));
     }
 
@@ -85,7 +85,7 @@ class TeacherController extends Controller
     {
         $teacherassign = TeacherAssign::find($id);
         $teacherassign->delete();
-        return redirect()->back();
+        return redirect()->route('teacherassign');
     }
     public function getClasses()
     {

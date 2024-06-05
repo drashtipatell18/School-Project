@@ -31,14 +31,14 @@ class HomeworkController extends Controller
     }
     public function getClasses()
     {
-        $classes = Clas::pluck('class')->unique('class');
+        $classes = Clas::pluck('class')->unique();
         return response()->json(['classes' => $classes]);
     }
     
     public function getSections(Request $request)
     {
         $selectedClass = $request->input('class');
-        $sections = Clas::where('class', $selectedClass)->pluck('section')->unique('section');
+        $sections = Clas::where('class', $selectedClass)->pluck('section')->unique();
         // dd($sections);
         return response()->json(['sections' => $sections]);
     }    

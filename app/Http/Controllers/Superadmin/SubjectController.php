@@ -73,7 +73,7 @@ class SubjectController extends Controller
         return view('superadmin.academics.view_subject_group',compact('subjectgroups'));
     }
     public function subjecGroupCreate(){
-        $subject   = Subject::pluck('name', 'name')->unique('section');
+        $subject   = Subject::pluck('name', 'name')->unique();
         return view('superadmin.academics.create_subject_group',compact('subject'));
 
     } 
@@ -106,7 +106,7 @@ class SubjectController extends Controller
     }
     public function subjecGroupEdit($id)
     {
-        $subject   = Subject::pluck('name', 'name')->unique('name');;
+        $subject   = Subject::pluck('name', 'name')->unique();;
         $subjectgroup = SubjectGroup::find($id);
         return view('superadmin.academics.create_subject_group', compact('subjectgroup','subject'));
     }
@@ -168,7 +168,7 @@ class SubjectController extends Controller
         $selectedSubjectGroup = $request->input('subject_group');
          
         // Retrieve subjects based on the query
-        $subjects = Subject::pluck('name')->unique('name');
+        $subjects = Subject::pluck('name')->unique();
 
         // If a subject group is selected, add it as a condition to the query
         if ($selectedSubjectGroup) {

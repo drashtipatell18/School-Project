@@ -67,7 +67,7 @@
                                                         <a href="{{ route('edit.teacherassign', $teacher->id) }}"
                                                             class="btn btn-info btn-sm">Edit</a>
 
-                                                        <a hr ef="{{ route('destroy.teacherassign', $teacher->id) }}"
+                                                        <a href="{{ route('destroy.teacherassign', $teacher->id) }}"
                                                             class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>
                                                     </td>
                                                 @endif
