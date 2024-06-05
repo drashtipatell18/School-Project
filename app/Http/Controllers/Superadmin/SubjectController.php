@@ -73,7 +73,7 @@ class SubjectController extends Controller
         return view('superadmin.academics.view_subject_group',compact('subjectgroups'));
     }
     public function subjecGroupCreate(){
-        $subject   = Subject::pluck('name', 'name');
+        $subject   = Subject::pluck('name', 'name')->unique('section');
         return view('superadmin.academics.create_subject_group',compact('subject'));
 
     } 
@@ -83,7 +83,7 @@ class SubjectController extends Controller
         $request->validate([
             'name' => 'required',
             'class' => 'required',
-            'section' => 'required', 
+            // 'section' => 'required', 
             'subject' => 'required|array', 
         ]);
         $name = $request->input('name');
@@ -97,7 +97,7 @@ class SubjectController extends Controller
         $subjectgroup = SubjectGroup::create([
             'name' => $name,
             'class' => $class,
-            'section' => $section,
+            // 'section' => $section,
             'subject' => $subjectsString,
             'description' => $description,
         ]);
@@ -106,7 +106,7 @@ class SubjectController extends Controller
     }
     public function subjecGroupEdit($id)
     {
-        $subject   = Subject::pluck('name', 'name');
+        $subject   = Subject::pluck('name', 'name')->unique('name');;
         $subjectgroup = SubjectGroup::find($id);
         return view('superadmin.academics.create_subject_group', compact('subjectgroup','subject'));
     }
@@ -115,14 +115,14 @@ class SubjectController extends Controller
         $request->validate([
             'name' => 'required',
             'class' => 'required',
-            'section' => 'required',
+            // 'section' => 'required',
             'subject' => 'required|array',
         ]);
         $subjectgroup = SubjectGroup::find($id);
         
         $name = $request->input('name');
         $class = $request->input('class');
-        $section = $request->input('section');
+        // $section = $request->input('section');
         $subjects = $request->input('subject');
         $subjectsString = implode(',', $subjects);
         $description = $request->input('description');
@@ -130,7 +130,7 @@ class SubjectController extends Controller
         $subjectgroup->update([
             'name' => $name,
             'class' => $class,
-            'section' => $section,
+            // 'section' => $section,
             'subject' => $subjectsString,
             'description' => $description,
         ]);
@@ -168,7 +168,7 @@ class SubjectController extends Controller
         $selectedSubjectGroup = $request->input('subject_group');
          
         // Retrieve subjects based on the query
-        $subjects = Subject::pluck('name');
+        $subjects = Subject::pluck('name')->unique('name');
 
         // If a subject group is selected, add it as a condition to the query
         if ($selectedSubjectGroup) {

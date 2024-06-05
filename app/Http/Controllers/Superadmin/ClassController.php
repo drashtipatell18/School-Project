@@ -11,8 +11,8 @@ class ClassController extends Controller
 {
     public function class()
     {
-        $classes = Clas::all();
-        $section = Section::pluck('section');
+        $classes = Clas::all()->unique('class');
+        $section = Section::pluck('section')->unique('section');
         // dd($section);
 
         return view('superadmin.academics.view_class',compact('classes','section'));
@@ -22,7 +22,7 @@ class ClassController extends Controller
         // Fetch all classes
         $classes = Clas::all();
 
-        $sections = Section::pluck('section', 'section');
+        $sections = Section::pluck('section', 'section')->unique('section');
 
         // Pass classes data to the view
         return view('superadmin.academics.create_class', compact('classes','sections'));
@@ -52,7 +52,7 @@ class ClassController extends Controller
     public function classEdit($id)
     {
         $class = Clas::find($id);
-        $sections = Section::pluck('section', 'section');
+        $sections = Section::pluck('section', 'section')->unique('section');;
     
         return view('superadmin.academics.create_class', compact('class', 'sections'));
     }

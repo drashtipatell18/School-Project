@@ -49,7 +49,7 @@
                                             <th>No</th>
                                             <th class="">Name</th>
                                             <th class="">Class</th>
-                                            <th class="">Section</th>
+                                            {{-- <th class="">Section</th> --}}
                                             <th class="">Subject</th>
                                             <th class="">Description</th>
                                             @if ($userRole != 'teacher')
@@ -64,7 +64,7 @@
                                                 <td>{{ $index + 1 }}</td>
                                                 <td class="">{{ $subjectgroup->name }}</td>
                                                 <td class="">{{ $subjectgroup->class }}</td>
-                                                <td class="">{{ $subjectgroup->section }}</td>
+                                                {{-- <td class="">{{ $subjectgroup->section }}</td> --}}
                                                 <td class="">{{ $subjectgroup->subject }}</td>
                                                 <td class="">
                                                     {{ implode(' ', array_slice(str_word_count($subjectgroup->description, 1), 0, 15)) }}

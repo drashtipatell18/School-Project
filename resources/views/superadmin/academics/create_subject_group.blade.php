@@ -70,7 +70,7 @@
                                     </div>
                                 </div>
 
-                                <div class="item form-group">
+                                {{-- <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Section *</label>
                                     <div class="col-md-6 col-sm-6">
                                         <select id="section" name="section" class="form-control @error('section') is-invalid @enderror">
@@ -83,7 +83,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                
+                                 --}}
                                 <div class="item form-group">
                                     <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">  Subject
                                         *</label>

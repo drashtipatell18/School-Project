@@ -12,5 +12,5 @@ class SubjectGroup extends Model
 
     protected $dates = ['deleted_at'];
     protected $table = 'subjectgroups';
-    protected $fillable = ['name','class','section','subject','description'];
+    protected $fillable = ['name','class','subject','description'];
 }

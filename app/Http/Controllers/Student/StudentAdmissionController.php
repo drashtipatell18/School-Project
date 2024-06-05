@@ -33,7 +33,7 @@ class StudentAdmissionController extends Controller
     }
     public function getClasses()
     {
-        $classes = Clas::pluck('class');
+        $classes = Clas::pluck('class')->unique('class');
         return response()->json(['classes' => $classes]);
     }
     
