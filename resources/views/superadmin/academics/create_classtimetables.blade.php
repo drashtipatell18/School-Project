@@ -286,8 +286,7 @@
                         },
                         success: function(data) {
                             $('#subject_group').empty();
-                            $('#subject_group').append(
-                                '<option value="">Select Subject Group</option>');
+                            $('#subject_group').append('<option value="">Select Subject Group</option>');
                             populateDropdown($('#subject_group'), data.subjectGroups,
                                 '{{ old('subject_group', isset($classtimetables) ? $classtimetables->subject_group : '') }}'
                             );
@@ -295,6 +294,7 @@
                     });
                 }
             });
+
             $('#subject_group').change(function() {
                 var subjectGroup = $(this).val();
                 if (subjectGroup) {
@@ -307,10 +307,12 @@
                         success: function(data) {
                             $('#subject').empty();
                             $('#subject').append('<option value="">Select Subject</option>');
-
-                            populateDropdown($('#subject'), data.subjects,
-                                '{{ old('subject', isset($classtimetables) ? $classtimetables->subject : '') }}'
-                            );
+                            $.each(data.subjects, function(key, value) {
+                                var subjects = value.split(',');
+                                $.each(subjects, function(index, subject) {
+                                    $('#subject').append('<option value="' + subject.trim() + '">' + subject.trim() + '</option>');
+                                });
+                            });
                         }
                     });
                 } else {
