@@ -12,13 +12,13 @@
                 <div class="title_left">
                     <h3>{{ isset($users) ? 'Edit User' : 'Add User' }}</h3>
                 </div>
-                   <div class="button-container">
-                <a href="{{ route('users') }}"><button type="button" class="btn btn-primary btn-sm mt-1">View
-                    Users </button></a>
-            </div>
+                <div class="button-container">
+                    <a href="{{ route('users') }}"><button type="button" class="btn btn-primary btn-sm mt-1">View
+                            Users </button></a>
+                </div>
             </div>
             <div class="clearfix"></div>
-         
+
             <div class="row">
                 <div class="col-md-12 col-sm-12 ">
                     <div class="x_panel">
@@ -57,8 +57,15 @@
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Role *</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input type="text" class="form-control @error('role') is-invalid @enderror"
-                                            name="role" value="<?php echo isset($users) ? $users->role : ''; ?>">
+                                        <select id="role" name="role"
+                                            class="form-control @error('role') is-invalid @enderror">
+                                            <option value="">Select</option>
+                                            @foreach ($roles as $role)
+                                                <option value="{{ $role }}"
+                                                    @if (old('role', isset($users->role) ? $users->role : '') == $role) selected @endif>
+                                                    {{ $role }}</option>
+                                            @endforeach
+                                        </select>
                                         @error('role')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -80,28 +87,28 @@
                                     </div>
                                 </div>
 
-                                @if(!isset($users))
-                                <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align">PassWord *</label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <input type="password" class="form-control @error('password') is-invalid @enderror"
-
-                                            name="password" value="<?php echo isset($users->password) ? $users->password : ''; ?>">
-                                        @error('password')
-                                            <span class="invalid-feedback" style="color: red">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                                @if (!isset($users))
+                                    <div class="item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">PassWord *</label>
+                                        <div class="col-md-6 col-sm-6">
+                                            <input type="password"
+                                                class="form-control @error('password') is-invalid @enderror" name="password"
+                                                value="<?php echo isset($users->password) ? $users->password : ''; ?>">
+                                            @error('password')
+                                                <span class="invalid-feedback" style="color: red">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
                                     </div>
-                                </div>
                                 @endif
 
                                 @if (isset($users) && $users->image)
-                                <div class="item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3 label-align">Old Image *</label>                                   
-                                        <input type="hidden" value="{{ $users->image}}">
+                                    <div class="item form-group">
+                                        <label class="col-form-label col-md-3 col-sm-3 label-align">Old Image *</label>
+                                        <input type="hidden" value="{{ $users->image }}">
                                         <img src="{{ asset('images/' . $users->image) }}" alt="Image" width="100">
-                                </div>
+                                    </div>
                                 @endif
 
                                 <div class="item form-group">
@@ -111,7 +118,7 @@
                                         <span class="invalid-feedback" role="alert" style="color: red">
                                             <strong>{{ $message }}</strong>
                                         </span>
-                                    @enderror  
+                                    @enderror
                                 </div>
 
                                 <div class="ln_solid"></div>

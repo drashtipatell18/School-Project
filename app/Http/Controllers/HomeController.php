@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
 use App\Mail\ForgotPasswordMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -88,7 +89,8 @@ class HomeController extends Controller
 
     public function userCreate()
     {
-        return view('users.create_user');
+        $roles = Role::pluck('name');
+        return view('users.create_user',compact('roles'));
     }
     public function userInsert(Request $request)
     {
@@ -121,7 +123,8 @@ class HomeController extends Controller
     public function userEdit($id)
     {
         $users = User::find($id);
-        return view('users.create_user', compact('users'));
+        $roles = Role::pluck('name');
+        return view('users.create_user', compact('users','roles'));
     }
 
     public function userUpdate(Request $request, $id)
