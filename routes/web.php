@@ -6,6 +6,7 @@ use App\Http\Controllers\Student\ApproveLeaveController;
 use App\Http\Controllers\Student\HomeworkController;
 use App\Http\Controllers\Student\StudentAdmissionController;
 use App\Http\Controllers\Superadmin\ClassController;
+use App\Http\Controllers\Superadmin\ClassTimeTableController;
 use App\Http\Controllers\Superadmin\Exam\ExamController;
 use App\Http\Controllers\Superadmin\Exam\ExamTypeController;
 use App\Http\Controllers\Superadmin\Exam\ExampGropuController;
@@ -94,6 +95,19 @@ Route::middleware(['auth'])->group(function () {
 
 
     //Super Admin 
+
+    //Class Time Table 
+    Route::get('/admin/class-timetable',[ClassTimeTableController::class,'classTimetable'])->name('classtimetable');
+    Route::get('/admin/class/create-timetable',[ClassTimeTableController::class,'classTimetableCreate'])->name('create.classtimetable');
+    Route::post('/admin/class/insert-timetable',[ClassTimeTableController::class,'classTimetableInsert'])->name('insert.classtimetable');
+    Route::get('/admin/class/edit-timetable/{id}', [ClassTimeTableController::class, 'classTimetableEdit'])->name('edit.classtimetable');
+    Route::post('/admin/class/update-timetable/{id}', [ClassTimeTableController::class, 'classTimetableUpdate'])->name('update.classtimetable');
+    Route::get('/admin/class/destroy-timetable/{id}',[ClassTimeTableController::class,'classTimetableDestroy'])->name('destroy.classtimetable');   
+    Route::get('/classes', [ClassTimeTableController::class, 'getClasses']);
+    Route::get('/subject-groups', [ClassTimeTableController::class, 'getSubjectGroups']);
+    Route::get('/subjects', [ClassTimeTableController::class, 'getSubjects']); // POST for getting subjects
+
+
 
     //Sections
     Route::get('/admin/section',[SectionController::class,'section'])->name('section');

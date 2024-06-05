@@ -230,6 +230,7 @@
                                     <li><a><i class="fa fa-edit"></i> Academics
                                             <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
+                                            <li><a href="{{ route('classtimetable') }}">Class TimeTable</a></li>
                                             <li><a href="{{ route('section') }}">Sections</a></li>
                                             <li><a href="{{ route('class') }}">Class</a>
                                             </li>

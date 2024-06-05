@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use PhpParser\Builder\Class_;
 
 class HomeworkController extends Controller
 {
@@ -102,7 +101,7 @@ class HomeworkController extends Controller
         {
             $homework = Homework::find($id);
             $homework->delete();
-            return redirect()->back();
+            return redirect()->route('classtimetable');
         }
     
 }
