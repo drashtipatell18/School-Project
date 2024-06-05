@@ -6,6 +6,7 @@ use App\Models\Admin\ClassTimeTable;
 use App\Models\Admin\Clas;
 use App\Models\Admin\SubjectGroup;
 use App\Models\Admin\Subject;
+use App\Models\Admin\Teacher;
 
 use Illuminate\Http\Request;
 
@@ -17,19 +18,22 @@ class ClassTimeTableController extends Controller
         return view('superadmin.academics.view_classtimetables',compact('classtimetables'));
     }
     public function classTimetableCreate(){
-        return view('superadmin.academics.create_classtimetables');
+        $teachers   = Teacher::pluck('name', 'name');
+        return view('superadmin.academics.create_classtimetables',compact('teachers'));
     }
     public function classTimetableInsert(Request $request){
-        $request->validate([
-            'class' => 'required',
-            'section' => 'required',
-            'subject_group' => 'required',
-            'subject' => 'required',
-            'teacher' => 'required',
-            'time_from' => 'required',
-            'time_to' => 'required',
-            'room_no' => 'required',
-        ]);
+        // dd($request->all());
+        // $request->validate([
+        //     'class' => 'required',
+        //     'section' => 'required',
+        //     'subject_group' => 'required',
+        //     'subject' => 'required',
+        //     'teacher' => 'required',
+        //     'time_from' => 'required',
+        //     'time_to' => 'required',
+        //     'day' => 'required',
+        //     'room_no' => 'required',
+        // ]);
 
         ClassTimeTable::create([
             'class' => strtolower($request->input('class')),
@@ -39,6 +43,7 @@ class ClassTimeTableController extends Controller
             'teacher' => $request->input('teacher'),
             'time_from' => $request->input('time_from'),
             'time_to' => $request->input('time_to'),
+            'day' => $request->input('day'),
             'room_no' => $request->input('room_no'),
         ]);
 
@@ -46,19 +51,21 @@ class ClassTimeTableController extends Controller
     }
     public function classTimetableEdit($id){
         $classtimetables = ClassTimeTable::find($id);
-        return view('superadmin.academics.create_classtimetables', compact('classtimetables'));
+        $teachers   = Teacher::pluck('name', 'name');
+        return view('superadmin.academics.create_classtimetables', compact('classtimetables','teachers'));
     }
     public function classTimetableUpdate(Request $request, $id){
-        $request->validate([
-            'class' => 'required',
-            'section' => 'required',
-            'subject_group' => 'required',
-            'subject' => 'required',
-            'teacher' => 'required',
-            'time_from' => 'required',
-            'time_to' => 'required',
-            'room_no' => 'required',
-        ]);
+        // $request->validate([
+        //     'class' => 'required',
+        //     'section' => 'required',
+        //     'subject_group' => 'required',
+        //     'subject' => 'required',
+        //     'teacher' => 'required',
+        //     'time_from' => 'required',
+        //     'time_to' => 'required',
+        //     'day' => 'required',
+        //     'room_no' => 'required',
+        // ]);
 
         $classtimetables = ClassTimeTable::find($id);
 
@@ -70,6 +77,7 @@ class ClassTimeTableController extends Controller
             'teacher' => $request->input('teacher'),
             'time_from' => $request->input('time_from'),
             'time_to' => $request->input('time_to'),
+            'day' => $request->input('day'),
             'room_no' => $request->input('room_no'),
         ]);
 
@@ -100,7 +108,7 @@ class ClassTimeTableController extends Controller
     public function getSubjects(Request $request)
     {
         $subjects = SubjectGroup::where('name', $request->subject_group)
-                            ->pluck('subject', 'id');
+                            ->pluck('subject', 'id');    
 
         return response()->json(['subjects' => $subjects]);
     }

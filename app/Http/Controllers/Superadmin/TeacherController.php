@@ -24,8 +24,8 @@ class TeacherController extends Controller
     }
 
     public function teacherAssginCreate(){
-        $teacher   = Teacher::pluck('name', 'name');
-        return view('superadmin.academics.assgin_teacher',compact('teacher'));
+        $teachers   = Teacher::pluck('name', 'name');
+        return view('superadmin.academics.assgin_teacher',compact('teachers'));
     }
 
     public function teacherAssginInsert(Request $request)
@@ -54,9 +54,9 @@ class TeacherController extends Controller
     }
     public function teacherAssginEdit($id)
     {
-        $teacher   = Teacher::pluck('name', 'name');
+        $teachers   = Teacher::pluck('name', 'name');
         $teacherassign = TeacherAssign::find($id);
-        return view('superadmin.academics.assgin_teacher', compact('teacherassign','teacher'));
+        return view('superadmin.academics.assgin_teacher', compact('teacherassign','teachers'));
     }
 
     public function teacherAssginUpdate(Request $request, $id)

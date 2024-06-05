@@ -68,8 +68,8 @@
                                                 <td>{{ $classtimetable->section }}</td>
                                                 <td>{{ $classtimetable->subject }}</td>
                                                 <td>{{ $classtimetable->teacher }}</td>
-                                                <td>{{ $dateFormatted = date('d-m-Y', strtotime($classtimetable->time_from)) }}
-                                                <td>{{ $dateFormatted = date('d-m-Y', strtotime($classtimetable->time_to)) }}
+                                                <td>{{ $classtimetable->time_from }}</td>
+                                                <td>{{ $classtimetable->time_to }}</td>
                                                 <td>{{ $classtimetable->room_no }}</td>                                                
                                                 @if ($userRole != 'student' && $userRole != 'parents')
                                                     <td>

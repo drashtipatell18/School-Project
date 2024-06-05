@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('teacher')->nullable();
             $table->date('time_from')->nullable();
             $table->date('time_to')->nullable();
+            $table->date('day')->nullable();
             $table->string('room_no')->nullable();
             $table->timestamps();
             $table->softDeletes();

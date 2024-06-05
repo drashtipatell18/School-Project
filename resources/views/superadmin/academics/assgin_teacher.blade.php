@@ -81,7 +81,7 @@
                                         <select id="teacher" name="teacher[]"
                                             class="form-control  @error('teacher') is-invalid @enderror" multiple>
                                             <option value="">Select Teacher</option>
-                                            @foreach ($teacher as $teacherName)
+                                            @foreach ($teachers as $teacherName)
                                                 <option value="{{ $teacherName }}"
                                                     {{ in_array($teacherName, old('teacher', [])) || (isset($teacherassign) && in_array($teacherName, explode(',', $teacherassign->teacher))) ? 'selected' : '' }}>
                                                     {{ $teacherName }}

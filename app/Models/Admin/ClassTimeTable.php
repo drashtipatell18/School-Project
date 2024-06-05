@@ -11,5 +11,5 @@ class ClassTimeTable extends Model
     use HasFactory, SoftDeletes;
     protected $dates = ['deleted_at'];
     protected $table = 'classtimetables';
-    protected $fillable = ['class','section','subject_group','subject','teacher','time_from','time_to','room_no'];
+    protected $fillable = ['class','section','subject_group','subject','teacher','time_from','time_to','day','room_no'];
 }

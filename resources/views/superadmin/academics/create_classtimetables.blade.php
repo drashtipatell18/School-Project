@@ -14,7 +14,7 @@
                 </div>
                 <div class="button-container">
                     <a href="{{ route('classtimetable') }}"><button type="button" class="btn btn-primary btn-sm mt-1">View
-                        ClassTimeTable</button></a>
+                            ClassTimeTable</button></a>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -36,7 +36,7 @@
                             <h2>{{ isset($classtimetables) ? 'Edit a Record' : 'Create a new Record' }}</h2>
                             <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"
                                 method="POST"
-                                action="{{ isset($classtimetables) ? '/admin/class/update-timetable/' . $classtimetables->id : '/admin/class/create-timetable' }}">
+                                action="{{ isset($classtimetables) ? '/admin/class/update-timetable/' . $classtimetables->id : '/admin/class/insert-timetable' }}">
                                 @csrf
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3 label-align">Class *</label>
@@ -68,14 +68,15 @@
                                     </div>
                                 </div>
                                 <div class="item form-group">
-                                    <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Subject Group
+                                    <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Subject
+                                        Group
                                         *</label>
                                     <div class="col-md-6 col-sm-6">
                                         <select id="subject_group" name="subject_group"
                                             class="form-control @error('subject_group') is-invalid @enderror">
                                             <option value="">Select Subject Group</option>
                                         </select>
-                                       
+
                                         @error('subject_group')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -89,9 +90,9 @@
                                         *</label>
                                     <div class="col-md-6 col-sm-6">
                                         <select id="subject" name="subject"
-                                        class="form-control @error('subject') is-invalid @enderror">
-                                        <option value="">Select Subject</option>
-                                    </select>
+                                            class="form-control @error('subject') is-invalid @enderror">
+                                            <option value="">Select Subject</option>
+                                        </select>
                                         @error('subject')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -101,12 +102,19 @@
                                 </div>
 
                                 <div class="item form-group">
-                                    <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Teacher 
+                                    <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Teacher
                                         *</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input id="middle-name" class="form-control @error('teacher') is-invalid @enderror"
-                                            type="text" name="teacher"
-                                            value="{{ old('teacher', isset($classtimetables) ? $classtimetables->teacher : '') }}">
+                                        <select id="teacher" name="teacher"
+                                            class="form-control @error('teacher') is-invalid @enderror">
+                                            <option value="">Select Subject</option>
+                                            @foreach ($teachers as $teacher)
+                                            <option value="{{ $teacher }}"
+                                            @if (old('teacher', isset($users->teacher) ? $users->teacher : '') == $teacher
+                                            ) selected @endif>
+                                            {{ $teacher }}</option>  
+                                            @endforeach
+                                        </select>
                                         @error('teacher')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
@@ -116,11 +124,11 @@
                                 </div>
 
                                 <div class="item form-group">
-                                    <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Time For 
+                                    <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Time For
                                         *</label>
                                     <div class="col-md-6 col-sm-6">
                                         <input id="middle-name" class="form-control @error('time_for') is-invalid @enderror"
-                                            type="date" name="time_for"
+                                            type="time" name="time_for"
                                             value="{{ old('time_for', isset($classtimetables) ? $classtimetables->time_for : '') }}">
                                         @error('time_for')
                                             <span class="invalid-feedback" style="color: red">
@@ -131,13 +139,38 @@
                                 </div>
 
                                 <div class="item form-group">
-                                    <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Time In 
+                                    <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Time In
                                         *</label>
                                     <div class="col-md-6 col-sm-6">
                                         <input id="middle-name" class="form-control @error('time_in') is-invalid @enderror"
-                                            type="date" name="time_in"
+                                            type="time" name="time_in"
                                             value="{{ old('time_in', isset($classtimetables) ? $classtimetables->time_in : '') }}">
                                         @error('time_in')
+                                            <span class="invalid-feedback" style="color: red">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="item form-group">
+                                    <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Day
+                                        *</label>
+                                    <div class="col-md-6 col-sm-6">
+                                        {{-- <input id="middle-name" class="form-control @error('day') is-invalid @enderror"
+                                            type="" name="day"
+                                            value="{{ old('time_in', isset($classtimetables) ? $classtimetables->time_in : '') }}"> --}}
+                                            <select id="day" name="day" class="form-control @error('day') is-invalid @enderror">
+                                                <option value="">Select Day</option>
+                                                <option value="monday" {{ old('day', isset($classtimetables) && $classtimetables->day == 'monday' ? 'selected' : '') }}>Monday</option>
+                                                <option value="tuesday" {{ old('day', isset($classtimetables) && $classtimetables->day == 'tuesday' ? 'selected' : '') }}>Tuesday</option>
+                                                <option value="wednesday" {{ old('day', isset($classtimetables) && $classtimetables->day == 'wednesday' ? 'selected' : '') }}>Wednesday</option>
+                                                <option value="thursday" {{ old('day', isset($classtimetables) && $classtimetables->day == 'thursday' ? 'selected' : '') }}>Thursday</option>
+                                                <option value="friday" {{ old('day', isset($classtimetables) && $classtimetables->day == 'friday' ? 'selected' : '') }}>Friday</option>
+                                                <option value="saturday" {{ old('day', isset($classtimetables) && $classtimetables->day == 'saturday' ? 'selected' : '') }}>Saturday</option>
+                                                <option value="sunday" {{ old('day', isset($classtimetables) && $classtimetables->day == 'sunday' ? 'selected' : '') }}>Sunday</option>
+                                            </select>
+                                        @error('day')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -200,7 +233,8 @@
                     success: function(data) {
                         // Populate class dropdown and trigger change event
                         populateDropdown($('#class'), data.classes,
-                            '{{ old('class', isset($classtimetables) ? $classtimetables->class : '') }}');
+                            '{{ old('class', isset($classtimetables) ? $classtimetables->class : '') }}'
+                        );
                         $('#class').change(); // Trigger change event
                     },
                     error: function(error) {
@@ -220,7 +254,8 @@
                     success: function(data) {
                         // Populate section dropdown
                         populateDropdown($('#section'), data.sections,
-                            '{{ old('section', isset($classtimetables) ? $classtimetables->section : '') }}');
+                            '{{ old('section', isset($classtimetables) ? $classtimetables->section : '') }}'
+                        );
                     },
                     error: function(error) {
                         console.log(error);
@@ -246,15 +281,19 @@
                     $.ajax({
                         url: '/subject-groups',
                         type: 'GET',
-                        data: { class_id: classID },
+                        data: {
+                            class_id: classID
+                        },
                         success: function(data) {
                             $('#subject_group').empty();
-                            $('#subject_group').append('<option value="">Select Subject Group</option>');
+                            $('#subject_group').append(
+                                '<option value="">Select Subject Group</option>');
                             populateDropdown($('#subject_group'), data.subjectGroups,
-                            '{{ old('subject_group', isset($classtimetables) ? $classtimetables->subject_group : '') }}');                          
+                                '{{ old('subject_group', isset($classtimetables) ? $classtimetables->subject_group : '') }}'
+                            );
                         }
                     });
-                } 
+                }
             });
             $('#subject_group').change(function() {
                 var subjectGroup = $(this).val();
@@ -262,13 +301,16 @@
                     $.ajax({
                         url: '/subjects',
                         type: 'GET',
-                        data: { subject_group: subjectGroup },
+                        data: {
+                            subject_group: subjectGroup
+                        },
                         success: function(data) {
                             $('#subject').empty();
                             $('#subject').append('<option value="">Select Subject</option>');
 
                             populateDropdown($('#subject'), data.subjects,
-                            '{{ old('subject', isset($classtimetables) ? $classtimetables->subject : '') }}');                          
+                                '{{ old('subject', isset($classtimetables) ? $classtimetables->subject : '') }}'
+                            );
                         }
                     });
                 } else {
