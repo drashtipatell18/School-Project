@@ -1,594 +1,76 @@
-{{-- @extends('admin.main')
-@section('content')
-     <!-- page content -->
-     <div class="right_col" role="main">
-      <div class="row" style="display: inline-block;">
-        <div class=" top_tiles" style="margin: 10px 0;">
-          <div class="col-md-3 col-sm-3  tile">
-            <span>Total Student</span>
-            <h2>231,809</h2>
-            <span class="sparkline_one" style="height: 160px;">
-                  <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-              </span>
-          </div>
-          <div class="col-md-3 col-sm-3  tile">
-            <span>Total Teacher</span>
-            <h2>$ 231,809</h2>
-            <span class="sparkline_one" style="height: 160px;">
-                  <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-              </span>
-          </div>
-          <div class="col-md-3 col-sm-3  tile">
-            <span>Total Income</span>
-            <h2>231,809</h2>
-            <span class="sparkline_one" style="height: 160px;">
-                  <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 125px;"></canvas>
-              </span> 
-          </div>
-          <div class="col-md-3 col-sm-3  tile">
-            <span>Total Events</span>
-            <h2>231,809</h2>
-            <span class="sparkline_one" style="height: 160px;">
-                  <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-              </span>
-          </div>
-        </div>
-      </div>
-        <br/>
-
-
-        <div class="row">
-          <div class="col-md-12 col-sm-12 ">
-            <div class="dashboard_graph x_panel">
-              <div class="x_title">
-                <div class="col-md-6">
-                  <h3>Network Activities <small>Graph title sub-title</small></h3>
-                </div>
-                <div class="col-md-6">
-                  <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                    <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
-                  </div>
-                </div>
-              </div>
-              <div class="x_content">
-                <div class="demo-container" style="height:250px">
-                  <div id="chart_plot_03" class="demo-placeholder"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="row">
-          <div class="col-md-4 col-sm-6 ">
-            <div class="x_panel fixed_height_320">
-              <div class="x_title">
-                <h2>App Devices <small>Sessions</small></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                  </li>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Settings 1</a>
-                        <a class="dropdown-item" href="#">Settings 2</a>
-                      </div>
-                  </li>
-                  <li><a class="close-link"><i class="fa fa-close"></i></a>
-                  </li>
-                </ul>
-                <div class="clearfix"></div>
-              </div>
-              <div class="x_content">
-                <h4>App Versions</h4>
-                <div class="widget_summary">
-                  <div class="w_left w_25">
-                    <span>1.5.2</span>
-                  </div>
-                  <div class="w_center w_55">
-                    <div class="progress">
-                      <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 66%;">
-                        <span class="sr-only">60% Complete</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="w_right w_20">
-                    <span>123k</span>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-
-                <div class="widget_summary">
-                  <div class="w_left w_25">
-                    <span>1.5.3</span>
-                  </div>
-                  <div class="w_center w_55">
-                    <div class="progress">
-                      <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
-                        <span class="sr-only">60% Complete</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="w_right w_20">
-                    <span>53k</span>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="widget_summary">
-                  <div class="w_left w_25">
-                    <span>1.5.4</span>
-                  </div>
-                  <div class="w_center w_55">
-                    <div class="progress">
-                      <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
-                        <span class="sr-only">60% Complete</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="w_right w_20">
-                    <span>23k</span>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="widget_summary">
-                  <div class="w_left w_25">
-                    <span>1.5.5</span>
-                  </div>
-                  <div class="w_center w_55">
-                    <div class="progress">
-                      <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 5%;">
-                        <span class="sr-only">60% Complete</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="w_right w_20">
-                    <span>3k</span>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="widget_summary">
-                  <div class="w_left w_25">
-                    <span>0.1.5.6</span>
-                  </div>
-                  <div class="w_center w_55">
-                    <div class="progress">
-                      <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 2%;">
-                        <span class="sr-only">60% Complete</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="w_right w_20">
-                    <span>1k</span>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 col-sm-6 ">
-            <div class="x_panel tile fixed_height_320">
-              <div class="x_title">
-                <h2>Daily users <small>Sessions</small></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                  </li>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Settings 1</a>
-                        <a class="dropdown-item" href="#">Settings 2</a>
-                      </div>
-                  </li>
-                  <li><a class="close-link"><i class="fa fa-close"></i></a>
-                  </li>
-                </ul>
-                <div class="clearfix"></div>
-              </div>
-              <div class="x_content">
-              <table class="" style="width:100%">
-                <tr>
-                  <th style="width:37%;">
-                    <p>Top 5</p>
-                  </th>
-                  <th>
-                    <div class="col-lg-7 col-md-7 col-sm-7 ">
-                      <p class="">Device</p>
-                    </div>
-                    <div class="col-lg-5 col-md-5 col-sm-5 ">
-                      <p class="">Progress</p>
-                    </div>
-                  </th>
-                </tr>
-                <tr>
-                    <td>
-                        <canvas class="canvasDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
-                      </td>
-                  <td>
-                    <table class="tile_info">
-                      <tr>
-                        <td>
-                          <p><i class="fa fa-square blue"></i>IOS </p>
-                        </td>
-                        <td>30%</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <p><i class="fa fa-square green"></i>Android </p>
-                        </td>
-                        <td>10%</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <p><i class="fa fa-square purple"></i>Blackberry </p>
-                        </td>
-                        <td>20%</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <p><i class="fa fa-square aero"></i>Symbian </p>
-                        </td>
-                        <td>15%</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <p><i class="fa fa-square red"></i>Others </p>
-                        </td>
-                        <td>30%</td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-              </table>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 col-sm-6 ">
-            <div class="x_panel fixed_height_320">
-              <div class="x_title">
-                <h2>Profile Settings <small>Sessions</small></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                  </li>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Settings 1</a>
-                        <a class="dropdown-item" href="#">Settings 2</a>
-                      </div>
-                  </li>
-                  <li><a class="close-link"><i class="fa fa-close"></i></a>
-                  </li>
-                </ul>
-                <div class="clearfix"></div>
-              </div>
-              <div class="x_content">
-                <div class="dashboard-widget-content">
-                  <ul class="quick-list">
-                    <li><i class="fa fa-line-chart"></i><a href="#">Achievements</a></li>
-                    <li><i class="fa fa-thumbs-up"></i><a href="#">Favorites</a></li>
-                    <li><i class="fa fa-calendar-o"></i><a href="#">Activities</a></li>
-                    <li><i class="fa fa-cog"></i><a href="#">Settings</a></li>
-                    <li><i class="fa fa-area-chart"></i><a href="#">Logout</a></li>
-                  </ul>
-
-                  <div class="sidebar-widget">
-                    <h4>Profile Completion</h4>
-                    <canvas width="150" height="80" id="chart_gauge_01" class="" style="width: 160px; height: 100px;"></canvas>
-                    <div class="goal-wrapper">
-                      <span id="gauge-text" class="gauge-value gauge-chart pull-left">0</span>
-                      <span class="gauge-value pull-left">%</span>
-                      <span id="goal-text" class="goal-value pull-right">100%</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 col-sm-6  widget_tally_box">
-            <div class="x_panel">
-              <div class="x_title">
-                <h2>User Uptake</h2>
-                <ul class="nav navbar-right panel_toolbox">
-                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                  </li>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Settings 1</a>
-                        <a class="dropdown-item" href="#">Settings 2</a>
-                      </div>
-                  </li>
-                  <li><a class="close-link"><i class="fa fa-close"></i></a>
-                  </li>
-                </ul>
-                <div class="clearfix"></div>
-              </div>
-              <div class="x_content">
-
-                <div id="graph_bar" style="width:100%; height:200px;"></div>
-
-                <div class=" bg-white progress_summary">
-
-                  <div class="row">
-                    <div class="progress_title">
-                      <span class="left">Escudor Wireless 1.0</span>
-                      <span class="right">This sis</span>
-                      <div class="clearfix"></div>
-                    </div>
-
-                    <div class="">
-                      <span>SSD</span>
-                    </div>
-                    <div class="">
-                      <div class="progress progress_sm">
-                        <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="89"></div>
-                      </div>
-                    </div>
-                    <div class=" more_info">
-                      <span>89%</span>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="progress_title">
-                      <span class="left">Mobile Access</span>
-                      <span class="right">Smart Phone</span>
-                      <div class="clearfix"></div>
-                    </div>
-
-                    <div class="">
-                      <span>App</span>
-                    </div>
-                    <div class="">
-                      <div class="progress progress_sm">
-                        <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="79"></div>
-                      </div>
-                    </div>
-                    <div class=" more_info">
-                      <span>79%</span>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="progress_title">
-                      <span class="left">WAN access users</span>
-                      <span class="right">Total 69%</span>
-                      <div class="clearfix"></div>
-                    </div>
-
-                    <div class="">
-                      <span>Usr</span>
-                    </div>
-                    <div class="">
-                      <div class="progress progress_sm">
-                        <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="69"></div>
-                      </div>
-                    </div>
-                    <div class=" more_info">
-                      <span>69%</span>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- start of weather widget -->
-          <div class="col-md-4 col-sm-6 ">
-            <div class="x_panel">
-              <div class="x_title">
-                <h2>Today's Weather <small>Sessions</small></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                  </li>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Settings 1</a>
-                        <a class="dropdown-item" href="#">Settings 2</a>
-                      </div>
-                  </li>
-                  <li><a class="close-link"><i class="fa fa-close"></i></a>
-                  </li>
-                </ul>
-                <div class="clearfix"></div>
-              </div>
-              <div class="x_content">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="temperature"><b>Monday</b>, 07:30 AM
-                      <span>F</span>
-                      <span><b>C</b>
-                                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-4">
-                    <div class="weather-icon">
-                      <span>
-                                          <canvas height="84" width="84" id="partly-cloudy-day"></canvas>
-                                      </span>
-
-                    </div>
-                  </div>
-                  <div class="col-sm-8">
-                    <div class="weather-text">
-                      <h2>Texas
-                                          <br><i>Partly Cloudy Day</i>
-                                      </h2>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-12">
-                  <div class="weather-text pull-right">
-                    <h3 class="degrees">23</h3>
-                  </div>
-                </div>
-                <div class="clearfix"></div>
-
-
-                <div class="row weather-days">
-                  <div class="col-sm-2">
-                    <div class="daily-weather">
-                      <h2 class="day">Mon</h2>
-                      <h3 class="degrees">25</h3>
-                      <span>
-                                              <canvas id="clear-day" width="32" height="32">
-                                              </canvas>
-
-                                      </span>
-                      <h5>15
-                                          <i>km/h</i>
-                                      </h5>
-                    </div>
-                  </div>
-                  <div class="col-sm-2">
-                    <div class="daily-weather">
-                      <h2 class="day">Tue</h2>
-                      <h3 class="degrees">25</h3>
-                      <canvas height="32" width="32" id="rain"></canvas>
-                      <h5>12
-                                          <i>km/h</i>
-                                      </h5>
-                    </div>
-                  </div>
-                  <div class="col-sm-2">
-                    <div class="daily-weather">
-                      <h2 class="day">Wed</h2>
-                      <h3 class="degrees">27</h3>
-                      <canvas height="32" width="32" id="snow"></canvas>
-                      <h5>14
-                                          <i>km/h</i>
-                                      </h5>
-                    </div>
-                  </div>
-                  <div class="col-sm-2">
-                    <div class="daily-weather">
-                      <h2 class="day">Thu</h2>
-                      <h3 class="degrees">28</h3>
-                      <canvas height="32" width="32" id="sleet"></canvas>
-                      <h5>15
-                                          <i>km/h</i>
-                                      </h5>
-                    </div>
-                  </div>
-                  <div class="col-sm-2">
-                    <div class="daily-weather">
-                      <h2 class="day">Fri</h2>
-                      <h3 class="degrees">28</h3>
-                      <canvas height="32" width="32" id="wind"></canvas>
-                      <h5>11
-                                          <i>km/h</i>
-                                      </h5>
-                    </div>
-                  </div>
-                  <div class="col-sm-2">
-                    <div class="daily-weather">
-                      <h2 class="day">Sat</h2>
-                      <h3 class="degrees">26</h3>
-                      <canvas height="32" width="32" id="cloudy"></canvas>
-                      <h5>10
-                                          <i>km/h</i>
-                                      </h5>
-                    </div>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <!-- end of weather widget -->
-
-          <div class="col-md-4 col-sm-6 ">
-            <div class="x_panel fixed_height_320">
-              <div class="x_title">
-                <h2>Incomes <small>Sessions</small></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                  </li>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Settings 1</a>
-                        <a class="dropdown-item" href="#">Settings 2</a>
-                      </div>
-                  </li>
-                  <li><a class="close-link"><i class="fa fa-close"></i></a>
-                  </li>
-                </ul>
-                <div class="clearfix"></div>
-              </div>
-              <div class="x_content">
-                <div class="dashboard-widget-content">
-                  <ul class="quick-list">
-                    <li><i class="fa fa-bars"></i><a href="#">Subscription</a></li>
-                    <li><i class="fa fa-bar-chart"></i><a href="#">Auto Renewal</a> </li>
-                    <li><i class="fa fa-support"></i><a href="#">Help Desk</a> </li>
-                    <li><i class="fa fa-heart"></i><a href="#">Donations</a> </li>
-                  </ul>
-
-                  <div class="sidebar-widget">
-                    <h4>Goal</h4>
-                    <canvas width="150" height="80" id="chart_gauge_02" class="" style="width: 160px; height: 100px;"></canvas>
-                    <div class="goal-wrapper">
-                      <span class="gauge-value pull-left">$</span>
-                      <span id="gauge-text2" class="gauge-value pull-left">3,200</span>
-                      <span id="goal-text2" class="goal-value pull-right">$5,000</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-@endsection --}}
 @extends('admin.main')
 @section('content')
     <style>
         @media (max-width: 576px) {
-            .ml-4 {
-                margin-left: 1rem !important;
+            .page-title h3 {
                 text-align: center;
-                font-size: 1.25rem;
+                font-size: 1.5rem;
             }
 
-            .text-center a button {
-                padding: 0.25rem 0.5rem;
-                font-size: 0.75rem;
-                margin-bottom: 5px !important;
+            .custom-column {
+                padding: 1rem;
+                margin-bottom: 1rem;
             }
 
-            .fa-money {
-                font-size: 2rem;
+            .custom-column h4 {
+                font-size: 1rem;
             }
 
-            .mt-4 {
-                margin-top: 0 !important;
-            }
-
-            .mb-5 {
-                margin-bottom: 1rem !important;
+            .custom-column i {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
             }
         }
 
         .custom-column {
             border: 1px solid #ccc;
+            border-radius: 10px;
             padding: 70px;
             color: black;
             background-color: rgb(218, 216, 216);
             text-align: center;
-            / Center the text within each column /
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .custom-column:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .custom-column h4 {
+            margin-bottom: 1rem;
+        }
+
+        .custom-column i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .bg-students {
+            background-color: #253e57;
+            / Updated color /
+            color: #fff;
+        }
+
+        .bg-teachers {
+            background-color: #253e57;
+            / Updated color /
+            color: #fff;
+        }
+
+        .bg-classes {
+            background-color: #253e57;
+            / Updated color /
+            color: #fff;
+        }
+
+        .bg-events {
+            background-color: #253e57;
+            / Updated color /
+            color: #fff;
         }
     </style>
+
     <div class="right_col" role="main">
         <div class="page-title mb-5">
             <div class="d-flex justify-content-between align-items-center">
@@ -597,41 +79,41 @@
         </div>
 
         <div class="clearfix"></div>
-        <div class="row" style="display: block;">
-            <div class="clearfix"></div>
+        <div class="row">
             <div class="col-md-12 col-sm-12">
                 <div class="x_panel">
                     <div class="x_content">
-
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-md-6">
-                                    <div class="custom-column mt-5">
-                                        <h4>Total Student</h4>
+                                    <div class="custom-column bg-students mt-5">
+                                        <i class="fas fa-user-graduate"></i>
+                                        <h4>Total Students</h4>
                                         <h4>{{ $students }}</h4>
                                     </div>
-                                    <div class="custom-column mt-3">
+                                    <div class="custom-column bg-teachers mt-3">
+                                        <i class="fas fa-chalkboard-teacher"></i>
                                         <h4>Total Teachers</h4>
                                         <h4>{{ $teachers }}</h4>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="custom-column mt-5">
-                                        <h4>Total Class</h4>
+                                    <div class="custom-column bg-classes mt-5">
+                                        <i class="fas fa-school"></i>
+                                        <h4>Total Classes</h4>
                                         <h4>{{ $classs }}</h4>
                                     </div>
-                                    <div class="custom-column mt-3 mb-5">
+                                    <div class="custom-column bg-events mt-3 mb-5">
+                                        <i class="fas fa-calendar-alt"></i>
                                         <h4>Total Events</h4>
                                         <h4>{{ $events }}</h4>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-@endsection      
-      
+@endsection
