@@ -99,7 +99,7 @@ class ClassTimeTableController extends Controller
     public function getSubjectGroups(Request $request)
     {
         $subjectGroups = SubjectGroup::where('class', $request->class_id)
-                                     ->pluck('name', 'id');
+                                     ->pluck('name', 'id')->unique();
 
         return response()->json(['subjectGroups' => $subjectGroups]);
     }
@@ -108,7 +108,7 @@ class ClassTimeTableController extends Controller
     public function getSubjects(Request $request)
     {
         $subjects = SubjectGroup::where('name', $request->subject_group)
-                            ->pluck('subject', 'id');    
+                            ->pluck('subject', 'id')->unique();    
 
         return response()->json(['subjects' => $subjects]);
     }

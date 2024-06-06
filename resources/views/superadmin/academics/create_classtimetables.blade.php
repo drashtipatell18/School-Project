@@ -84,14 +84,12 @@
                                         @enderror
                                     </div>
                                 </div>
-
                                 <div class="item form-group">
-                                    <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Subject
-                                        *</label>
+                                    <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Subject *</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <select id="subject" name="subject"
-                                            class="form-control @error('subject') is-invalid @enderror">
+                                        <select id="subject" name="subject" class="form-control @error('subject') is-invalid @enderror">
                                             <option value="">Select Subject</option>
+                                            <!-- Options will be populated dynamically -->
                                         </select>
                                         @error('subject')
                                             <span class="invalid-feedback" style="color: red">
@@ -100,19 +98,16 @@
                                         @enderror
                                     </div>
                                 </div>
-
+                                
                                 <div class="item form-group">
-                                    <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Teacher
-                                        *</label>
+                                    <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Teacher *</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <select id="teacher" name="teacher"
-                                            class="form-control @error('teacher') is-invalid @enderror">
-                                            <option value="">Select Subject</option>
+                                        <select id="teacher" name="teacher" class="form-control @error('teacher') is-invalid @enderror">
+                                            <option value="">Select Teacher</option>
                                             @foreach ($teachers as $teacher)
-                                            <option value="{{ $teacher }}"
-                                            @if (old('teacher', isset($users->teacher) ? $users->teacher : '') == $teacher
-                                            ) selected @endif>
-                                            {{ $teacher }}</option>  
+                                                <option value="{{ $teacher }}"
+                                                    @if (old('teacher', isset($classtimetables->teacher) ? $classtimetables->teacher : '') == $teacher) selected @endif>
+                                                    {{ $teacher }}</option>
                                             @endforeach
                                         </select>
                                         @error('teacher')
@@ -122,15 +117,16 @@
                                         @enderror
                                     </div>
                                 </div>
-
+                                
+                                
                                 <div class="item form-group">
                                     <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Time For
                                         *</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input id="middle-name" class="form-control @error('time_for') is-invalid @enderror"
-                                            type="time" name="time_for"
-                                            value="{{ old('time_for', isset($classtimetables) ? $classtimetables->time_for : '') }}">
-                                        @error('time_for')
+                                        <input id="middle-name" class="form-control @error('time_from') is-invalid @enderror"
+                                            type="time" name="time_from"
+                                            value="{{ old('time_from', isset($classtimetables) ? $classtimetables->time_from : '') }}">
+                                        @error('time_from')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -142,10 +138,10 @@
                                     <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Time In
                                         *</label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input id="middle-name" class="form-control @error('time_in') is-invalid @enderror"
-                                            type="time" name="time_in"
-                                            value="{{ old('time_in', isset($classtimetables) ? $classtimetables->time_in : '') }}">
-                                        @error('time_in')
+                                        <input id="middle-name" class="form-control @error('time_to') is-invalid @enderror"
+                                            type="time" name="time_to"
+                                            value="{{ old('time_to', isset($classtimetables) ? $classtimetables->time_to : '') }}">
+                                        @error('time_to')
                                             <span class="invalid-feedback" style="color: red">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -214,112 +210,109 @@
     </div>
 @endsection
 @push('scripts')
-    <script>
-        $(document).ready(function() {
-            // Fetch classes when the page loads
-            fetchClasses();
+<script>
+    $(document).ready(function() {
+        // Fetch classes when the page loads
+        fetchClasses();
 
-            // Event listener for class selection change
-            $('#class').on('change', function() {
-                // Fetch and populate sections based on the selected class
-                fetchSections($(this).val());
-            });
-
-            // Function to fetch classes
-            function fetchClasses() {
-                $.ajax({
-                    url: '/get-classes',
-                    type: 'GET',
-                    success: function(data) {
-                        // Populate class dropdown and trigger change event
-                        populateDropdown($('#class'), data.classes,
-                            '{{ old('class', isset($classtimetables) ? $classtimetables->class : '') }}'
-                        );
-                        $('#class').change(); // Trigger change event
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    }
-                });
-            }
-
-            // Function to fetch sections based on the selected class
-            function fetchSections(selectedClass) {
-                $.ajax({
-                    url: '/get-sections',
-                    type: 'GET',
-                    data: {
-                        class: selectedClass
-                    },
-                    success: function(data) {
-                        // Populate section dropdown
-                        populateDropdown($('#section'), data.sections,
-                            '{{ old('section', isset($classtimetables) ? $classtimetables->section : '') }}'
-                        );
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    }
-                });
-            }
-
-            // Function to populate a dropdown with options
-            function populateDropdown(dropdown, options, selectedValue) {
-                dropdown.empty();
-                dropdown.append('<option value="">Select...</option>');
-
-                $.each(options, function(key, value) {
-                    let selected = value == selectedValue ? 'selected="selected"' : '';
-                    dropdown.append('<option value="' + value + '" ' + selected + '>' + value +
-                        '</option>');
-                });
-            }
-
-            $('#class').change(function() {
-                var classID = $(this).val();
-                if (classID) {
-                    $.ajax({
-                        url: '/subject-groups',
-                        type: 'GET',
-                        data: {
-                            class_id: classID
-                        },
-                        success: function(data) {
-                            $('#subject_group').empty();
-                            $('#subject_group').append('<option value="">Select Subject Group</option>');
-                            populateDropdown($('#subject_group'), data.subjectGroups,
-                                '{{ old('subject_group', isset($classtimetables) ? $classtimetables->subject_group : '') }}'
-                            );
-                        }
-                    });
-                }
-            });
-
-            $('#subject_group').change(function() {
-                var subjectGroup = $(this).val();
-                if (subjectGroup) {
-                    $.ajax({
-                        url: '/subjects',
-                        type: 'GET',
-                        data: {
-                            subject_group: subjectGroup
-                        },
-                        success: function(data) {
-                            $('#subject').empty();
-                            $('#subject').append('<option value="">Select Subject</option>');
-                            $.each(data.subjects, function(key, value) {
-                                var subjects = value.split(',');
-                                $.each(subjects, function(index, subject) {
-                                    $('#subject').append('<option value="' + subject.trim() + '">' + subject.trim() + '</option>');
-                                });
-                            });
-                        }
-                    });
-                } else {
-                    $('#subject').empty();
-                    $('#subject').append('<option value="">Select Subject</option>');
-                }
-            });
+        // Event listener for class selection change
+        $('#class').on('change', function() {
+            // Fetch and populate sections based on the selected class
+            fetchSections($(this).val());
         });
-    </script>
+
+        // Function to fetch classes
+        function fetchClasses() {
+            $.ajax({
+                url: '/get-classes',
+                type: 'GET',
+                success: function(data) {
+                    // Populate class dropdown and trigger change event
+                    populateDropdown($('#class'), data.classes, '{{ old('class', isset($classtimetables) ? $classtimetables->class : '') }}');
+                    $('#class').change(); // Trigger change event
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+
+        // Function to fetch sections based on the selected class
+        function fetchSections(selectedClass) {
+            $.ajax({
+                url: '/get-sections',
+                type: 'GET',
+                data: { class: selectedClass },
+                success: function(data) {
+                    // Populate section dropdown
+                    populateDropdown($('#section'), data.sections, '{{ old('section', isset($classtimetables) ? $classtimetables->section : '') }}');
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+
+        // Function to populate a dropdown with options
+        function populateDropdown(dropdown, options, selectedValue) {
+            dropdown.empty();
+            dropdown.append('<option value="">Select...</option>');
+            $.each(options, function(key, value) {
+                let selected = value == selectedValue ? 'selected="selected"' : '';
+                dropdown.append('<option value="' + value + '" ' + selected + '>' + value + '</option>');
+            });
+        }
+
+        $('#class').change(function() {
+            var classID = $(this).val();
+            if (classID) {
+                $.ajax({
+                    url: '/subject-groups',
+                    type: 'GET',
+                    data: { class_id: classID },
+                    success: function(data) {
+                        $('#subject_group').empty();
+                        $('#subject_group').append('<option value="">Select Subject Group</option>');
+                        populateDropdown($('#subject_group'), data.subjectGroups, '{{ old('subject_group', isset($classtimetables) ? $classtimetables->subject_group : '') }}');
+                    }
+                });
+            }
+        });
+
+        $('#subject_group').change(function() {
+            var subjectGroup = $(this).val();
+            if (subjectGroup) {
+                $.ajax({
+                    url: '/subjects',
+                    type: 'GET',
+                    data: { subject_group: subjectGroup },
+                    success: function(data) {
+                        $('#subject').empty();
+                        $('#subject').append('<option value="">Select Subject</option>');
+                        $.each(data.subjects, function(key, value) {
+                            var subjects = value.split(',');
+                            $.each(subjects, function(index, subject) {
+                                var selected = '{{ old('subject', isset($classtimetables) ? $classtimetables->subject : '') }}' == subject.trim() ? 'selected' : '';
+                                $('#subject').append('<option value="' + subject.trim() + '" ' + selected + '>' + subject.trim() + '</option>');
+                            });
+                        });
+                    }
+                });
+            } else {
+                $('#subject').empty();
+                $('#subject').append('<option value="">Select Subject</option>');
+            }
+        });
+
+        // Fetch subject and teacher data on page load if editing
+        if ('{{ isset($classtimetables) }}') {
+            var subjectGroup = '{{ old('subject_group', isset($classtimetables) ? $classtimetables->subject_group : '') }}';
+            if (subjectGroup) {
+                $('#subject_group').change();
+            }
+        }
+
+    });
+</script>
 @endpush
+
