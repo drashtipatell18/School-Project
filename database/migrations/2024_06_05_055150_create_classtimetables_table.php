@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('subject_group')->nullable();
             $table->string('subject')->nullable();
             $table->string('teacher')->nullable();
-            $table->date('time_from')->nullable();
-            $table->date('time_to')->nullable();
-            $table->date('day')->nullable();
+            $table->time('time_from')->nullable();
+            $table->time('time_to')->nullable();
+            $table->string('day')->nullable();
             $table->string('room_no')->nullable();
             $table->timestamps();
             $table->softDeletes();
