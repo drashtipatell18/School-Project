@@ -96,6 +96,10 @@
                                     </div>
                                 </div>
 
+                                @if(isset($error))
+                                    <span style="color:red">{{ $error }}</span>
+                                @endif
+
                                 <div class="ln_solid"></div>
                                 <div class="item form-group">
                                     <div class="col-md-6 col-sm-6 offset-md-3">

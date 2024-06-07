@@ -89,7 +89,7 @@
                                                         <a href="{{ route('edit.homework', $home->id) }}"
                                                             class="btn btn-info btn-sm">Edit</a>
 
-                                                        <a href="{{ route('destroy', $home->id) }}"
+                                                        <a href="{{ route('destroy.homework', $home->id) }}"
                                                             class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>
                                                     </td>
                                                 @endif

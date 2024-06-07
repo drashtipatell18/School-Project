@@ -23,17 +23,17 @@ class ClassTimeTableController extends Controller
     }
     public function classTimetableInsert(Request $request){
         // dd($request->all());
-        // $request->validate([
-        //     'class' => 'required',
-        //     'section' => 'required',
-        //     'subject_group' => 'required',
-        //     'subject' => 'required',
-        //     'teacher' => 'required',
-        //     'time_from' => 'required',
-        //     'time_to' => 'required',
-        //     'day' => 'required',
-        //     'room_no' => 'required',
-        // ]);
+        $request->validate([
+            'class' => 'required',
+            'section' => 'required',
+            'subject_group' => 'required',
+            'subject' => 'required',
+            'teacher' => 'required',
+            'time_from' => 'required',
+            'time_to' => 'required',
+            'day' => 'required',
+            'room_no' => 'required',
+        ]);
 
         ClassTimeTable::create([
             'class' => strtolower($request->input('class')),
@@ -55,17 +55,17 @@ class ClassTimeTableController extends Controller
         return view('superadmin.academics.create_classtimetables', compact('classtimetables','teachers'));
     }
     public function classTimetableUpdate(Request $request, $id){
-        // $request->validate([
-        //     'class' => 'required',
-        //     'section' => 'required',
-        //     'subject_group' => 'required',
-        //     'subject' => 'required',
-        //     'teacher' => 'required',
-        //     'time_from' => 'required',
-        //     'time_to' => 'required',
-        //     'day' => 'required',
-        //     'room_no' => 'required',
-        // ]);
+        $request->validate([
+            'class' => 'required',
+            'section' => 'required',
+            'subject_group' => 'required',
+            'subject' => 'required',
+            'teacher' => 'required',
+            'time_from' => 'required',
+            'time_to' => 'required',
+            'day' => 'required',
+            'room_no' => 'required',
+        ]);
 
         $classtimetables = ClassTimeTable::find($id);
 

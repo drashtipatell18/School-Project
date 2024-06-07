@@ -42,6 +42,14 @@ class TeacherController extends Controller
     
         // Convert the array of teachers into a comma-separated string
         $teachersString = implode(',', $teachers);
+
+        $check = TeacherAssign::where('section', $request->input('section'));
+
+        if($check->where('class', $request->input('class'))->count() != 0)
+        {
+            $teachers   = Teacher::pluck('name', 'name');
+            return view('superadmin.academics.assgin_teacher', compact('teachers'))->with('error', '*Teacher is already assigned to this class/section');
+        }
     
         // Create a new TeacherAssign record
         $teacherassign = TeacherAssign::create([

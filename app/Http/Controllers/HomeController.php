@@ -125,12 +125,19 @@ class HomeController extends Controller
     public function userEdit($id)
     {
         $users = User::find($id);
-        $roles = Role::pluck('name');
+        $roles = Role::all('name', 'id');
         return view('users.create_user', compact('users','roles'));
     }
 
     public function userUpdate(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'role' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
+           
+        ]);
         $users = User::find($id);
         
         if ($request->hasFile('image')) {
@@ -142,12 +149,15 @@ class HomeController extends Controller
             $users->image = $filename;
         }
 
+        $role = Role::where('id', $request->input('role'))->first();
+
         // Update user name
         $users->update([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
-            'role' => strtolower($request->input('role')),
+            'role' => strtolower($role->name),
+            'role_id' => strtolower($role->id),
         ]);
     
         return redirect()->route('users');
