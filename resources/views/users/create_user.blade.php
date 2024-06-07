@@ -61,9 +61,9 @@
                                             class="form-control @error('role') is-invalid @enderror">
                                             <option value="">Select</option>
                                             @foreach ($roles as $role)
-                                                <option value="{{ $role }}"
-                                                    @if (old('role', isset($users->role) ? $users->role : '') == $role) selected @endif>
-                                                    {{ $role }}</option>
+                                                <option value="{{ $role->id }}"
+                                                    @if (old('role', isset($users->role) ? $users->role : '') == $role->name) selected @endif>
+                                                    {{ $role->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('role')

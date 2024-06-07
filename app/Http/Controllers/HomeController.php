@@ -89,7 +89,7 @@ class HomeController extends Controller
 
     public function userCreate()
     {
-        $roles = Role::pluck('name');
+        $roles = Role::all('name', 'id');
         return view('users.create_user',compact('roles'));
     }
     public function userInsert(Request $request)
@@ -110,11 +110,13 @@ class HomeController extends Controller
             $image->move('images', $filename);
         }
         
+        $role = Role::where('id', $request->input('role'))->first();
         User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
-            'role' => strtolower($request->input('role')),
+            'role' => strtolower($role->name),
+            'role_id' => strtolower($role->id),
             'image' => $filename
         ]);
         
@@ -184,7 +186,7 @@ class HomeController extends Controller
     
         $user = Auth::user();
     
-        if (!\Hash::check($request->current_password, $user->password)) {
+        if (!Hash::check($request->current_password, $user->password)) {
             return back()->withErrors(['current_password' => 'The current password is incorrect.']);
         }
     
