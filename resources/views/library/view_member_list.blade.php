@@ -166,7 +166,7 @@
                                         <tr class="">
                                             <td>{{ $index + 1 }}</td>
                                             <td>{{ $bookissue->book }}</td>
-                                            <td class="date-placeholder"></td>
+                                            <td class="date-placeholder">{{ $bookissue->created_at }}</td>
                                             <td class="">{{ $bookissue->duereturndate }}</td>
                                             <td class="returndate">{{ $bookissue->returndate }}</td>
                                             <td>
@@ -232,12 +232,20 @@
         $(document).ready(function() {
             $('#table').DataTable();
 
-            var today = new Date();
-            var formattedMonth = (today.getMonth() + 1 < 10) ? '0' + (today.getMonth() + 1) : today.getMonth() + 1;
-            var formattedDate = (today.getDate() < 10) ? '0' + today.getDate() : today.getDate();
-            var formattedDate = today.getFullYear() + '-' + formattedMonth + '-' + formattedDate;
-            // Update the text content of the td element
-            $('.date-placeholder').text(formattedDate);
+            // var today = new Date();
+            // var formattedMonth = (today.getMonth() + 1 < 10) ? '0' + (today.getMonth() + 1) : today.getMonth() + 1;
+            // var formattedDate = (today.getDate() < 10) ? '0' + today.getDate() : today.getDate();
+            // var formattedDate = today.getFullYear() + '-' + formattedMonth + '-' + formattedDate;
+            // // Update the text content of the td element
+            // $('.date-placeholder').text(formattedDate);
+
+            $.each($('.date-placeholder'), function(){
+                let today = new Date($(this).text())
+                var formattedMonth = (today.getMonth() + 1 < 10) ? '0' + (today.getMonth() + 1) : today.getMonth() + 1;
+                var formattedDate = (today.getDate() < 10) ? '0' + today.getDate() : today.getDate();
+                var formattedDate = today.getFullYear() + '-' + formattedMonth + '-' + formattedDate;
+                $(this).text(formattedDate)
+            })
             $('.return-date-btn').click(function(e) {
                 e.preventDefault();
                 var id = $(this).data('id');
@@ -278,6 +286,7 @@
                         memberid: memberid
                     },
                     success: function(response) {
+                        window.location.reload();
                         console.log('Date saved successfully');
                         $('.returndate').text(selectedDate);
                         $('#myModal').modal('hide');

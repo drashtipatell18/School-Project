@@ -308,7 +308,17 @@
         if ('{{ isset($classtimetables) }}') {
             var subjectGroup = '{{ old('subject_group', isset($classtimetables) ? $classtimetables->subject_group : '') }}';
             if (subjectGroup) {
-                $('#subject_group').change();
+                let flag = false;
+                let i = 3;
+                let chckerInterval = setInterval(() => {
+                    if(i > 0)
+                    if($('#subject_group').val())
+                    {
+                        $('#subject_group').trigger('change')
+                        clearInterval(chckerInterval)
+                    }
+                    i--;
+                }, 1500);
             }
         }
 

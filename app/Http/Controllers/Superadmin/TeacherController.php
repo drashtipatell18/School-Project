@@ -139,4 +139,10 @@ class TeacherController extends Controller
         $teachers->delete();
         return redirect()->back();
     }
+
+    public function getTeachersAjax()
+    {
+        $teachers = Teacher::all();
+        return response()->json(compact("teachers"), 200);
+    }
 }

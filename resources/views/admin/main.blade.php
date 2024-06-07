@@ -99,18 +99,23 @@
         .navbar {
             padding: 0px !important;
         }
+
+        .nav_title {
+            width: 300px !important;
+        }
     </style>
 </head>
 
 
 <!-- navbar menu -->
 <nav class="navbar navbar-expand-lg">
-    <a class="" href="#" style="background-color: white;">
-        <img src="{{ asset('images/logo.png') }}" class="h-[50px]" alt="Logo"
-            style="height: 50px; max-width: 100%;">
+    <a class="" href="#" style="">
+        <img src="{{ asset('images/logo.png') }}" class="h-[100px]" alt="Logo"
+            style="height: 80px; max-width: 100%;">
         <div class="navbar nav_title ml-0" style="border: 0;">
             <a href="{{ route('dashboard') }}" class="site_title">
-                <span>Bhakti International School</span></a>
+                <span>Bhakti International School</span>
+            </a>
         </div>
     </a>
 

@@ -126,6 +126,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/class/destroy/{id}',[ClassController::class,'classDestroy'])->name('destroy');       
 
     // Teacher 
+    Route::get("/admin/teacher/getAjax", [TeacherController::class, 'getTeachersAjax'])->name('getTeacherAjax');
     Route::get('/admin/teacher',[TeacherController::class,'teachers'])->name('teacher');
     Route::get('/admin/teacher/create',[TeacherController::class,'teacherCreate'])->name('create.teacher');
     Route::post('/admin/teacher/insert',[TeacherController::class,'teacherInsert'])->name('insert.teacher');

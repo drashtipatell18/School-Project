@@ -42,6 +42,9 @@
                         </div>
 
                         <div class="x_content">
+                            <select name="teacherDrp" id="teacherDrp" class="col-sm-3 form-control mb-3">
+                                <option value="">-- Select Teacher --</option>
+                            </select>
                             <div class="table-responsive">
                                 <table class="table table-striped jambo_table bulk_action" id="table">
                                     <thead>
@@ -60,9 +63,9 @@
                                         </tr>
                                     </thead>
 
-                                    <tbody>
+                                    <tbody id="tbody">
                                         @foreach ($classtimetables as $index => $classtimetable)
-                                            <tr>
+                                            <tr data-teacher="{{ $classtimetable->teacher }}">
                                                 <td>{{ $index + 1 }}</td>
                                                 <td>{{ $classtimetable->class }}</td>
                                                 <td>{{ $classtimetable->section }}</td>
@@ -96,7 +99,24 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
     <script>
         $(document).ready(function() {
-            $('#table').DataTable();
+            let table = $('#table').DataTable();
+
+            $.ajax({
+                type: "GET",
+                method: "GET",
+                url: "{{ route('getTeacherAjax') }}",
+                dataType: "JSON",
+                success: function(response){
+                    $.each(response.teachers, function(){
+                        let option = `<option value='${this.name}'>${this.name}</option>`;
+                        $("#teacherDrp").append(option)
+                    })
+
+                    $("#teacherDrp").change(function(){
+                        table.search($("#teacherDrp").val()).draw();
+                    })
+                }
+            })
         });
     </script>
 @endpush

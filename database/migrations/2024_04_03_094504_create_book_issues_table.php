@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('book')->nullable();
             $table->date('duereturndate')->nullable();
+            $table->date('returndate')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
