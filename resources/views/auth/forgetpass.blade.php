@@ -7,6 +7,16 @@
                 <div class="col-md-12">
                     <div class="_lk_de">
                         <div class="form-03-main">
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+                            @if (session('danger'))
+                                <div class="alert alert-danger">
+                                    {{ session('danger') }}
+                                </div>
+                            @endif
                             <div class="logo">
                                 <img src="assets/images/user.png">
                             </div>

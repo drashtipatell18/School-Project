@@ -1,7 +1,6 @@
     <?php
 
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Student\ApproveLeaveController;
 use App\Http\Controllers\Student\HomeworkController;
 use App\Http\Controllers\Student\StudentAdmissionController;
@@ -52,8 +51,6 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\FrontCMS\EventController;
 use App\Http\Controllers\Superadmin\HumanResourse\ApproveLeaveRequestController;
 use App\Http\Controllers\Superadmin\HumanResourse\StaffDirectoryController;
-use App\Models\Admin\HumanResourse\ApproveLeaveRequest;
-use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 /*
@@ -67,8 +64,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::get('/',[HomeController::class,'Login'])->name('login');
+Route::get('/', function () {
+    return redirect()->route('login');
+});
+// Route::get('/',[HomeController::class,'Login'])->name('login');
 Route::post('/loginstore',[HomeController::class,'LoginStore'])->name('loginstore');
 Route::get('/logout',[HomeController::class,'Logout'])->name('logout');
 Route::get('/forget-password', [DashboardController::class, 'showForgetPasswordForm'])->name('forget.password');
