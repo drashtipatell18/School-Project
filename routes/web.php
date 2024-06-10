@@ -87,7 +87,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/homework/insert',[HomeworkController::class,'homeworkInsert'])->name('insert.homework');
     Route::get('/admin/homework/edit/{id}', [HomeworkController::class, 'homeworkEdit'])->name('edit.homework');
     Route::post('/admin/homework/update/{id}', [HomeworkController::class, 'homeworkUpdate'])->name('update.homework');
-    Route::get('/admin/homework/destroy/{id}',[HomeworkController::class,'homeworkDestroy'])->name('destroy');
+    Route::get('/admin/homework/destroy/{id}',[HomeworkController::class,'homeworkDestroy'])->name('destroy.homework');
     Route::get('/get-classes', [HomeworkController::class, 'getClasses']);
     Route::get('/get-sections', [HomeworkController::class, 'getSections']);
 
@@ -114,7 +114,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/section/insert',[SectionController::class,'sectionInsert'])->name('insert.section');
     Route::get('/admin/section/edit/{id}', [SectionController::class, 'sectionEdit'])->name('edit.section');
     Route::post('/admin/section/update/{id}', [SectionController::class, 'sectionUpdate'])->name('update.section');
-    Route::get('/admin/section/destroy/{id}',[SectionController::class,'sectionDestroy'])->name('destroy');
+    Route::get('/admin/section/destroy/{id}',[SectionController::class,'sectionDestroy'])->name('destroy.section');
 
     //Class
     Route::get('/admin/class',[ClassController::class,'class'])->name('class');
@@ -122,7 +122,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/class/insert',[ClassController::class,'classInsert'])->name('insert.class');
     Route::get('/admin/class/edit/{id}', [ClassController::class, 'classEdit'])->name('edit.class');
     Route::post('/admin/class/update/{id}', [ClassController::class, 'classUpdate'])->name('update.class');
-    Route::get('/admin/class/destroy/{id}',[ClassController::class,'classDestroy'])->name('destroy');       
+    Route::get('/admin/class/destroy/{id}',[ClassController::class,'classDestroy'])->name('destroy.class');       
 
     // Teacher 
     Route::get("/admin/teacher/getAjax", [TeacherController::class, 'getTeachersAjax'])->name('getTeacherAjax');
@@ -580,7 +580,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/user/insert',[HomeController::class,'userInsert'])->name('insert.user');
     Route::get('/admin/user/edit/{id}', [HomeController::class, 'userEdit'])->name('edit.user');
     Route::post('/admin/user/update/{id}', [HomeController::class, 'userUpdate'])->name('update.user');
-    Route::get('/admin/user/destroy/{id}',[HomeController::class,'userDestroy'])->name('destroy.user'); 
+    Route::get('/admin/user/destroy/{id}',[HomeController::class,'usersDestroy'])->name('destroy.user'); 
     Route::get('/cpassword',[HomeController::class,'cPassword'])->name('changepass'); 
     Route::post('/changepassword',[HomeController::class,'changePassword'])->name('changePassword'); 
 

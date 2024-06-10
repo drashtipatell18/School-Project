@@ -65,7 +65,7 @@
                                                         <a href="{{ route('edit.class', $cla->id) }}"
                                                             class="btn btn-info btn-sm">Edit</a>
 
-                                                        <a href="{{ route('destroy', $cla->id) }}"
+                                                        <a href="{{ route('destroy.class', $cla->id) }}"
                                                             class="btn btn-danger btn-sm">Delete</a>
                                                     </td>
                                                 @endif

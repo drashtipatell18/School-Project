@@ -87,6 +87,9 @@
                                         @enderror
                                     </div>
                                 </div>
+                                @if(isset($error))
+                                    <span style="color: red">{{ $error }}</span>
+                                @endif
                                 
 
                                 <div class="ln_solid"></div>

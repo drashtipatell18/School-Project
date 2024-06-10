@@ -27,6 +27,11 @@ class SubjectController extends Controller
             'name' => 'required',
             'subject_type' => 'required|in:Practical,Theory',
         ]);
+
+        if(Subject::where('code', $request->input('code'))->where('subject_type', $request->input('subject_type'))->count())
+        {
+            return view('superadmin.academics.create_subject')->with("error", "*Subject code already exists");
+        }
         Subject::create([
             'code' => $request->input('code'),
             'name' => strtolower($request->input('name')),

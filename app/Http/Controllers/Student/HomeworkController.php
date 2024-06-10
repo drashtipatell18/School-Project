@@ -101,7 +101,7 @@ class HomeworkController extends Controller
         {
             $homework = Homework::find($id);
             $homework->delete();
-            return redirect()->route('classtimetable');
+            return redirect()->route('homework');
         }
     
 }
