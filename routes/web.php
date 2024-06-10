@@ -45,7 +45,6 @@ use App\Http\Controllers\Communicate\EmailTemplateController;
 use App\Http\Controllers\Communicate\SMSTemplateController;
 use App\Http\Controllers\Library\BookController;
 use App\Http\Controllers\Library\MemberController;
-use App\Models\Admin\FrontOffice\SetupFrontOffice;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\FrontCMS\EventController;
