@@ -127,11 +127,11 @@ class IssueItemController extends Controller
 
     public function getAllname(Request $request)
     {
-        echo 'dfgdfgdf';exit;
+        // echo 'dfgdfgdf';exit;
         $selectedusertype = $request->input('class');
-        echo $selectedUserType;
+        // echo $selectedUserType;
         $names = User::where('role', $selectedusertype)->pluck('name')->toArray();
-        dd($names);
+        // dd($names);
         return response()->json(['names' => $names]);
     }
 
