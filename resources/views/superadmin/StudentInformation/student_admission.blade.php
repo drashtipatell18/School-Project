@@ -304,7 +304,6 @@
                     religion: "required",
                     caste: "required",
                     admission_date: "required",
-                    student_photo: "required",
                     blood_group: "required",
                     height: "required",
                     weight: "required",
@@ -313,12 +312,9 @@
                     father_name: "required",
                     father_phone: "required",
                     father_occupation: "required",
-                    father_photo: "required",
                     mother_name: "required",
                     mother_phone: "required",
                     mother_occupation: "required",
-                    mother_photo: "required",
-
                 },
                 messages: {
                     admissionno: "Please enter Admission No",
@@ -335,7 +331,6 @@
                     religion: "Please enter Religion",
                     caste: "Please enter Caste",
                     admission_date: "Please enter a valid Admission Date",
-                    student_photo: "Please upload a Student Photo",
                     blood_group: "Please enter Blood Group",
                     height: "Please enter Height",
                     weight: "Please enter Weight",
@@ -344,11 +339,9 @@
                     father_name: "Please enter Father's Name",
                     father_phone: "Please enter a valid Father's Phone Number",
                     father_occupation: "Please enter Father's Occupation",
-                    father_photo: "Please upload a Father's Photo",
                     mother_name: "Please enter Mother's Name",
                     mother_phone: "Please enter a valid Mother's Phone Number",
                     mother_occupation: "Please enter Mother's Occupation",
-                    mother_photo: "Please upload a Mother's Photo",
                 },
 
                 submitHandler: function(form) {
