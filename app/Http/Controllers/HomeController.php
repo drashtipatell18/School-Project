@@ -116,7 +116,6 @@ class HomeController extends Controller
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
             'role' => strtolower($role->name),
-            'role_id' => strtolower($role->id),
             'image' => $filename
         ]);
         
@@ -157,7 +156,6 @@ class HomeController extends Controller
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
             'role' => strtolower($role->name),
-            'role_id' => strtolower($role->id),
         ]);
     
         return redirect()->route('users');
