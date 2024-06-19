@@ -5,13 +5,10 @@ namespace App\Http\Controllers\Superadmin\Exam;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Clas;
 use App\Models\Admin\Exam\Exam;
-use App\Models\Admin\Exam\Examgroup;
 use App\Models\Admin\Exam\ResultExam;
 use App\Models\Admin\Exam\Schedule;
-use App\Models\Admin\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use LDAP\Result;
 
 class ResultController extends Controller
 {

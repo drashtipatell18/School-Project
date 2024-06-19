@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Inventory;
 use App\Http\Controllers\Controller;
 use App\Models\Inventory\IssueItems;
-use App\Models\Inventory\Item;
 use App\Models\User;
-use App\Models\Inventory\Category;
 
 use Illuminate\Http\Request;
 

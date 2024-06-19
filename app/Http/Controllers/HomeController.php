@@ -5,12 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
-use App\Mail\ForgotPasswordMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Str;
+
 
 class HomeController extends Controller
 {

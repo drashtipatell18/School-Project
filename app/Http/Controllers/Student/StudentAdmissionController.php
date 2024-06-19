@@ -4,15 +4,10 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Clas;
-use App\Models\Admin\Exam\Exam;
-use App\Models\Admin\Exam\Examgroup;
-use App\Models\Admin\Exam\Schedule;
 use App\Models\Admin\Section;
 use App\Models\Admin\StudentAdmission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Auth;
 
 class StudentAdmissionController extends Controller
 {

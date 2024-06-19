@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Superadmin\Income;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Income\HeadIncome;
 use App\Models\Admin\Income\IncomeHead;
 use Illuminate\Http\Request;
 

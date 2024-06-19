@@ -5,7 +5,6 @@ use App\Http\Controllers\Controller;
 use App\Models\FrontCMS\Event;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {

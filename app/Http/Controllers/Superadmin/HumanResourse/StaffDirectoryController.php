@@ -8,7 +8,6 @@ use App\Models\Admin\HumanResourse\Designation;
 use App\Models\Admin\HumanResourse\StaffDirectory;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 class StaffDirectoryController extends Controller
 {
     public function staffDirectory()

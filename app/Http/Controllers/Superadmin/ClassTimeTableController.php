@@ -5,7 +5,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\ClassTimeTable;
 use App\Models\Admin\Clas;
 use App\Models\Admin\SubjectGroup;
-use App\Models\Admin\Subject;
 use App\Models\Admin\Teacher;
 
 use Illuminate\Http\Request;

@@ -6,10 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Clas;
 use App\Models\Admin\Section;
 use App\Models\Student\Homework;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
 class HomeworkController extends Controller
 {

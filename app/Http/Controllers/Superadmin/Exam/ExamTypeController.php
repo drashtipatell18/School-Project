@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Superadmin\Exam;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Exam\Examtype;
-use App\Models\Admin\Exam\Examtype as ExamExamtype;
-use Illuminate\Http\Request;
+
 
 class ExamTypeController extends Controller
 {

@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Superadmin\Exam;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Exam\Exam;
-use App\Models\Admin\Exam\Examgroup;
-use App\Models\Admin\Exam\Examtype;
 use App\Models\Admin\Exam\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
