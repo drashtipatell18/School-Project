@@ -297,12 +297,13 @@
 
             function fetchIssueby(selectedusertype) {
                 $.ajax({
-                    url: '/get-allname',
+                    url: '/get-byname-deep',
                     type: 'GET',
                     data: {
                         class: selectedusertype
                     },
                     success: function(data) {
+                        console.log(data);
                         // Populate section dropdown
                         populateDropdown($('#issueby'), data.names,
                             '{{ old('issueby', isset($issueitems) ? $issueitems->issueby : '') }}');

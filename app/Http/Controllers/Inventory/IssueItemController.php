@@ -133,6 +133,13 @@ class IssueItemController extends Controller
         return response()->json(['names' => $names]);
     }
 
+    public function getByName()
+    {
+        $names = User::pluck('name')->toArray();
+        // dd($names);
+        return response()->json(['names' => $names]);
+    }
+
     public function GetIdByName(Request $request)
     {
         $selectedUserType = $request->input('class');

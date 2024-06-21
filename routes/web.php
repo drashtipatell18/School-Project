@@ -226,6 +226,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/issueitem/update/{id}', [IssueItemController::class, 'issueitemUpdate'])->name('update.issueitem');
     Route::get('/admin/issueitem/destroy/{id}',[IssueItemController::class,'issueitemDestroy'])->name('destroy.issueitem');
     Route::get('/get-byname',[IssueItemController::class,'GetIdByName'])->name('get-byname');
+    Route::get('/get-byname-deep',[IssueItemController::class,'getByName'])->name('get-byname');
     Route::get('/get-imagebyid',[IssueItemController::class,'getImageById'])->name('get-imagebyid');
 
 
